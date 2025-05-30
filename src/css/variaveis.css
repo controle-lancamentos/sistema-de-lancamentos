@@ -10,5 +10,5 @@
     --cor-fundo-input: #2d6b68;
 
 
-    --fundo-main-formulario: url('/src/image/fundo-formulario.png');
+    --fundo-main-formulario: url('../../src/image/fundo-formulario.png');
 }

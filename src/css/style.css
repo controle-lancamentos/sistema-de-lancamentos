@@ -35,10 +35,15 @@ form {
     align-items: center;
 }
 
+label {
+    margin-bottom: 0.3rem;
+    font-size: 1.5rem;
+}
+
 .inputs {
     width: 100%;
     display: grid;
-    gap: 2rem 0;
+    gap: 2.5rem 0;
     background-color: var(--cor-fundo-input);
     padding: 3rem 1rem;
     border-radius: 1.5rem;
@@ -47,7 +52,7 @@ form {
 .pivo-area, .percentual-lamina {
     display: flex;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 2rem ;
     align-items: center;
 }
 
@@ -59,16 +64,13 @@ form {
 .horimetro{
     display: flex;
     gap: 1rem;
+    text-align: center;
 }
 .horimetro-1-2-horas {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
-}
-
-.horimetro-1, .horimetro-2 {
-    font-size: 1.5rem;
+    gap: 3rem;
 }
 
 .horas label {
@@ -77,8 +79,9 @@ form {
 
 .container-horimetro h1 {
     text-align: center;
-    margin: 1.5rem 1rem 5rem 1rem;
-    font-size: 3rem;
+    margin: 1.5rem 1rem 1.5rem 1rem;
+    font-size: 2rem;
+    line-height: 2.5rem;
 }
 
 button {
@@ -112,20 +115,21 @@ input {
 }
 
 .pivo input {
-    width: 120px;
+    width: 100px;
 }
 
 .area input {
     min-width: 120px;
-    max-width: 200px;
+    max-width: 250px;
 }
 
 .percentual-lamina input {
-    min-width: 10px;
+    min-width: 120px;
 }
 
 .lamina input {
     background-color: var(--cor-input-auto);
+    max-width: 200px;
 }
 
 .horimetro-1 input {
@@ -133,7 +137,7 @@ input {
 }
 
 .horimetro-1 input, .horimetro-2 input {
-    min-width: 100px;
+    min-width: 120px;
 }
 
 .horas input {
@@ -175,11 +179,4 @@ a {
     font-size: 2rem;
     background-color: rgb(83, 83, 102);
     color: white;
-}
-
-@media (max-width: 376px ) {
-
-    .inputs, .horimetro {
-        font-size: 1.5rem;
-    }
 }
