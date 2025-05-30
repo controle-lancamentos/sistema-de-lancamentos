@@ -85,6 +85,7 @@ label {
 }
 
 button {
+    background-color: var(--cor-botao);
     width: 200px;
     padding: 1.5rem;
     border-radius: 2rem;
@@ -146,7 +147,7 @@ input {
 }
 
 .container-horimetro a {
-    background-color: #ffffff;
+    background-color: var(--cor-a-horimetro);
     color: #000000;
     width: auto;
     align-self: flex-start;
