@@ -1,0 +1,39 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    line-height: 1.5rem;
+    -webkit-font-smoothing: antialiased; /*melhora a renderização das fontes nos navegadores (chrome e safari)*/
+    font-family: sans-serif;
+}
+
+/*Mídia fluida*/
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%; /*impede que as midias estoure para fora do container pai*/
+}
+
+/*comportamento de inputs e botões*/
+
+input, button, textarea, select {
+    font: inherit; /*garante que a fonte dos elementos seja o mesmo do body*/
+    outline: none; /*Remobe borda azuis/padões ao clicar*/
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: inherit; /*pegando a mesma cor do ekemento pai*/
+    text-decoration: none;
+}

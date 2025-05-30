@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Lançamento de Horimetros</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../src/css/reset.css">
+    <link rel="stylesheet" href="../../src/css/variaveis.css">
+    <link rel="stylesheet" href="../../src/css/globals.css">
+    <link rel="stylesheet" href="../../src/css/style.css">
+
+</head>
+<body>
+    <main class="formularios">
+        <section class="container-horimetro">
+
+            <h1>Lançamentos de Irrigações Diárias</h1>
+
+            <form action="">
+                <div class="inputs">
+                    <div class="data">   
+                            <label for="data">Data</label>
+                            <input type="date" name="data" required>
+                        </div>
+                    <div class="pivo-area">
+                        <div class="pivo">
+                            <label for="pivo">Pivô</label>
+                            <input type="number" name="pivo" required placeholder="">
+                        </div>
+                        <div class="area">
+                            <label for="area">Area/Quadra</label>
+                            <input type="text" name="area" id="area">
+                        </div>                       
+                    </div>
+
+                    <div class="percentual-lamina">
+                        <div class="percentual">
+                            <label for="percentual">Percentual</label>
+                            <input type="number" min="1" max="100" step="1" name="percentual" id="percentual" required placeholder="">
+                        </div>
+                        <div class="lamina">
+                            <label for="lamina">Lâmina</label>
+                            <input type="number" name="lamina" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="horimetro-1-2-horas">
+                        <div class="horimetro">
+                            <div class="horimetro-1">
+                                <label for="horimetro-1">Horimetro Inicial</label>
+                                <input type="number" name="horimetro-1" id="horimetro-1" required placeholder="">
+                            </div>
+                            <div class="horimetro-2">
+                                <label for="horimetro-2">Horimetro Final</label>
+                                <input type="number" name="horimetro-2" id="horimetro-2" required placeholder="">
+                            </div>
+                        </div>
+                        <div class="horas">
+                            <label for="horas">Horas Irrigadas</label>
+                            <input type="text" name="horas" id="horas">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit">Salvar e Enviar</button>
+            </form>
+            <a href="../../index.html">Voltar a Área de Seleções</a>
+        </section>
+    </main>
+
+    <script type="text/javascript" src="../../src/js/script-horimetro.js" defer></script>
+</body>
+</html>

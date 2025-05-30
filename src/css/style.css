@@ -1,0 +1,185 @@
+main {
+    min-height: 100svh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section {
+    background-color: var(--cor-tema);
+    color: var(--cor-fonte-horimetro);
+
+    font-weight: bold;
+    font-size: 2rem;
+
+    width: 100%;
+    max-width: 500px;
+    margin: 2rem 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    border-radius: 1.5rem;
+
+}
+
+form {
+    width: 100%;
+    padding: 0 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputs {
+    width: 100%;
+    display: grid;
+    gap: 2rem 0;
+    background-color: var(--cor-fundo-input);
+    padding: 3rem 1rem;
+    border-radius: 1.5rem;
+}
+
+.pivo-area, .percentual-lamina {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: center;
+}
+
+.pivo, .area, .data, .percentual, .lamina, .horimetro-1, .horimetro-2, .horas {
+    display: flex;
+    flex-direction: column;
+}
+
+.horimetro{
+    display: flex;
+    gap: 1rem;
+}
+.horimetro-1-2-horas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.horimetro-1, .horimetro-2 {
+    font-size: 1.5rem;
+}
+
+.horas label {
+    text-align: center;
+} 
+
+.container-horimetro h1 {
+    text-align: center;
+    margin: 1.5rem 1rem 5rem 1rem;
+    font-size: 3rem;
+}
+
+button {
+    width: 200px;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    border: none;
+    font-size: 2rem;
+    margin: 4rem auto;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+/*Inputs*/
+
+input {
+    background-color: var(--cor-input-horimetro);
+    width: 100%;
+    height: 5.3rem;
+    padding: 1.5rem 1rem;
+    border-radius: 1.5rem;
+    border: none;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.data input {
+    width: 180px;
+}
+
+.pivo input {
+    width: 120px;
+}
+
+.area input {
+    min-width: 120px;
+    max-width: 200px;
+}
+
+.percentual-lamina input {
+    min-width: 10px;
+}
+
+.lamina input {
+    background-color: var(--cor-input-auto);
+}
+
+.horimetro-1 input {
+    background-color: var(--cor-input-auto);
+}
+
+.horimetro-1 input, .horimetro-2 input {
+    min-width: 100px;
+}
+
+.horas input {
+    width: 150px;
+    background-color: var(--cor-input-auto);
+}
+
+.container-horimetro a {
+    background-color: #ffffff;
+    color: #000000;
+    width: auto;
+    align-self: flex-start;
+    margin-left: 1rem;
+    border-radius: 1rem;
+    border: none;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.container-horimetro button:hover, a:hover {
+    background-color: var(--cor-tema);
+    box-shadow: 0px 0px 10px #ffffff inset;
+    color: #ffffff;
+    transition: 0.3s;
+}
+
+.destinos {
+    background-color: azure;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+a {
+    width: 100%;
+    padding: 1rem;
+    font-size: 2rem;
+    background-color: rgb(83, 83, 102);
+    color: white;
+}
+
+@media (max-width: 376px ) {
+
+    .inputs, .horimetro {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,14 @@
+:root {
+    --cor-tema: #135855;
+
+    --cor-fonte-horimetro: #ffffff;
+
+    --cor-input-horimetro: #1db8b1;
+
+    --cor-input-auto: #bbcbca;
+
+    --cor-fundo-input: #2d6b68;
+
+
+    --fundo-main-formulario: url('/src/image/fundo-formulario.png');
+}
