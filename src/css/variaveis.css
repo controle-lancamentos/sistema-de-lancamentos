@@ -1,18 +1,30 @@
 :root {
+
+    /*variáveis de cores*/
     --cor-tema: rgba(19, 88, 85, 0.6);
 
-    --cor-fonte-horimetro: #ffffff;
+    --cor-fonte-label-formulario: #ffffff;
 
-    --cor-input-horimetro: rgba(29, 184, 177, 0.4);
+    --cor-fonte-h1-selecoes:  #ffffff;
 
-    --cor-input-auto: rgba(187, 203, 202, 0.5);
+    --cor-fonte-a-selecoes: #000000;
+
+    --cor-inputs-horimetro: rgba(29, 184, 177, 0.7);
+
+    --cor-input-auto: rgba(187, 203, 202, 0.7);
 
     --cor-fundo-input: rgba(45, 107, 104, 0.65);
+
+    --cor-fundo-a-selecoes: rgba(233, 240, 239, 0.6);
 
     --cor-botao: rgba(255, 255, 255, 0.7);
 
     --cor-a-horimetro: rgba(255, 255, 255, 0.7);
 
+    /*variáveis de imagens*/
+    --fundo-main-formulario-mobile: url('../../src/image/fundo-formulario-mobile.webp');
+    --fundo-main-formulario-desktop: url('../../src/image/fundo-formulario-desktop.webp');
 
-    --fundo-main-formulario: url('../../src/image/fundo-formulario.png');
+    --fundo-main-selecoes-mobile: url('../../src/image/fundo-formulario-mobile.webp');
+    --fundo-main-selecoes-desktop: url('../../src/image/fundo-selecoes-desktop.webp');
 }

@@ -1,6 +1,118 @@
 main.formularios {
-    background: var(--fundo-main-formulario) no-repeat center center;
+    background: var(--fundo-main-formulario-mobile) no-repeat center center;
     background-size: cover;
     
 }
 
+main.selecoes {
+    background: var(--fundo-main-selecoes-mobile) no-repeat center center;
+    background-size: cover;
+}
+
+main {
+    min-height: 100svh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+article {
+    margin: 2rem;
+}
+
+header {
+    margin: 2rem 1.5rem;
+
+}
+
+section {
+    background-color: var(--cor-tema);
+    color: var(--cor-fonte-label-formulario);
+
+    font-weight: bold;
+    font-size: 2rem;
+
+    width: 100%;
+    max-width: 500px;
+    margin: 2rem 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    border-radius: 1.5rem;
+
+}
+
+.selecoes section {
+    margin: 0;
+}
+
+form {
+    width: 100%;
+    padding: 0 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+label {
+    margin-bottom: 0.3rem;
+    font-size: 1.5rem;
+}
+
+.inputs {
+    width: 100%;
+    display: grid;
+    gap: 2.5rem 0;
+    background-color: var(--cor-fundo-input);
+    padding: 3rem 1rem;
+    border-radius: 1.5rem;
+}
+
+button {
+    background-color: var(--cor-botao);
+    width: 200px;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    border: none;
+    font-size: 2rem;
+    margin: 4rem auto;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+input {
+    background-color: var(--cor-inputs-horimetro);
+    width: 100%;
+    height: 5.3rem;
+    padding: 1.5rem 1rem;
+    border-radius: 1.5rem;
+    border: none;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.container-horimetro a {
+    background-color: var(--cor-a-horimetro);
+    color: #000000;
+    width: auto;
+    align-self: flex-start;
+    margin-left: 1rem;
+    border-radius: 1rem;
+    border: none;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.container-horimetro button:hover, a:hover {
+    background-color: var(--cor-tema);
+    box-shadow: 0px 0px 10px #ffffff inset;
+    color: #ffffff;
+    transition: 0.3s;
+}
