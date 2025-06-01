@@ -87,15 +87,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
     text-align: center;
     margin-bottom: 3rem;
 }
 
 a {
     width: 100%;
-    padding: 1rem 1.5rem;
+    padding: 1.5rem 1.5rem;
     font-size: 1.5rem;
+    font-family: "Roboto";
     background-color: var(--cor-fundo-a-selecoes);
     color: var(--cor-fonte-a-selecoes);
     border-radius: 1.5rem;
@@ -112,5 +113,18 @@ a {
     main.selecoes {
         background: var(--fundo-main-selecoes-desktop) no-repeat center center;
         background-size: cover;
+    }
+
+    main.execucao-os {
+        background: var(--fundo-main-formulario-desktop) no-repeat center center;
+        background-size: cover;
+    }
+
+    .selecoes a {
+        font-size: 2rem;
+    }
+
+    .container-horimetro h1, .execucao-os h2 {
+        font-size: 2.5rem;
     }
 }

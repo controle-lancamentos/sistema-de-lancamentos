@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Controle Irrigação - Execução OS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" href="../../src/image/favicon.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../src/css/reset.css">
+    <link rel="stylesheet" href="../../src/css/variaveis.css">
+    <link rel="stylesheet" href="../../src/css/globals.css">
+    <link rel="stylesheet" href="../../src/css/style.css">
+
+</head>
+<body>
+    <main class="execucao-os">
+        <section>
+            <header>
+                <h2>Indicadores - Execução da OS</h2>
+            </header>
+            <form action="">
+                <div class="inputs">
+                    <div class="data">
+                        <label for="data">Data</label>
+                        <input type="date" name="data" id="data" required>
+                    </div>
+                    <div class="pivo">
+                        <label for="pivo">Pivo</label>
+                        <input type="number" name="pivo" id="pivo" required>
+                    </div>
+                    <div class="falha">
+                        <label for="falha">Falha</label>
+                        <input type="text" name="falha" id="falha" required>
+                    </div>
+                    <div class="motivo">
+                        <label for="motivo">Motivo</label>
+                        <input type="text" name="motivo" id="motivo" required>
+                    </div>
+                </div>
+                <button type="submit">Salvar e Enviar</button>
+            </form>
+            <a href="/index.html">Voltar á Área de Selecões</a>
+        </section>
+    </main>
+    
+    <script type="text/javascript" src="../../src/js/script-execucao-os.js"></script>
+</body>
+</html>
