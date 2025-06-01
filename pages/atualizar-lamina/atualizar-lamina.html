@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Controle Irrigação - Execução OS</title>
+    <title>Controle Irrigação - Atualizar Lâmina</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="icon" href="../../src/image/favicon.png" type="image/png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,36 +18,37 @@
 
 </head>
 <body>
-    <main class="formularios execucao-os">
+    <main class="formularios atualizar-lamina">
         <section>
             <header>
-                <h2>Indicadores - Execução da OS</h2>
+                <h2>Atualizar Lâmina</h2>
             </header>
             <form action="">
                 <div class="inputs">
-                    <div class="data">
-                        <label for="data">Data</label>
-                        <input type="date" name="data" id="data" required>
-                    </div>
                     <div class="pivo">
-                        <label for="pivo">Pivo</label>
+                        <label for="pivo">Pivô</label>
                         <input type="number" name="pivo" id="pivo" required>
                     </div>
-                    <div class="falha">
-                        <label for="falha">Falha</label>
-                        <input type="text" name="falha" id="falha" required>
+                    <div class="percTeste">
+                        <label for="percTeste">Porcentagem do Teste</label>
+                        <input type="number" name="percTeste" id="percTeste" required>
                     </div>
-                    <div class="motivo">
-                        <label for="motivo">Motivo</label>
-                        <input type="text" name="motivo" id="motivo" required>
+                    <div class="laminaTeste">
+                        <label for="laminaTeste">Lâmina (mm) do Teste</label>
+                        <input type="number" name="laminaTeste" id="laminaTeste">
+                    </div>
+                    <div class="laminaInicial input-auto">
+                        <label for="laminaInicial">Lâmina (mm) a 100%:</label>
+                        <input type="text" name="laminaInicial" id="laminaInicial">
                     </div>
                 </div>
+
                 <button type="submit">Salvar e Enviar</button>
             </form>
-            <a href="../../index.html">Voltar a Área de Selecões</a>
+
+            <a href="../../index.html">Voltar a Área de Seleções</a>
         </section>
     </main>
-    
-    <script type="text/javascript" src="../../src/js/script-execucao-os.js"></script>
+    <script type="text/javascript" src="../../src/js/script-lamina.js"></script>
 </body>
 </html>

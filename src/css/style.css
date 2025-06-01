@@ -63,13 +63,12 @@
     min-width: 120px;
 }
 
-.lamina input {
+.input-auto input {
     background-color: var(--cor-input-auto);
-    max-width: 200px;
 }
 
-.horimetro-1 input {
-    background-color: var(--cor-input-auto);
+.lamina input {
+    max-width: 200px;
 }
 
 .horimetro-1 input, .horimetro-2 input {
@@ -78,7 +77,6 @@
 
 .horas input {
     width: 150px;
-    background-color: var(--cor-input-auto);
 }
 
 
@@ -115,16 +113,24 @@ a {
         background-size: cover;
     }
 
-    main.execucao-os {
-        background: var(--fundo-main-formulario-desktop) no-repeat center center;
-        background-size: cover;
-    }
-
     .selecoes a {
         font-size: 2rem;
     }
 
-    .container-horimetro h1, .execucao-os h2 {
+    .container-horimetro h1, .execucao-os h2, .atualizar-lamina h2 {
         font-size: 2.5rem;
     }
+
+    .execucao-os .inputs {
+        padding: 3rem 2rem;
+    }
+
+    .atualizar-lamina .inputs {
+        padding: 3rem 5rem;
+    }
+
+    .atualizar-lamina form {
+        padding: 0 2rem;
+    }
+    
 }
