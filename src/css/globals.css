@@ -59,7 +59,7 @@ form {
     align-items: center;
 }
 
-.execucao-os form {
+.execucao-os form, .atualizar-lamina form {
     padding: 0 2rem;
 }
 
@@ -101,6 +101,19 @@ input {
     text-align: center;
     font-weight: 700;
     letter-spacing: 1px;
+}
+
+input::placeholder {
+    font-style: italic;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cor-tema);
+}
+
+.selecoes nav {
+    background-color: var(--cor-fundo-input);
+    padding: 1.5rem;
+    border-radius: 1.5rem;
 }
 
 .container-horimetro a, .execucao-os a, .atualizar-lamina a {
