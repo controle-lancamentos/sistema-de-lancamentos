@@ -28,18 +28,19 @@
                     <div class="pivo-area">
                         <div class="pivo">
                             <label for="pivo">Pivô</label>
-                            <input type="number" name="pivo" required placeholder="Pivô">
+                            <input type="number" name="pivo" id="pivo" required placeholder="Pivô">
                         </div>
                         <div class="area">
                             <label for="area">Area/Quadra</label>
-                            <input type="text" name="area" id="area" placeholder="Área irrigada">
+                            <input type="text" name="area" id="area" placeholder="Área irrigada" required autocomplete="off">
+                            <div id="sugestoes" class="dropdown"></div>
                         </div>                       
                     </div>
 
                     <div class="percentual-lamina">
                         <div class="percentual">
                             <label for="percentual">Percentual</label>
-                            <input type="number" min="1" max="100" step="1" name="percentual" id="percentual" required placeholder="000%">
+                            <input type="number" maxlength="3" min="1" max="100" step="1" name="percentual" id="percentual" required placeholder="000%">
                         </div>
                         <div class="lamina input-auto">
                             <label for="lamina">Lâmina (mm)</label>
@@ -51,16 +52,16 @@
                         <div class="horimetro">
                             <div class="horimetro-1 input-auto">
                                 <label for="horimetro-1">Horimetro Inicial</label>
-                                <input type="number" name="horimetro-1" id="horimetro-1" required placeholder="000,00">
+                                <input type="number" step="any" name="horimetro-1" id="horimetro-1" required placeholder="000,00">
                             </div>
                             <div class="horimetro-2">
                                 <label for="horimetro-2">Horimetro Final</label>
-                                <input type="number" name="horimetro-2" id="horimetro-2" required placeholder="000,00">
+                                <input type="number" step="any" name="horimetro-2" id="horimetro-2" required placeholder="000,00">
                             </div>
                         </div>
                         <div class="horas input-auto">
                             <label for="horas">Horas Irrigadas</label>
-                            <input type="text" name="horas" id="horas" placeholder="00,00" readonly>
+                            <input type="number" step="any" name="horas" id="horas" placeholder="00,00" readonly>
                         </div>
                     </div>
                 </div>

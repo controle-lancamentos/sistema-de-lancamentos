@@ -114,6 +114,50 @@ input::placeholder {
     color: var(--cor-tema);
 }
 
+div {
+    position: relative;
+}
+
+.erro {
+    position: absolute;
+    color: red;
+    background-color: rgb(170, 175, 180);
+    
+    
+    font-style: italic;
+    font-weight: 100;
+    font-size: 1.2rem;
+
+    border-radius: 1rem;
+    padding: 0 5px;
+    left: 10%;
+    bottom: 0.2rem;
+}
+
+.dropdown {
+    padding: 1rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--cor-fundo-lista);
+    color: var(--cor-fonte-lista);
+    max-height: 17rem;
+    overflow-y: auto;
+    display: none;
+    z-index: 10;
+    border-radius: 1.5rem;
+}
+
+.dropdown div {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.dropdown div:hover {
+  background-color: #f0f0f0;
+}
+
 .selecoes nav {
     background-color: var(--cor-fundo-input);
     padding: 1.5rem;

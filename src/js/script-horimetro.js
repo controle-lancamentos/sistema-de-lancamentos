@@ -1,63 +1,161 @@
+//Função exibir erro
+function exibirErro(idInput) {
+
+    const input = document.getElementById(idInput);
+    const container = input.parentElement;
+
+    if (!container.querySelector('.erro')) {
+
+        const span = document.createElement('span');
+
+        span.className = 'erro';
+        span.innerText = 'Valor inválido';
+
+        container.appendChild(span);
+    }
+}
+
+//função remover erros
+function removerErro(idInput) {
+
+    const input = document.getElementById(idInput);
+    const container = input.parentElement;
+
+    const span = container.querySelector('.erro');
+
+    if (span) {
+        container.removeChild(span);
+    }
+}
+
+//Deixando o campo de area sem 'espaços', sem 'letreas'
 const area = document.getElementById('area');
+const sugestoes = document.getElementById('sugestoes')
+
+const inforArea = ['COMPLETO', 'METADE', 'A', 'B', 'C', 'D',
+                    'AB', 'AC', 'AD', 'BC', 'BD', 'CD',
+                    'ABC', 'ABD', 'ACD', 'BCD',
+                    'ABCD'
+];
 
 area.addEventListener('input', () => {
 
     area.value = area.value.replace(/\s+/g, "").toUpperCase();
 
+    if (!(inforArea.includes(area.value))) {
+        exibirErro('area');
+
+    } else {removerErro('area'); 
+
+    }
+
+    const valor = area.value.trim();
+
+    sugestoes.innerHTML = '';
+    
+    if (valor === '') {
+        sugestoes.style.display = 'none';
+
+        return;
+    }
+
+    const filtradas = inforArea.filter(opcao => opcao.startsWith(valor));
+
+    if (filtradas.length > 0) {
+        sugestoes.style.display = 'block'
+
+        filtradas.forEach(opcao => {
+            const item = document.createElement('div');
+
+            item.innerText = opcao;
+
+            item.onclick = () => {
+                area.value = opcao;
+                sugestoes.style.display = 'none';
+                removerErro('area');
+            };
+        
+            sugestoes.appendChild(item); 
+        }); 
+
+    } else {
+        sugestoes.style.display = 'none';
+    }
 });
+
+document.addEventListener('click', e => {
+
+  if (!e.target.closest('.area')) {
+    sugestoes.style.display = 'none';
+  }
+
+});
+
+
 
 const pivo = document.getElementById('pivo');
 const percentual = document.getElementById('percentual');
 const lamina = document.getElementById('lamina');
 
-const tabelaPivoLamina = [
-    {
-        pivo: '10',
-        laminaAplicada: { '100': 7.50, '80': 8.10, '60': 9.25, '55': 14.15, '30': 17.10 }
-    },
+const tabelaPivoLamina = {
 
-    {
-        pivo: '25',
-        laminaAplicada: { '100': 8.50, '80': 9.15, '60': 10.40, '55': 16.15, '30': 19.10 }
-    },
+    '1': 5.45, '2': 5.30, '3': 6.30, '4': 3.92, '5': 5.52,
+    '6': 5.82, '7': 5.52, '8': 6.58, '9': 5.46, '10': 6.30,
+    '11': 5.52, '12': 6.30, '13': 4.28, '14': 5.76, '15': 7.38,
+    '16': 7.19, '17': 6.30, '18': 6.51, '19': 5.75, '20': 6.84,
+    '21': 5.47, '22': 7.21, '23': 5.28, '24': 6.30, '25': 5.80,
+    '26': 5.70, '27': 5.34, '28': 6.68, '29': 5.14, '30': 6.00,
+    '31': 6.18, '32': 5.70, '33': 6.00, '34': 6.72, '35': 5.82,
+    '36': 7.20, '37': 9.04, '38': 8.05, '39': 5.58, '40': 6.96,
+    '41': 6.44, '42': 5.76, '43': 6.79, '44': 7.26, '45': 6.12,
+    '46': 6.66, '47': 7.42, '48': 6.80, '49': 6.72, '50': 6.78,
+    '51': 6.05, '52': 6.96, '53': 4.63, '54': 5.80, '55': 6.48,
+    '56': 6.18, '57': 5.88, '58': 6.54, '59': 5.18, '60': 6.78,
+    '61': 6.09, '62': 5.58, '63': 3.54, '64': 5.45, '65': 7.27,
+    '66': 5.60, '67': 5.00, '68': 4.80, '69': 4.60, '70': 6.42,
+    '71': 4.85, '72': 6.12, '73': 6.76, '74': 6.76,
+    '101': 5.58,  '102': 5.58,  '103': 5.16,  '104': 4.95,  '105': 5.16,
+    '106': 5.34,  '107': 4.68,  '108': 5.34,  '109': 5.83,  '110': 5.50,
+    '112': 6.37,  '113': 6.37,  '114': 5.94,  '115': 6.44,  '116': 6.44,
+    '117': 5.67,  '118': 6.44,  '119': 6.58,  '120': 6.51,  '121': 6.37,
+    '122': 6.30,  '123': 6.79,  '124': 5.88,  '125': 4.50,  '126': 6.65,
+    '127': 4.82,  '128': 6.36,  '129': 5.35,  '130': 5.76,  '131': 7.67,
+    '132': 7.77,  '133': 5.15
+}
 
-    {
-        pivo: '35',
-        laminaAplicada: { '100': 8.50, '80': 9.15, '60': 11.40, '55': 17.15, '30': 19.25 }
-    },
+function pegarLamina() {
 
-    {
-        pivo: '55',
-        laminaAplicada: { '100': 7.50, '80': 10.15, '60': 13.40, '55': 16.15, '30': 18.10 }
-    },
+    const codigoPivo = pivo.value;
+    const taxaExecucao = parseFloat(percentual.value);
+    const valorBase = tabelaPivoLamina[codigoPivo];
 
-    {
-        pivo: '70',
-        laminaAplicada: { '100': 5.50, '80': 7.15, '60': 8.40, '55': 15.15, '30': 20.10 }
-    }
-];
-
-function pegarLamina () {
-
-    /*const maquina = pivo.value;
-    const taxaAplicacao = percentual.value;
-
-    const item = tabelaPivoLamina.find(obj => obj.pivo === maquina);
+    if (!(codigoPivo in tabelaPivoLamina)) {
+        exibirErro('pivo');
     
-    if (item && item.laminaAplicada[taxaAplicacao] !== undefined) {
-        lamina.value = item.laminaAplicada[taxaAplicacao];
     } else {
-        lamina.value = 'Valor não encontrado';
-    }*/
+        removerErro('pivo');
+    } 
 
-        const resultado = tabelaPivoLamina.find(obj => obj.pivo === '25')?.laminaAplicada['100'];
+    if (taxaExecucao === 0 || taxaExecucao > 100 || taxaExecucao == 0) {
+        exibirErro('percentual');
 
-        lamina.value = resultado;
+    } else {
+        removerErro('percentual');
+    }
 
-        console.log(resultado);
+    if (!valorBase || isNaN(taxaExecucao) || taxaExecucao === 0) {
+        lamina.value = '';
+
+        return;
+    }
+
+    const calculoLamina = valorBase / (taxaExecucao / 100);
+
+    lamina.value = calculoLamina.toFixed(2);
 }
 
 percentual.addEventListener('input', pegarLamina);
+pivo.addEventListener('input', pegarLamina);
 
 const horimetro1 = document.getElementById('horimetro-1');
 const horimetro2 = document.getElementById('horimetro-2');
@@ -69,8 +167,15 @@ function horasCalculadas() {
     
     const valor2 = parseFloat(horimetro2.value) || 0;
 
-    horas.value = valor2 - valor1;
+    if (valor2 == 0) {
+        return horas.value = '';
+    }
+
+    const resultado = (valor2 - valor1).toFixed(1);
+
+    horas.value = resultado;
 
 }
 
 horimetro2.addEventListener('input', horasCalculadas);
+horimetro1.addEventListener('input', horasCalculadas);
