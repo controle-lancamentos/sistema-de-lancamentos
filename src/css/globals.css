@@ -34,7 +34,7 @@ section {
     font-size: 2rem;
 
     width: 100%;
-    max-width: 500px;
+    max-width: 50rem;
     margin: 2rem 1.5rem;
 
     display: flex;
@@ -47,6 +47,10 @@ section {
 
 .selecoes section {
     margin: 0;
+}
+
+.planejamento-ferti section {
+    max-width: 70rem;
 }
 
 form {
@@ -116,7 +120,7 @@ input::placeholder {
     border-radius: 1.5rem;
 }
 
-.container-horimetro a, .execucao-os a, .atualizar-lamina a {
+.formularios a {
     background-color: var(--cor-a-horimetro);
     color: #000000;
     width: auto;

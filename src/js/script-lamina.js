@@ -4,12 +4,12 @@ const laminaInicial = document.getElementById('laminaInicial');
 
 function calcularLamina() {
 
-    const porcentagem = parseFloat(percTeste.value) || 0;
-    const resultadoTeste = parseFloat(laminaTeste.value) || 0;
+    const porcentagem = parseFloat(percTeste.value.replace(',', '.')) || 0;
+    const resultadoTeste = parseFloat(laminaTeste.value.replace(',', '.')) || 0;
 
-    laminaInicial.value = ((resultadoTeste * porcentagem) / 100);
+    const resultado = ((resultadoTeste * porcentagem) / 100);
 
-    laminaInicial.value = laminaInicial.value.replace('.', ',');
+    laminaInicial.value = resultado.toFixed(2).replace('.', ',');
 }
 
 laminaTeste.addEventListener('input', calcularLamina);

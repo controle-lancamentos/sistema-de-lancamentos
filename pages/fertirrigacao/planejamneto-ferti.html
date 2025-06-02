@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Controle Irrigação - Planjemento de Fertirrigação</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../../src/image/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="../../src/css/reset.css">
+    <link rel="stylesheet" href="../../src/css/variaveis.css">
+    <link rel="stylesheet" href="../../src/css/globals.css">
+    <link rel="stylesheet" href="../../src/css/style.css">
+
+</head>
+<body>
+    <main class="formularios planejamneto-ferti">
+        <section>
+            <header>
+                <h2>Planjemento de Fertirrigação</h2>
+            </header>
+
+            <form action="">
+                <div class="input">
+                    <div class="data">
+                        <label for="data">Data</label>
+                        <input type="date" name="data" id="data" required>
+                    </div>
+                    <div class="pivo">
+                        <label for="pivo">Pivô</label>
+                        <input type="number" name="pivo" id="pivo" required placeholder="Pivô">
+                    </div>
+                    <div class="cultura">
+                        <label for="cultura">Cultura</label>
+                        <input type="text" name="cultura" id="cultura" required placeholder="Tabaco, Soja, Algodão...">
+                    </div>
+                    <div class="produto">
+                        <label for="produto">Produto</label>
+                        <input type="text" name="produto" id="produto" required placeholder="Selecione um produto">
+                    </div>
+                    <div class="dosagem">
+                        <label for="dosagem">Dosagem (ha)</label>
+                        <input type="number" name="dosagem" id="dosagem" required placeholder="Dose de aplicação">
+                    </div>
+                    <div class="area">
+                        <label for="area">Área</label>
+                        <input type="text" name="area" id="area" required placeholder="Área de aplicação">
+                    </div>
+                    <div class="colaboradores">
+                        <label for="colaboradores">Operador</label>
+                        <input type="text" name="colaboradores" id="colaboradores" required placeholder="Nome do operador/dosador">
+                    </div>
+                    <div class="ordem-servico">
+                        <label for="ordem-servico">Ordem de Serviço</label>
+                        <input type="number" name="ordem-servico" id="ordem-servico" required placeholder="Número da OS">
+                    </div>
+                </div>
+                <button type="submit">Salvar e Enviar</button>
+            </form>
+
+            <a href="../../index.html">Voltar a Área de Seleções</a>
+        </section>
+    </main>
+
+    <script type="text/javascript" src="../../src/js/script-planejamento-ferti.js"></script>
+</body>
+</html>

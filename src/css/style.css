@@ -1,4 +1,4 @@
-.container-horimetro h1, h2 {
+.horimetros h2, h2 {
     text-align: center;
     margin: 1.5rem 1rem 1.5rem 1rem;
     font-size: 1.5rem;
@@ -117,7 +117,7 @@ a {
         font-size: 2rem;
     }
 
-    .container-horimetro h1, .execucao-os h2, .atualizar-lamina h2 {
+    .formularios h2 {
         font-size: 2.5rem;
     }
 

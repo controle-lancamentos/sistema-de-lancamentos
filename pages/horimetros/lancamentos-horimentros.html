@@ -15,10 +15,10 @@
 </head>
 <body>
     <main class="formularios horimetros">
-        <section class="container-horimetro">
-
-            <h1>Lançamentos de Irrigações Diárias</h1>
-
+        <section>
+            <header>
+                <h2>Lançamentos de Irrigações Diárias</h2>
+            </header>
             <form action="">
                 <div class="inputs">
                     <div class="data">   
@@ -43,7 +43,7 @@
                         </div>
                         <div class="lamina input-auto">
                             <label for="lamina">Lâmina (mm)</label>
-                            <input type="number" name="lamina" placeholder="00,00" readonly>
+                            <input type="number" name="lamina" id="lamina" placeholder="00,00" readonly>
                         </div>
                     </div>
 
@@ -51,7 +51,7 @@
                         <div class="horimetro">
                             <div class="horimetro-1 input-auto">
                                 <label for="horimetro-1">Horimetro Inicial</label>
-                                <input type="number" name="horimetro-1" id="horimetro-1" required placeholder="000,00" readonly>
+                                <input type="number" name="horimetro-1" id="horimetro-1" required placeholder="000,00">
                             </div>
                             <div class="horimetro-2">
                                 <label for="horimetro-2">Horimetro Final</label>
