@@ -29,11 +29,6 @@ function removerErro(idInput) {
 }
 
 //função de observação
-
-/*const checked = document.getElementById('check');
-const abservacao = document.getElementById('observacao');
-const anotacao = document.getElementById('anotacao');*/
-
 function incluirObservacao (idCheck, idAnotacao) {
     const checked = document.getElementById(idCheck);
     const anotacao = document.getElementById(idAnotacao);
@@ -55,7 +50,7 @@ function incluirObservacao (idCheck, idAnotacao) {
 const area = document.getElementById('area');
 const sugestoes = document.getElementById('sugestoes')
 
-const inforArea = ['COMPLETO', 'METADE', 'A', 'B', 'C', 'D',
+const inforArea = ['COMPLETO', '1/2-PIVO', 'A', 'B', 'C', 'D',
                     'AB', 'AC', 'AD', 'BC', 'BD', 'CD',
                     'ABC', 'ABD', 'ACD', 'BCD',
                     'ABCD'
@@ -113,7 +108,6 @@ document.addEventListener('click', e => {
   }
 
 });
-
 
 
 const pivo = document.getElementById('pivo');
@@ -182,6 +176,7 @@ function pegarLamina() {
 percentual.addEventListener('input', pegarLamina);
 pivo.addEventListener('input', pegarLamina);
 
+
 const horimetro1 = document.getElementById('horimetro-1');
 const horimetro2 = document.getElementById('horimetro-2');
 const horas = document.getElementById('horas');
@@ -205,21 +200,6 @@ function horasCalculadas() {
 horimetro2.addEventListener('input', horasCalculadas);
 horimetro1.addEventListener('input', horasCalculadas);
 
-/*const checked = document.getElementById('check');
-const abservacao = document.getElementById('observacao');
-const anotacao = document.getElementById('anotacao');
 
-checked.addEventListener('click', () => {
-
-    const check = checked.value;
-
-    if (check) {
-    alert('verdadeiro!');
-
-    } else {
-        alert('Deu falha');
-
-    }
-});*/
-
+//Incluindo a observação no formulário
 incluirObservacao('check', 'anotacao');
