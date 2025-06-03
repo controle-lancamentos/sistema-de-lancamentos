@@ -79,6 +79,46 @@
     width: 150px;
 }
 
+/*Campo de observação*/
+.observacao .check {
+    display: flex;
+    justify-content: end;
+    height: 3rem;
+}
+
+.observacao .check label {
+    display: flex;
+    align-items: center;
+}
+
+.observacao input[type='checkbox'] {
+    accent-color: rgb(32, 190, 66);
+    border-radius: 1.5rem;
+    width: 50px;
+    height: 100%;
+    margin-top: 0;
+}
+
+.observacao .anotacao {
+    text-align: center;
+    padding-top: 1rem;
+    display: none;
+    
+}
+
+.observacao textarea {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 0.3rem;
+    border-radius: 0.5rem 0.5rem 1rem 1rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.05rem;
+    font-family: 'Roboto';
+    color: #000;
+    background-color: #fff;
+    height: 7rem;
+}
+
 
 /*links*/
 .destinos {
@@ -105,8 +145,8 @@ a {
 @media (min-width: 750px) {
 
     main.formularios {
-        background: var(--fundo-main-formulario-desktop) no-repeat center center;
-        background-size: cover;
+        background: var(--cor-fundo-2-main), var(--fundo-main-formulario-desktop) no-repeat center center;
+        background-size: auto cover;
     }
     main.selecoes {
         background: var(--fundo-main-selecoes-desktop) no-repeat center center;
@@ -131,6 +171,10 @@ a {
 
     .atualizar-lamina form {
         padding: 0 2rem;
+    }
+
+    .observacao {
+        padding: 0 3rem;
     }
     
 }

@@ -28,6 +28,29 @@ function removerErro(idInput) {
     }
 }
 
+//função de observação
+
+/*const checked = document.getElementById('check');
+const abservacao = document.getElementById('observacao');
+const anotacao = document.getElementById('anotacao');*/
+
+function incluirObservacao (idCheck, idAnotacao) {
+    const checked = document.getElementById(idCheck);
+    const anotacao = document.getElementById(idAnotacao);
+
+    checked.addEventListener('change', () => {
+
+        if(checked.checked) {
+            anotacao.style.display = 'block';
+           
+        
+        } else {
+            anotacao.style.display = 'none';
+            
+        }
+    });
+}
+
 //Deixando o campo de area sem 'espaços', sem 'letreas'
 const area = document.getElementById('area');
 const sugestoes = document.getElementById('sugestoes')
@@ -97,7 +120,7 @@ const pivo = document.getElementById('pivo');
 const percentual = document.getElementById('percentual');
 const lamina = document.getElementById('lamina');
 
-const tabelaPivoLamina = {
+export const tabelaPivoLamina = {
 
     '1': 5.45, '2': 5.30, '3': 6.30, '4': 3.92, '5': 5.52,
     '6': 5.82, '7': 5.52, '8': 6.58, '9': 5.46, '10': 6.30,
@@ -123,27 +146,29 @@ const tabelaPivoLamina = {
     '132': 7.77,  '133': 5.15
 }
 
+export const codigoPivo = Object.keys(tabelaPivoLamina);
+
 function pegarLamina() {
 
     const codigoPivo = pivo.value;
     const taxaExecucao = parseFloat(percentual.value);
     const valorBase = tabelaPivoLamina[codigoPivo];
 
-    if (!(codigoPivo in tabelaPivoLamina)) {
+    if (!(codigoPivo in tabelaPivoLamina) || parseFloat(codigoPivo) <= 0) {
         exibirErro('pivo');
     
     } else {
         removerErro('pivo');
     } 
 
-    if (taxaExecucao === 0 || taxaExecucao > 100 || taxaExecucao == 0) {
+    if (taxaExecucao === 0 || taxaExecucao > 100 || taxaExecucao <= 0) {
         exibirErro('percentual');
 
     } else {
         removerErro('percentual');
     }
 
-    if (!valorBase || isNaN(taxaExecucao) || taxaExecucao === 0) {
+    if (!valorBase || isNaN(taxaExecucao) || taxaExecucao <= 0 || taxaExecucao > 100) {
         lamina.value = '';
 
         return;
@@ -179,3 +204,22 @@ function horasCalculadas() {
 
 horimetro2.addEventListener('input', horasCalculadas);
 horimetro1.addEventListener('input', horasCalculadas);
+
+/*const checked = document.getElementById('check');
+const abservacao = document.getElementById('observacao');
+const anotacao = document.getElementById('anotacao');
+
+checked.addEventListener('click', () => {
+
+    const check = checked.value;
+
+    if (check) {
+    alert('verdadeiro!');
+
+    } else {
+        alert('Deu falha');
+
+    }
+});*/
+
+incluirObservacao('check', 'anotacao');

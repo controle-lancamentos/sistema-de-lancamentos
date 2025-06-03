@@ -1,9 +1,11 @@
 main {
     min-height: 100svh;
+    min-height: 100vh;
 
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 
 main.selecoes {
@@ -14,7 +16,6 @@ main.selecoes {
 main.formularios {
     background: var(--fundo-main-formulario-mobile) no-repeat center center;
     background-size: cover;
-    
 }
 
 article {
@@ -125,7 +126,7 @@ div {
     
     
     font-style: italic;
-    font-weight: 100;
+    font-weight: 700;
     font-size: 1.2rem;
 
     border-radius: 1rem;
@@ -156,6 +157,7 @@ div {
 
 .dropdown div:hover {
   background-color: #f0f0f0;
+  color: #000000;
 }
 
 .selecoes nav {
