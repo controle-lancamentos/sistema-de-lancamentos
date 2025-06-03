@@ -1,7 +1,7 @@
 .horimetros h2, h2 {
     text-align: center;
-    margin: 1.5rem 1rem 1.5rem 1rem;
-    font-size: 1.5rem;
+    margin: 1.5rem 1rem;
+    font-size: 2rem;
     line-height: 2.5rem;
 }
 
@@ -145,8 +145,8 @@ a {
 @media (min-width: 750px) {
 
     main.formularios {
-        background: var(--cor-fundo-2-main), var(--fundo-main-formulario-desktop) no-repeat center center;
-        background-size: auto cover;
+        background: var(--fundo-main-formulario-desktop) no-repeat center center;
+        background-size: cover;
     }
     main.selecoes {
         background: var(--fundo-main-selecoes-desktop) no-repeat center center;

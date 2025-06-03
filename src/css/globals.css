@@ -5,8 +5,22 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    position: relative;
+    z-index: 0;
     
 }
+
+main::before {
+    position: absolute;
+    content: "";
+    inset: 0;
+    z-index: -1;
+    background-color: var(--cor-fundo-02-main);
+
+}
+
+
 
 main.selecoes {
     background: var(--fundo-main-selecoes-mobile) no-repeat center center;
