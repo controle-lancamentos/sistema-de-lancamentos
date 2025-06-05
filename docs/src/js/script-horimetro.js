@@ -240,7 +240,7 @@ form.addEventListener('submit', async (e) => {
 
     try {
         // envia para o backend com o metodo POST
-        const resposta = await fetch('http://localhost:3000/api/form', {
+        const resposta = await fetch('http://localhost:3000/api/form/horimetro', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -261,5 +261,6 @@ form.addEventListener('submit', async (e) => {
     }
 
     form.reset();
+    document.getElementById('anotacao').style.display = 'none';
      
 });
