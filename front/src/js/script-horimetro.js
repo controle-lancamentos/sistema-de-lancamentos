@@ -26,7 +26,7 @@ function removerErro(idInput) {
     if (span) {
         container.removeChild(span);
     }
-}
+};
 
 //função de observação
 function incluirObservacao (idCheck, idAnotacao) {
@@ -34,6 +34,14 @@ function incluirObservacao (idCheck, idAnotacao) {
     const anotacao = document.getElementById(idAnotacao);
 
     checked.addEventListener('change', () => {
+
+        const textContent = document.querySelector('textarea');
+
+        textContent.addEventListener('blur', () => {
+
+            textContent.value = textContent.value.replace(/\s+/g, ' ').trim();
+
+        });
 
         if(checked.checked) {
             anotacao.style.display = 'block';
@@ -48,7 +56,7 @@ function incluirObservacao (idCheck, idAnotacao) {
 
 //Deixando o campo de area sem 'espaços', sem 'letreas'
 const area = document.getElementById('area');
-const sugestoes = document.getElementById('sugestoes')
+const sugestoes = document.getElementById('sugestoes');
 
 const inforArea = ['COMPLETO', '1/2-PIVO', 'A', 'B', 'C', 'D',
                     'AB', 'AC', 'AD', 'BC', 'BD', 'CD',
@@ -56,6 +64,7 @@ const inforArea = ['COMPLETO', '1/2-PIVO', 'A', 'B', 'C', 'D',
                     'ABCD'
 ];
 
+/*--lista de validação de informações do campo area--*/
 area.addEventListener('input', () => {
 
     area.value = area.value.replace(/\s+/g, "").toUpperCase();
@@ -138,7 +147,7 @@ export const tabelaPivoLamina = {
     '122': 6.30,  '123': 6.79,  '124': 5.88,  '125': 4.50,  '126': 6.65,
     '127': 4.82,  '128': 6.36,  '129': 5.35,  '130': 5.76,  '131': 7.67,
     '132': 7.77,  '133': 5.15
-}
+};
 
 export const codigoPivo = Object.keys(tabelaPivoLamina);
 
@@ -148,14 +157,14 @@ function pegarLamina() {
     const taxaExecucao = parseFloat(percentual.value);
     const valorBase = tabelaPivoLamina[codigoPivo];
 
-    if (!(codigoPivo in tabelaPivoLamina) || parseFloat(codigoPivo) <= 0) {
+    if (!(codigoPivo in tabelaPivoLamina)) {
         exibirErro('pivo');
     
     } else {
         removerErro('pivo');
     } 
 
-    if (taxaExecucao === 0 || taxaExecucao > 100 || taxaExecucao <= 0) {
+    if (taxaExecucao <= 0 || taxaExecucao > 100) {
         exibirErro('percentual');
 
     } else {
@@ -187,8 +196,12 @@ function horasCalculadas() {
     
     const valor2 = parseFloat(horimetro2.value) || 0;
 
-    if (valor2 == 0) {
-        return horas.value = '';
+    if (valor2 <= 0 || valor2 <= valor1) {
+        exibirErro('horimetro-2');
+        return horas.value = null;
+
+    } else {
+        removerErro('horimetro-2');
     }
 
     const resultado = (valor2 - valor1).toFixed(1);
@@ -203,3 +216,50 @@ horimetro1.addEventListener('input', horasCalculadas);
 
 //Incluindo a observação no formulário
 incluirObservacao('check', 'anotacao');
+
+
+// Envio de dados do formulário
+
+const form = document.getElementById('formHorimetro');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // Evita que o formulário recarregue a página
+
+    // pegando os valores dos campos
+    const dados = {
+        data: document.getElementById('data').value,
+        pivo: document.getElementById('pivo').value,
+        area: document.getElementById('area').value,
+        percentual: document.getElementById('percentual').value,
+        lamina: document.getElementById('lamina').value,
+        horimetro1: document.getElementById('horimetro-1').value,
+        horimetro2: document.getElementById('horimetro-2').value,
+        horas: document.getElementById('horas').value,
+        observacao: document.getElementById('txtAnotacao').value
+    };
+
+    try {
+        // envia para o backend com o metodo POST
+        const resposta = await fetch('http://localhost:3000/api/form', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+
+            body: JSON.stringify(dados) // Transforma os dados em texto JSON
+
+        });
+
+        const resultado = await resposta.json();
+        alert(resultado.mensagem) // Mostra mensagem de sucesso
+
+    } catch (erro) {
+        console.error('Erro ao enviar:', erro);
+
+        alert('Erro ao enviar dados!');
+
+    }
+
+    form.reset();
+     
+});

@@ -133,6 +133,7 @@ div {
     position: relative;
 }
 
+/*--estilizaçõa de span erro--*/
 .erro {
     position: absolute;
     color: red;
