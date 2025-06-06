@@ -82,18 +82,18 @@ window.incluirObservacao = function(idCheck, idAnotacao) {
 
 
 /*--lista de validação de informações do campo area--*/
-window.listaSugestaoSuspensa = function(idInput, idSugestoes,/* idEspelho = 'naoUsar'*/ listArea) {
+window.listaSugestaoSuspensa = function(idInput, idSugestoes, listArea) {
 
     const inputArea = document.getElementById(idInput);
     const sugestoes = document.getElementById(idSugestoes);
 
     if (!inputArea || !sugestoes) return;
 
-    if (!(idEspelho = 'naoUsar')) {
+    /*if (!(idEspelho = 'naoUsar')) {
         const espelho = document.getElementById(idEspelho);
         
         var verficacaoObjeto = Object.values(espelho).some(lista => lista.includes(idInput));
-    }
+    }*/
     
     inputArea.addEventListener('input', () => {
 
@@ -105,7 +105,7 @@ window.listaSugestaoSuspensa = function(idInput, idSugestoes,/* idEspelho = 'nao
 
         
 
-        if (!listArea.includes(inputArea.value) || !verficacaoObjeto(valor, window.listArea)) {
+        if (!listArea.includes (inputArea.value)) {
             exibirErro(idInput);
 
         } else {
