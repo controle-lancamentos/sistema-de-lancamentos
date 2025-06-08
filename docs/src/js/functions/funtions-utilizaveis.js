@@ -59,7 +59,7 @@ window.incluirObservacao = function(idCheck, idAnotacao) {
     const checked = document.getElementById(idCheck);
     const anotacao = document.getElementById(idAnotacao);
 
-    checked.addEventListener('change', () => {
+    checked.addEventListener('input', () => {
 
         const textContent = document.querySelector('textarea');
 
@@ -88,22 +88,44 @@ window.listaSugestaoSuspensa = function(idInput, idSugestoes, listArea) {
     const sugestoes = document.getElementById(idSugestoes);
 
     if (!inputArea || !sugestoes) return;
+    // lista click começa aqui!!
+    const atualizarSugestoes = (valorAtual = '') => {
+        sugestoes.innerHTML = '';
 
-    /*if (!(idEspelho = 'naoUsar')) {
-        const espelho = document.getElementById(idEspelho);
-        
-        var verficacaoObjeto = Object.values(espelho).some(lista => lista.includes(idInput));
-    }*/
-    
+        const filtradas = valorAtual
+            ? listArea.filter(opcao => opcao.startsWith(valorAtual))
+            : listArea;
+
+        if (filtradas.length > 0) {
+            sugestoes.style.display = 'block';
+
+            filtradas.forEach(opcao => {
+                const item = document.createElement('div');
+                item.innerText = opcao;
+                item.onclick = () => {
+                    inputArea.value = opcao;
+                    sugestoes.style.display = 'none';
+                    removerErro(inputArea);
+                };
+                sugestoes.appendChild(item);
+            });
+        } else {
+            sugestoes.style.display = 'none';
+        }
+    };
+
+    // Filtragem
     inputArea.addEventListener('input', () => {
 
-        
+        if (inputArea.id === 'area') {
+            inputArea.value = inputArea.value.toUpperCase().replace(/\s+/g, '');
 
-        inputArea.value = inputArea.value.replace(/\s+/g, "").toUpperCase();
+        } else {
+
+            inputArea.value = inputArea.value.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase());
+        }
 
         const valor = inputArea.value.trim();
-
-        
 
         if (!listArea.includes (inputArea.value)) {
             exibirErro(idInput);
@@ -112,8 +134,10 @@ window.listaSugestaoSuspensa = function(idInput, idSugestoes, listArea) {
             removerErro(idInput);
         }
 
+        atualizarSugestoes(valor)
+        //-------*
 
-        sugestoes.innerHTML = '';
+        /*sugestoes.innerHTML = '';
         
         if (valor === '') {
             sugestoes.style.display = 'none';
@@ -142,14 +166,128 @@ window.listaSugestaoSuspensa = function(idInput, idSugestoes, listArea) {
 
         } else {
             sugestoes.style.display = 'none';
-        }
+        }*/
+    });
+
+    inputArea.addEventListener('focus', () => {
+        atualizarSugestoes();
     });
 
     document.addEventListener('click', e => {
-
-    if (!e.target.closest('.area')) {
+        setTimeout(() => {
+            if (!e.target.closest('#' + idInput)) {
         sugestoes.style.display = 'none';
-    }
+
+            }
+        }, 10);
+    });
+
+}
+
+/*--lista de validação de informações do campo area { para objetos }--*/
+window.listaSugestaoSuspensaObjetos = function(idInput, idSugestoes, idSetor, listArea) {
+
+    const inputArea = document.getElementById(idInput);
+    const sugestoes = document.getElementById(idSugestoes);
+    const inputSetor = document.getElementById(idSetor);
+
+    if (!inputArea || !sugestoes || !inputSetor) return;
+    // lista começa aqui
+     const atualizarSugestoes = (valorAtual = '') => {
+        const setor = inputSetor.value.trim();
+        const listaPorSetor = listArea[setor] || [];
+
+        sugestoes.innerHTML = '';
+
+        const filtradas = valorAtual
+            ? listaPorSetor.filter(opcao => opcao.startsWith(valorAtual))
+            : listaPorSetor; // se valorAtual for vazio, mostra tudo
+
+        if (filtradas.length > 0) {
+            sugestoes.style.display = 'block';
+
+            filtradas.forEach(opcao => {
+                const item = document.createElement('div');
+                item.innerText = opcao;
+                item.onclick = () => {
+                    inputArea.value = opcao;
+                    sugestoes.style.display = 'none';
+                    removerErro(inputArea);
+                };
+                sugestoes.appendChild(item);
+            });
+        } else {
+            sugestoes.style.display = 'none';
+        }
+    };
+
+    // filtragem
+    inputArea.addEventListener('input', () => {
+
+        inputArea.value = inputArea.value.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase());;
+
+        const valor = inputArea.value.trim();
+        const setor = inputSetor.value.trim();
+
+        const listaPorSetor = listArea[setor] || [];
+
+        console.log('setor: ', setor);
+        console.log('listaPorsetor: ', listaPorSetor);
+        console.log('listaArea: ', listArea);
+
+        if (!listaPorSetor.includes (valor)) {
+            exibirErro(idInput);
+
+        } else {
+            removerErro(idInput);
+        }
+
+        sugestoes.innerHTML = '';
+        
+        if (valor === '') {
+            sugestoes.style.display = 'none';
+
+            return;
+        }
+
+        const filtradas = listaPorSetor.filter(opcao => opcao.startsWith(valor));
+
+        if (filtradas.length > 0) {
+            sugestoes.style.display = 'block'
+
+            filtradas.forEach(opcao => {
+                const item = document.createElement('div');
+
+                item.innerText = opcao;
+
+                item.onclick = () => {
+                    inputArea.value = opcao;
+                    sugestoes.style.display = 'none';
+                    removerErro(inputArea);
+                };
+            
+                sugestoes.appendChild(item); 
+            }); 
+
+        } else {
+            sugestoes.style.display = 'none';
+        }
+
+         atualizarSugestoes(valor);
+    });
+
+     // Aqui é o evento que mostra tudo ao focar no input
+    inputArea.addEventListener('focus', () => {
+        atualizarSugestoes();
+    });
+
+    document.addEventListener('click', e => {
+        setTimeout(() => {
+            if (!e.target.closest('#' + idInput)) {
+            sugestoes.style.display = 'none';
+
+            }
+        }), 100;
 
     });
 

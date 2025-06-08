@@ -40,6 +40,20 @@ function pegarLamina() {
 percentual.addEventListener('input', pegarLamina);
 pivo.addEventListener('input', pegarLamina);
 
+// Ultimo horimetro
+document.getElementById('pivo').addEventListener('change', () => {
+  const nomePivo = document.getElementById('pivo').value;
+
+  /*--console.log(`nome do pivô enviado: "${nomePivo}"`);--*/
+
+  fetch(`http://localhost:3000/api/form/horimetro/ultimoHorimetro/${nomePivo}`)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('horimetro-1').value = data.ultimoHorimetro;
+    })
+    .catch(err => console.error('Erro ao buscar horímetro:', err));
+});
+
 
 // Validacção horas
 const horimetro1 = document.getElementById('horimetro-1');

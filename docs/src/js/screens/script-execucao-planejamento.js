@@ -5,13 +5,14 @@ validacaoPivo('pivo');
 
 
 // validação falha
-listaSugestaoSuspensa('falha', 'sugestoes', inforMotivo);
+listaSugestaoSuspensa('falha', 'sugestoes-falha', inforMotivo);
 
 // Validação motivo da falha
-listaSugestaoSuspensa('motivo', 'sugestoes', 'falha', inforProblemaMotivo)
-
+/*listaSugestaoSuspensa('motivo', 'sugestoes', 'falha', inforProblemaMotivo)*/
 //listaSugestaoSuspensa('motivo', 'sugestoes', inforProblemaMotivo);
 
+// Validação motivo falha
+window.listaSugestaoSuspensaObjetos('motivo', 'sugestoes-motivo', 'falha', inforProblemaMotivo)
 
 // Envidando dados do formulário
 
