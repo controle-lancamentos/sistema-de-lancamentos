@@ -152,6 +152,10 @@ div {
 
 
 /*--Estilização de lista de suspensa validação--*/
+.sugestoes {
+    background-color: black;
+}
+
 .dropdown {
     padding: 1rem;
     position: absolute;
@@ -162,22 +166,39 @@ div {
     color: var(--cor-fonte-lista);
     max-height: 17rem;
     overflow-y: auto;
+    --webkit-overflw-scrolling: touch;
+    scroll-behavior: smooth;
+    cursor: pointer;
     display: none;
     z-index: 10;
     border-radius: 1.5rem;
 
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     text-align: left;
+    color: #000000;
+}
+.dropdown::-webkit-scrollbar {
+    width: 1.5rem;
+    background-color: #18a599;
+    border-radius: 1.5rem;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+    background-color: #116e67;
+    border-radius: 1rem;
 }
 
 .dropdown div {
-  padding: 8px 12px;
+  padding: 1.5rem 1rem ;
+  margin: 0.5rem 0;
+  border-radius: 1.5rem;
   cursor: pointer;
+  background-color: rgb(105, 184, 173);
 }
 
 .dropdown div:hover {
   background-color: #f0f0f0;
-  color: #000000;
+  
 }
 
 .selecoes nav {
