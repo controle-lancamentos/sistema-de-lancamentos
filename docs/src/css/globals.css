@@ -178,7 +178,7 @@ div {
     color: #000000;
 }
 .dropdown::-webkit-scrollbar {
-    width: 1.5rem;
+    width: 3rem;
     background-color: #18a599;
     border-radius: 1.5rem;
 }

@@ -1,5 +1,5 @@
 // Validações indicadores
-window.inforMotivo = ['Elétrico', 'Energia/Coelba', 'Chuva', 'Mecânico', 'Operacional', 'Programação/Manejo'];
+window.inforMotivo = ['Elétrico', 'Mecânico', 'Operacional', 'Programação/Manejo', 'Chuva', 'Energia/Coelba'];
 
 window.inforProblemaMotivo = {
     'Elétrico': [

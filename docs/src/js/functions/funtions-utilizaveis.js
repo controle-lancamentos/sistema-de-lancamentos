@@ -292,3 +292,12 @@ window.listaSugestaoSuspensaObjetos = function(idInput, idSugestoes, idSetor, li
     });
 
 }
+
+/*desabilitarInput('motivo');
+
+window.desabilitarInput = Function(idInput) {
+    const inputDesable = document.getElementById(idInput).value = window.inforMotivo[4] || window.inforMotivo[5];
+
+    if (inputDesable)
+        document.getElementById(idInput).innerHTML = 'readonly'
+}*/

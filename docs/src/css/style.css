@@ -183,3 +183,10 @@ a {
     }
     
 }
+
+@media (max-width: 320px) {
+
+    .dropdown::-webkit-scrollbar {
+    width: 2rem;
+    }
+}
