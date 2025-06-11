@@ -14,6 +14,14 @@ listaSugestaoSuspensa('falha', 'sugestoes-falha', inforMotivo);
 // Validação motivo falha
 window.listaSugestaoSuspensaObjetos('motivo', 'sugestoes-motivo', 'falha', inforProblemaMotivo)
 
+// desabilitanfo input de motivo da falha
+
+//window.desabilitarInput('motivo', 'falha', inforMotivo);
+
+// incluido observação
+
+window.incluirObservacao('check', 'anotacao');
+
 // Envidando dados do formulário
 
 const form = document.getElementById('formExecucaoIndicador');

@@ -59,13 +59,14 @@ window.incluirObservacao = function(idCheck, idAnotacao) {
     const checked = document.getElementById(idCheck);
     const anotacao = document.getElementById(idAnotacao);
 
-    checked.addEventListener('input', () => {
+    checked.addEventListener('click', () => {
 
-        const textContent = document.querySelector('textarea');
+        const textContent = document.querySelector('.' + idAnotacao);
 
         textContent.addEventListener('blur', () => {
 
-            textContent.value = textContent.value.replace(/\s+/g, ' ').trim();
+            //textContent.value = textContent.value.replace(/\s+/g, ' ').trim();
+            textContent.value = textContent.value.toUpperCase();
 
         });
 
@@ -231,9 +232,9 @@ window.listaSugestaoSuspensaObjetos = function(idInput, idSugestoes, idSetor, li
 
         const listaPorSetor = listArea[setor] || [];
 
-        console.log('setor: ', setor);
+        /*console.log('setor: ', setor);
         console.log('listaPorsetor: ', listaPorSetor);
-        console.log('listaArea: ', listArea);
+        console.log('listaArea: ', listArea);*/
 
         if (!listaPorSetor.includes (valor)) {
             exibirErro(idInput);
@@ -293,11 +294,30 @@ window.listaSugestaoSuspensaObjetos = function(idInput, idSugestoes, idSetor, li
 
 }
 
-/*desabilitarInput('motivo');
+/*desabilitarInput('motivo');*/
 
-window.desabilitarInput = Function(idInput) {
-    const inputDesable = document.getElementById(idInput).value = window.inforMotivo[4] || window.inforMotivo[5];
+window.inforMotivo = ['Elétrico', 'Mecânico', 'Operacional', 'Programação/Manejo', 'Chuva', 'Energia/Coelba'];
 
-    if (inputDesable)
-        document.getElementById(idInput).innerHTML = 'readonly'
-}*/
+window.desabilitarInput = function(idInput, idReferencia) {
+    const inputReferencia = document.getElementById(idReferencia);
+
+    inputReferencia.addEventListener('blur', () => {
+
+        /*inputReferencia = 'Chuva';
+
+
+        //if ( inputReferencia.value === listArrayInfos[listArrayInfos.length -1] || inputReferencia.value === listArrayInfos[listArrayInfos.length -2] ) {
+        /*if ( inputReferencia === 'Chuva' || inputReferencia === "Energia/Coelba" ) {*/
+            
+            const inputDesable = document.getElementById(idInput);
+            inputDesable.setAttribute('readonly', true);
+            
+            inputDesable.classList.add('input-auto');
+
+        console.log(inputReferencia);
+    });
+}
+
+const teste = document.getElementById('pivo');
+
+console.log(teste.value);

@@ -16,6 +16,16 @@
     font-weight: 700;
 }
 
+.login h1 {
+    position: absolute;
+    top: 10%;
+    color: #fff;
+    font-size: 3rem;
+}
+
+.login h2 {
+    margin: 0;
+}
 /*label mais input*/
 .pivo-area, .percentual-lamina {
     display: flex;

@@ -25,6 +25,7 @@ main::before {
 main.selecoes {
     background: var(--fundo-main-selecoes-mobile) no-repeat center center;
     background-size: cover;
+    flex-direction: column;
 }
 
 main.formularios {
@@ -42,13 +43,14 @@ header {
 }
 
 section {
+    position: relative;
+    
     background-color: var(--cor-tema);
     color: var(--cor-fonte-label-formulario);
 
     font-weight: bold;
     font-size: 2rem;
 
-    width: 100%;
     max-width: 50rem;
     margin: 2rem 1.5rem;
 
@@ -68,14 +70,24 @@ section {
     max-width: 70rem;
 }
 
+.login section {
+    max-width: 35rem;
+    margin: auto 3rem;
+
+    border-radius: 5rem;
+}
+
 form {
-    width: 100%;
     padding: 0 1rem;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.login form {
+    padding: 0 2rem;
 }
 
 .execucao-os form, .atualizar-lamina form {
@@ -87,12 +99,16 @@ label {
 }
 
 .inputs {
-    width: 100%;
     display: grid;
     gap: 2.5rem 0;
     background-color: var(--cor-fundo-input);
     padding: 3rem 1rem;
     border-radius: 1.5rem;
+}
+
+.login .inputs {
+    gap: 1.5rem 0;
+    padding: 1.5rem 1rem;
 }
 
 button {
@@ -105,6 +121,11 @@ button {
     margin: 4rem auto;
     letter-spacing: 1px;
     font-weight: bold;
+}
+
+.login button {
+    margin: 2rem auto;
+    width: 150px;
 }
 
 input {
@@ -120,6 +141,10 @@ input {
     text-align: center;
     font-weight: 700;
     letter-spacing: 1px;
+}
+
+.login input {
+    font-size: 1.5rem;
 }
 
 input::placeholder {
@@ -199,6 +224,14 @@ div {
 .dropdown div:hover {
   background-color: #f0f0f0;
   
+}
+
+.selecoes .rodape {
+    font-size: 1.1rem;
+    font-family: 'Roboto';
+    color: #ffffff;
+    position: absolute;
+    bottom: 2%;
 }
 
 .selecoes nav {
