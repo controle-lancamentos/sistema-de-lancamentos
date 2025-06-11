@@ -33,6 +33,11 @@ main.formularios {
     background-size: cover;
 }
 
+main.login {
+    height: 100vh;
+    height: 100svh;
+}
+
 article {
     margin: 2rem;
 }
