@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <title>Controle Irrigação - Cadastre-se</title>
+    <title>Controle Irrigação - Cadastro</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,9 +14,6 @@
 </head>
 <body>
     <main>
-        <header>
-            <h1>Controle Irrigação</h1>
-        </header>
         <section>
             <header>
                 <h2>Faça cadastro de usuários aqui</h2>
@@ -24,16 +21,8 @@
             <form action="">
                 <div class="inputs">
                     <div>
-                        <label for="name">Nome:</label>
-                        <input type="text" name="name" id="name" required>
-                    </div>
-                    <div>
-                        <label for="email">E-mail:</label>
-                        <input type="email" name="email" id="email">
-                    </div>
-                    <div>
-                        <label for="nameUser">Nome de usuário:</label>
-                        <input type="text" name="nameUser" id="">
+                        <label for="user-name">Nome de Usuário:</label>
+                        <input type="text" name="user-name" id="user-name" required>
                     </div>
                     <div>
                         <label for="senha">Senha:</label>
@@ -43,10 +32,18 @@
                         <label for="confSenha">Confirmar senha:</label>
                         <input type="password" name="confSenha" id="confSenha">
                     </div>
-                    <div>
-                        <label for="userAdm">Cadastar como Administrador?</label>
-                        <input type="checkbox" name="userAdm" id="userAdm">
-                    </div>
+                    <div class="radio">
+                        <div>
+                            <label>Usuário operador:
+                                <input type="radio" name="user-cadastro" id="operador" value="operador">
+                            </label>
+                        </div>
+                        <div>
+                            <label>Usuário administrador:
+                                <input type="radio" name="user-cadastro" id="user-adm" value="user-adm">
+                            </label>
+                        </div>
+                    </div>    
                 </div>
                 <button>Cadastrar</button>
             </form>

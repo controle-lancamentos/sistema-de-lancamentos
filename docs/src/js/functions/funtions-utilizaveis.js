@@ -37,7 +37,7 @@ window.removerErro = function(idInput) {
 
 // validação pivo
 
-window.validacaoPivo = function(idPivo) {
+window.validacaoPivo = function(idPivo, mensagem) {
     const InputPivo = document.getElementById(idPivo);
 
     InputPivo.addEventListener('input', () =>{
@@ -45,12 +45,26 @@ window.validacaoPivo = function(idPivo) {
         const chavePivo = InputPivo.value.trim();
 
         if (!(chavePivo in tabelaPivoLamina)) {
-            exibirErro(idPivo);
+            exibirErro(idPivo, mensagem);
 
         } else {
             removerErro(idPivo);
         }
 
+    });
+}
+
+window.validacaoPercentual = function(idPercentual) {
+    const percentual = document.getElementById(idPercentual);
+
+    percentual.addEventListener('input', () => {
+
+        if( percentual.value > 100 || percentual.value <=0 ) {
+            window.exibirErro(idPercentual);
+
+        } else {
+            window.removerErro(idPercentual);
+        }
     });
 }
 
@@ -129,7 +143,7 @@ window.listaSugestaoSuspensa = function(idInput, idSugestoes, listArea) {
         const valor = inputArea.value.trim();
 
         if (!listArea.includes (inputArea.value)) {
-            exibirErro(idInput);
+            exibirErro(idInput , 'Informe somente valores conforme a lista.');
 
         } else {
             removerErro(idInput);
@@ -237,7 +251,7 @@ window.listaSugestaoSuspensaObjetos = function(idInput, idSugestoes, idSetor, li
         console.log('listaArea: ', listArea);*/
 
         if (!listaPorSetor.includes (valor)) {
-            exibirErro(idInput);
+            exibirErro(idInput, 'Informe somente valores conforme a lista.');
 
         } else {
             removerErro(idInput);

@@ -116,6 +116,12 @@ label {
     padding: 1.5rem 1rem;
 }
 
+.radio {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 2rem;
+}
+
 button {
     background-color: var(--cor-botao);
     width: 200px;
@@ -168,23 +174,21 @@ div {
     position: absolute;
     color: red;
     background-color: rgb(170, 175, 180);
+    z-index: 1;
     
     
     font-style: italic;
     font-weight: 700;
     font-size: 1.2rem;
+    text-align: center;
 
-    border-radius: 1rem;
-    padding: 0 5px;
-    left: 10%;
-    bottom: 0.2rem;
+    border-radius: 1.5rem;
+    padding: 5px;
+    top: 100%
 }
 
 
 /*--Estilização de lista de suspensa validação--*/
-.sugestoes {
-    background-color: black;
-}
 
 .dropdown {
     padding: 1rem;
@@ -196,11 +200,12 @@ div {
     color: var(--cor-fonte-lista);
     max-height: 17rem;
     overflow-y: auto;
-    --webkit-overflw-scrolling: touch;
+    --webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
+    touch-action: manipulation;
     cursor: pointer;
     display: none;
-    z-index: 10;
+    z-index: 1000;
     border-radius: 1.5rem;
 
     font-size: 1.5rem;

@@ -13,14 +13,14 @@ function pegarLamina() {
     const valorBase = tabelaPivoLamina[codigoPivo];
 
     if (!(codigoPivo in tabelaPivoLamina)) {
-        exibirErro('pivo');
+        exibirErro('pivo', 'Esse pivô não existe.');
     
     } else {
         removerErro('pivo');
     } 
 
     if (taxaExecucao <= 0 || taxaExecucao > 100) {
-        exibirErro('percentual');
+        exibirErro('percentual', 'Somente valores de 1 á 100.');
 
     } else {
         removerErro('percentual');
@@ -67,7 +67,7 @@ function horasCalculadas() {
     const valor2 = parseFloat(horimetro2.value) || 0;
 
     if (valor2 <= 0 || valor2 <= valor1) {
-        exibirErro('horimetro-2');
+        exibirErro('horimetro-2', 'Valor deve ser maior que hora inicial.');
         return horas.value = null;
 
     } else {
@@ -95,6 +95,12 @@ const form = document.getElementById('formHorimetro');
 form.addEventListener('submit', async (e) => {
     e.preventDefault(); // Evita que o formulário recarregue a página
 
+    const dataLancamento = document.getElementById('data');
+    const dataHistorico = dataLancamento.value;
+
+    const erro = document.querySelectorAll('.erro');
+    let erroExistente = false;
+
     // pegando os valores dos campos
     const dados = {
         data: document.getElementById('data').value,
@@ -107,6 +113,18 @@ form.addEventListener('submit', async (e) => {
         horas: document.getElementById('horas').value,
         observacao: document.getElementById('txtAnotacao').value
     };
+
+    erro.forEach( span => {
+        if ( span.style.display !== 'none' ) {
+            erroExistente = true;
+        
+        } 
+    });
+
+    if ( erroExistente ) {
+        alert('Por favor, corrija os dados inválidos!');
+        return;
+    }
 
     try {
         // envia para o backend com o metodo POST
@@ -132,5 +150,9 @@ form.addEventListener('submit', async (e) => {
 
     form.reset();
     document.getElementById('anotacao').style.display = 'none';
-     
+
+    setTimeout( () => {
+        document.getElementById('data').value = dataHistorico
+    }, 0);
+
 });

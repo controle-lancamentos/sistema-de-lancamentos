@@ -1,7 +1,7 @@
 /*import { codigoPivo, tabelaPivoLamina } from "./script-horimetro.js";*/
 
 // validação pivô
-validacaoPivo('pivo');
+window.validacaoPivo('pivo', 'Esse pivô não existe.');
 
 
 // validação falha
@@ -29,12 +29,26 @@ const form = document.getElementById('formExecucaoIndicador');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    const erro = document.querySelectorAll('.erro');
+    let erroExistente = false;
+
     const dados = {
         data: document.getElementById('data').value,
         pivo: document.getElementById('pivo').value,
         falha: document.getElementById('falha').value,
         motivo: document.getElementById('motivo').value
     };
+
+    erro.forEach( span => {
+        if ( span.style.display !== 'none') {
+            erroExistente = true;
+        }
+    });
+
+    if ( erroExistente ) {
+        alert('Por favor, corrija os dados inválidos!');
+        return;
+    }
 
     try {
         const resposta = await fetch('http://localhost:3000/api/form/exIndicador', {
