@@ -185,6 +185,11 @@ window.listaSugestaoSuspensa = function(idInput, idSugestoes, listArea) {
     });
 
     inputArea.addEventListener('focus', () => {
+
+        setTimeout(() => {
+        inputArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+
         atualizarSugestoes();
     });
 

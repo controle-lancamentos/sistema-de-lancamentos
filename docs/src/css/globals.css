@@ -198,7 +198,7 @@ div {
     right: 0;
     background: var(--cor-fundo-lista);
     color: var(--cor-fonte-lista);
-    max-height: 17rem;
+    max-height: 20rem;
     overflow-y: auto;
     --webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
@@ -220,7 +220,7 @@ div {
 
 .dropdown::-webkit-scrollbar-thumb {
     background-color: #116e67;
-    border-radius: 1rem;
+    border-radius: 1.5rem;
 }
 
 .dropdown div {
