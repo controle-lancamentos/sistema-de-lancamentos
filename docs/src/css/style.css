@@ -299,6 +299,12 @@ a {
     
 }
 
+@media (max-width: 750px) {
+    main.selecoes #fertirrigacao, #ordem-servico {
+        display: none;
+    }
+}
+
 @media (max-width: 320px) {
 
     .dropdown::-webkit-scrollbar {
