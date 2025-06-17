@@ -75,12 +75,11 @@ window.incluirObservacao = function(idCheck, idAnotacao) {
 
     checked.addEventListener('click', () => {
 
-        const textContent = document.querySelector('.' + idAnotacao);
+        const textContent = document.getElementById('txtAnotacao');
 
         textContent.addEventListener('blur', () => {
 
-            //textContent.value = textContent.value.replace(/\s+/g, ' ').trim();
-            textContent.value = textContent.value.toUpperCase();
+            textContent.value = textContent.value.replace(/\s+/g, ' ').trim();
 
         });
 
@@ -142,7 +141,7 @@ window.listaSugestaoSuspensa = function(idInput, idSugestoes, listArea) {
 
         const valor = inputArea.value.trim();
 
-        if (!listArea.includes (inputArea.value)) {
+        if (!listArea.includes(inputArea.value)) {
             exibirErro(idInput , 'Informe somente valores conforme a lista.');
 
         } else {
@@ -184,12 +183,16 @@ window.listaSugestaoSuspensa = function(idInput, idSugestoes, listArea) {
         }*/
     });
 
+    inputArea.addEventListener('blur', () => {
+        if ( !listArea.includes(inputArea.value) && !(inputArea.value === "") ) {
+            exibirErro(idInput , 'Informe somente valores conforme a lista.');
+
+        } else {
+            removerErro(idInput);
+        }
+    });
+
     inputArea.addEventListener('focus', () => {
-
-        setTimeout(() => {
-        inputArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 300);
-
         atualizarSugestoes();
     });
 
@@ -301,6 +304,16 @@ window.listaSugestaoSuspensaObjetos = function(idInput, idSugestoes, idSetor, li
         atualizarSugestoes();
     });
 
+    inputArea.addEventListener('blur', () => {
+
+        if (!listaPorSetor.includes(valor) && inputArea.value.trim() !== "" ) {
+            exibirErro(idInput, 'Informe somente valores conforme a lista.');
+
+        } else {
+            removerErro(idInput);
+        }
+    });
+
     document.addEventListener('click', e => {
         setTimeout(() => {
             if (!e.target.closest('#' + idInput)) {
@@ -336,7 +349,3 @@ window.desabilitarInput = function(idInput, idReferencia) {
         console.log(inputReferencia);
     });
 }
-
-const teste = document.getElementById('pivo');
-
-console.log(teste.value);

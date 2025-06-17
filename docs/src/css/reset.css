@@ -16,6 +16,10 @@ body {
     color: #000000;
 }
 
+body[data-loading="treu"] {
+    visibility: hidden;
+}
+
 /*Mídia fluida*/
 
 img, picture, video, canvas, svg {

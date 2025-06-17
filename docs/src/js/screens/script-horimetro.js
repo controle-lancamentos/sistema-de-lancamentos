@@ -1,6 +1,6 @@
 
 // validação de pivô e lâminas
-listaSugestaoSuspensa('area', 'sugestoes', inforArea);
+window.listaSugestaoSuspensa('area', 'sugestoes', window.inforArea);
 
 const pivo = document.getElementById('pivo');
 const percentual = document.getElementById('percentual');
@@ -65,6 +65,13 @@ function horasCalculadas() {
     const valor1 = parseFloat(horimetro1.value) || 0;
     
     const valor2 = parseFloat(horimetro2.value) || 0;
+
+    if ( valor1 < 0 ) {
+        exibirErro('horimetro-1', 'Somente valores acima ou iguais a 0.');
+    
+    } else {
+        removerErro('horimetro-1');
+    }
 
     if (valor2 <= 0 || valor2 <= valor1) {
         exibirErro('horimetro-2', 'Valor deve ser maior que hora inicial.');
@@ -153,6 +160,6 @@ form.addEventListener('submit', async (e) => {
 
     setTimeout( () => {
         document.getElementById('data').value = dataHistorico
-    }, 0);
+    }, 10);
 
 });

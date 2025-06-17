@@ -5,53 +5,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="../../src/image/favicon.png" type="image/png">
+    <link rel="icon" href="/docs/src/image/favicon.png" type="image/png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../src/css/reset.css">
-    <link rel="stylesheet" href="../../src/css/variaveis.css">
-    <link rel="stylesheet" href="../../src/css/globals.css">
-    <link rel="stylesheet" href="../../src/css/style.css">
+    <link rel="stylesheet" href="/docs/src/css/reset.css">
+    <link rel="stylesheet" href="/docs/src/css/variaveis.css">
+    <link rel="stylesheet" href="/docs/src/css/globals.css">
+    <link rel="stylesheet" href="/docs/src/css/style.css">
+
+    <style>
+        body[data-loading="treu"] {
+            visibility: hidden;
+        }
+    </style>
 
 </head>
 <body>
-    <main class="formularios atualizar-lamina">
-        <section>
-            <header>
-                <h2>Atualizar Lâmina</h2>
-            </header>
-            <form id="formLamina">
-                <div class="inputs">
-                    <div class="pivo">
-                        <label for="pivo">Pivô</label>
-                        <input type="number" name="pivo" id="pivo" required placeholder="Pivô">
+    <div data-include="/docs/pages/includes/header.html"></div>
+    <div class="menu-e-conteudo">
+        <div data-include="/docs/pages/includes/menu.html"></div>
+        <main class="formularios atualizar-lamina">
+            <section>
+                <header>
+                    <h2>Atualizar Lâmina</h2>
+                </header>
+                <form id="formLamina">
+                    <div class="inputs">
+                        <div class="pivo">
+                            <label for="pivo">Pivô</label>
+                            <input type="number" name="pivo" id="pivo" required placeholder="Pivô">
+                        </div>
+                        <div class="percTeste">
+                            <label for="percTeste">Porcentagem do Teste</label>
+                            <input type="number" name="percTeste" id="percTeste" required placeholder="000%">
+                        </div>
+                        <div class="laminaTeste">
+                            <label for="laminaTeste">Lâmina (mm) do Teste</label>
+                            <input type="number" step="any" name="laminaTeste" id="laminaTeste" placeholder="00,00">
+                        </div>
+                        <div class="laminaInicial input-auto">
+                            <label for="laminaInicial">Lâmina (mm) a 100%:</label>
+                            <input type="text" step="any" name="laminaInicial" id="laminaInicial" readonly placeholder="00,00">
+                        </div>
                     </div>
-                    <div class="percTeste">
-                        <label for="percTeste">Porcentagem do Teste</label>
-                        <input type="number" name="percTeste" id="percTeste" required placeholder="000%">
-                    </div>
-                    <div class="laminaTeste">
-                        <label for="laminaTeste">Lâmina (mm) do Teste</label>
-                        <input type="number" step="any" name="laminaTeste" id="laminaTeste" placeholder="00,00">
-                    </div>
-                    <div class="laminaInicial input-auto">
-                        <label for="laminaInicial">Lâmina (mm) a 100%:</label>
-                        <input type="text" step="any" name="laminaInicial" id="laminaInicial" readonly placeholder="00,00">
-                    </div>
-                </div>
 
-                <button type="submit">Salvar e Enviar</button>
-            </form>
+                    <button type="submit">Salvar e Enviar</button>
+                </form>
 
-            <a href="../../index.html">Voltar a Área de Seleções</a>
-        </section>
-    </main>
+                <a href="/docs/index.html">Voltar a Área de Seleções</a>
+            </section>
+        </main>
+    </div>
 
-    <script src="../../src/js/functions/funtions-utilizaveis.js"></script>
-    <script src="../../src/js/validacoes/validacoes.js"></script>
-    <script src="../../src/js/screens/script-lamina.js"></script>
+    <script src="/docs/src/js/includes/includes.js"></script>
+    <script src="/docs/src/js/functions/funtions-utilizaveis.js"></script>
+    <script src="/docs/src/js/validacoes/validacoes.js"></script>
+    <script src="/docs/src/js/screens/script-lamina.js"></script>
 </body>
 </html>

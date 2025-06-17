@@ -1,6 +1,7 @@
 main {
     min-height: 100svh;
     min-height: 100vh;
+    width: 100%;
 
     display: flex;
     align-items: center;
@@ -9,6 +10,8 @@ main {
     position: relative;
     z-index: 0;
     
+    padding: 2rem 1rem;
+
 }
 
 main::before {
@@ -47,6 +50,25 @@ header {
 
 }
 
+/*--Modificações de menu e header--*/
+
+header.principal {
+    background-color: var(--cor-fundo-header-e-menu);
+    margin: 0;
+    padding: 1.5rem;
+}
+
+header.principal img {
+    width: 30px;
+    height: 30px;
+    margin-right: 1rem;
+}
+
+div.menu-container {
+    display: none;
+}
+/*--Fim das modificações--*/
+
 section {
     position: relative;
     
@@ -57,7 +79,6 @@ section {
     font-size: 2rem;
 
     max-width: 50rem;
-    margin: 2rem 1.5rem;
 
     display: flex;
     flex-direction: column;

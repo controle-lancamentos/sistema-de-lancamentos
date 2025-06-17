@@ -16,6 +16,16 @@
     font-weight: 700;
 }
 
+header.principal h1 {
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+}
+
+nav.navegacao h2 {
+    margin: 1rem 0 0 0;
+}
+
 .login h1 {
     position: absolute;
     top: 10%;
@@ -93,6 +103,10 @@
     width: 150px;
 }
 
+.falha input, .motivo input {
+    font-size: 1.6rem;
+}
+
 /*--Campo de observação--*/
 .observacao .check {
     display: flex;
@@ -159,10 +173,19 @@ a {
 /*responsividade de telas*/
 @media (min-width: 750px) {
 
-    main.formularios {
-        background: var(--fundo-main-formulario-desktop) no-repeat center center;
-        background-size: cover;
+    main {
+        margin-left: 250px;
     }
+
+    main.formularios {
+        background: none;
+        background-color: var(--cor-fundo-main-formularios);
+    }
+
+    main.formularios a {
+        display: none;
+    }
+
     main.selecoes {
         background: var(--fundo-main-selecoes-desktop) no-repeat center center;
         background-size: cover;
@@ -171,6 +194,88 @@ a {
     .selecoes a {
         font-size: 2rem;
     }
+
+    /*-- header e menu desktop --*/
+
+    header.principal {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--cor-fundo-header-e-menu);
+
+    padding: 2rem;
+    margin: 0;
+    min-width: 100vw;
+    width: 100%;
+    height: 100px;
+
+    top: 0;
+    left: 0;
+
+    z-index: 1000;
+
+    }
+
+    header.principal img {
+        width: 50px;
+        height: 50px;
+        margin-right: 1rem;
+    }
+
+    header {
+        margin: 2rem 1.5rem;
+
+    }
+
+    div.menu-e-conteudo {
+        display: flex;
+        margin-top: 100px;
+    }
+
+    div.menu-container {
+        position: fixed;
+        z-index: 1000;
+
+        width: 250px;
+        background-color: var(--cor-fundo-header-e-menu);
+        display: block;
+        height: 100%;
+
+        border-top: solid 1px #fff;
+    }
+
+    nav.navegacao {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin: 0 2rem;
+        height: 100%;
+    }
+
+    nav.navegacao ul {
+        display: grid;
+        gap: 1rem;
+    }
+
+    nav.navegacao ul li a {
+        display: inline-block;
+        font-size: 1.3rem;
+        width: 100%;
+
+        border-radius: 0.5rem;
+    }
+
+    nav.navegacao ul li a:visited {
+        background-color: blueviolet;
+    }
+
+    .menu.link .ativo {
+        background-color: blue;
+    }
+
+
+    /*-- fim --*/
 
     .formularios h2 {
         font-size: 2.5rem;

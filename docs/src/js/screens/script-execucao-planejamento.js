@@ -5,14 +5,14 @@ window.validacaoPivo('pivo', 'Esse pivô não existe.');
 
 
 // validação falha
-listaSugestaoSuspensa('falha', 'sugestoes-falha', inforMotivo);
+window.listaSugestaoSuspensa('falha', 'sugestoes-falha', window.inforMotivo);
 
 // Validação motivo da falha
 /*listaSugestaoSuspensa('motivo', 'sugestoes', 'falha', inforProblemaMotivo)*/
 //listaSugestaoSuspensa('motivo', 'sugestoes', inforProblemaMotivo);
 
 // Validação motivo falha
-window.listaSugestaoSuspensaObjetos('motivo', 'sugestoes-motivo', 'falha', inforProblemaMotivo)
+window.listaSugestaoSuspensaObjetos('motivo', 'sugestoes-motivo', 'falha', window.inforProblemaMotivo)
 
 // desabilitanfo input de motivo da falha
 
