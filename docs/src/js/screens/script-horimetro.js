@@ -155,11 +155,17 @@ form.addEventListener('submit', async (e) => {
 
     }
 
-    form.reset();
+        document.getElementById('pivo').value = '';
+        document.getElementById('area').value = '';
+        document.getElementById('percentual').value = '';
+        document.getElementById('horimetro-1').value = '';
+        document.getElementById('horimetro-2').value = '';
+        document.getElementById('txtAnotacao').value = '';
+    
     document.getElementById('anotacao').style.display = 'none';
 
-    setTimeout( () => {
+    /*setTimeout( () => {
         document.getElementById('data').value = dataHistorico
-    }, 10);
+    }, 1000);*/
 
 });
