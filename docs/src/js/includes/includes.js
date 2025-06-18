@@ -1,18 +1,3 @@
-/*function includeHtml() {
-    document.querySelectorAll('[data-include]').forEach(async (el) => {
-        const file = el.getAttribute('data-include');
-        const res = await fetch(file);
-
-        if (res.ok) {
-            el.innerHTML = await res.text();
-
-        } else {
-            el.innerHTML = `Erro ao carregar ${file}</p>`;
-
-        }
-    });
-}*/
-
 document.body.setAttribute('data-loading', 'true');
 
 async function includeHtml() {
@@ -40,6 +25,7 @@ async function includeHtml() {
     document.body.removeAttribute('data-loading');
 }
 
+//links do menu
 window.addEventListener('DOMContentLoaded', includeHtml);
 
 
@@ -52,3 +38,18 @@ document.querySelectorAll('.menu .link').forEach(link => {
         this.classList.add('ativo');
     });
 });
+
+//cronometro de data e hora
+
+function relogio() {
+    const agora = new Date();
+
+    const data = agora.toLocaleDateString('pt-BR');
+    const hora = agora.toLocaleTimeString('pt-BR');
+
+    document.getElementById('relogio').textContent = `${data} ${hora}`;
+}
+
+relogio();
+
+setInterval(relogio, 1000);

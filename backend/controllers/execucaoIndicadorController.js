@@ -5,6 +5,29 @@ const XLSX = require('xlsx');
 
 const filePath = path.join(__dirname, '../planilhas/banco-de-dados-indicador.xlsx');
 
+
+function buscarUltimaData(req, res) {
+  
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).json({ mensagem : 'Planilha não encontrada.' });
+  
+  }
+
+  const workbook = XLSX.readFile(filePath);
+  const worksheet = workbook.Sheets['banco-de-dados-indicador'];
+  const dados = XLSX.utils.sheet_to_json(worksheet);
+
+  if (dados.length === 0) {
+    return res.status(404).json({ mensagem: 'Nenhum registro encontrado.' });
+  }
+
+  const ultimaLinha = dados[dados.length - 1];
+
+  res.json({ ultimaData: ultimaLinha.data });
+
+}
+
+
 function geradorID(dadosExistentes, tamanho = 5) {
   const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   let id;
@@ -22,38 +45,6 @@ function geradorID(dadosExistentes, tamanho = 5) {
 
 }
 
-
-/*--function salvarDadosExecucaoIndicador(req, res) {
-  const Listdados = req.body;
-
-  const dados = { user: req.user.name,
-                     ...Listdados
-                    };
-
-  let workbook;
-  let worksheet;
-
-  // Se o arquivo já existir, lê e adiciona os dados
-  if (fs.existsSync(filePath)) {
-    workbook = XLSX.readFile(filePath);
-    worksheet = workbook.Sheets[workbook.SheetNames[0]];
-
-    const dadosExistentes = XLSX.utils.sheet_to_json(worksheet);
-    dadosExistentes.push(dados);
-
-    const novaPlanilha = XLSX.utils.json_to_sheet(dadosExistentes);
-    workbook.Sheets[workbook.SheetNames[0]] = novaPlanilha;
-  } else {
-    // Se o arquivo não existir, cria novo com os dados
-    worksheet = XLSX.utils.json_to_sheet([dados]);
-    workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'banco-de-dados-indicador');
-  }
-
-  XLSX.writeFile(workbook, filePath);
-
-  res.status(201).json({ mensagem: 'Dados salvos com sucesso!' });
-}--*/
 
 function salvarDadosExecucaoIndicador(req, res) {
   const dados = req.body;
@@ -112,4 +103,4 @@ function salvarDadosExecucaoIndicador(req, res) {
   res.status(201).json({ mensagem: 'Dados salvos com sucesso!' });
 }
 
-module.exports = { salvarDadosExecucaoIndicador };
+module.exports = { salvarDadosExecucaoIndicador, buscarUltimaData };

@@ -5,6 +5,29 @@ const XLSX = require('xlsx');
 // Caminho da planilha específica
 const filePath = path.join(__dirname, '../planilhas/banco-de-dados-horimetro.xlsx');
 
+// Buscar Ultima data
+function buscarUltimaData(req, res) {
+  
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).json({ mensagem : 'Planilha não encontrada.' });
+  
+  }
+
+  const workbook = XLSX.readFile(filePath);
+  const worksheet = workbook.Sheets['banco-de-dados-horimetro'];
+  const dados = XLSX.utils.sheet_to_json(worksheet);
+
+  if (dados.length === 0) {
+    return res.status(404).json({ mensagem: 'Nenhum registro encontrado.' });
+  }
+
+  // Pega o último registro da planilha
+  const ultimaLinha = dados[dados.length - 1];
+
+  res.json({ ultimaData: ultimaLinha.data });
+
+}
+
 // Buscar ultimoHorimetro
 function buscarUltimoHorimetro(req, res) {
   const {nomePivo} = req.params;
@@ -28,7 +51,7 @@ function buscarUltimoHorimetro(req, res) {
   console.log('Filtrados:', dadosFiltrados);--*/
 
   if (dadosFiltrados.length === 0) {
-    return res.json({ ultimoHorimetro: '' });
+    return res.json({ ultimoHorimetro: 0 });
     /*--return res.status(404).json({ mensagem: 'Nenhum registro encontrado para esse pivô.' });--*/
 
   }
@@ -108,9 +131,10 @@ function salvarDadosHorimetro(req, res) {
                      ...dados
                     };
 
-
   // Adiciona aos dados existentes
   dadosExistentes.push(novoDado);
+
+  //console.log('laçamento do formulário: ', novoDado);
 
   // Atualiza a planilha
   const novaPlanilha = XLSX.utils.json_to_sheet(dadosExistentes);
@@ -123,7 +147,7 @@ function salvarDadosHorimetro(req, res) {
     XLSX.utils.book_append_sheet(workbook, novaPlanilha, 'banco-de-dados-horimetro')
   }
 
-  /*--console.log('Novo dado salvo', novoDado)--*/
+  //console.log('Novo dado salvo', novoDado);
 
   // Salva a planilha no disco
   XLSX.writeFile(workbook, filePath);
@@ -132,4 +156,4 @@ function salvarDadosHorimetro(req, res) {
   res.status(201).json({ mensagem: 'Dados salvos com sucesso!' });
 }
 
-module.exports = { salvarDadosHorimetro, buscarUltimoHorimetro };
+module.exports = { salvarDadosHorimetro, buscarUltimoHorimetro, buscarUltimaData };

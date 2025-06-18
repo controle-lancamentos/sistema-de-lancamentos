@@ -6,11 +6,13 @@ const router = express.Router();
 
 const authUser = require('../middLeware/auth');
 
-const { salvarDadosHorimetro, buscarUltimoHorimetro } = require('../controllers/horimetroController');
+const { salvarDadosHorimetro, buscarUltimoHorimetro, buscarUltimaData } = require('../controllers/horimetroController');
 
 router.post('/', authUser, salvarDadosHorimetro);
 
 router.get('/ultimoHorimetro/:nomePivo', buscarUltimoHorimetro);
+
+router.get('/ultimaData', buscarUltimaData);
 
 
 // para teste:

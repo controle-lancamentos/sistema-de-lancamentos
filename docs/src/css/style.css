@@ -104,6 +104,7 @@ nav.navegacao h2 {
 }
 
 .falha input, .motivo input {
+    display: flex;
     font-size: 1.6rem;
 }
 
@@ -169,6 +170,15 @@ a {
     border-radius: 1.5rem;
 }
 
+.relogio {
+    width: 300px;
+    height: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #e60e0e;
+    margin-top: 5px;
+    background-color: #fff;
+}
 
 /*responsividade de telas*/
 @media (min-width: 750px) {
@@ -178,7 +188,6 @@ a {
     }
 
     main.formularios {
-        background: none;
         background-color: var(--cor-fundo-main-formularios);
     }
 
@@ -282,7 +291,7 @@ a {
     }
 
     .execucao-os .inputs {
-        padding: 3rem 2rem;
+        padding: 2rem 2rem;
     }
 
     .atualizar-lamina .inputs {
@@ -294,7 +303,7 @@ a {
     }
 
     .observacao {
-        padding: 0 3rem;
+        padding: 0 1rem;
     }
     
 }

@@ -1,4 +1,3 @@
-
 // validação de pivô e lâminas
 window.listaSugestaoSuspensa('area', 'sugestoes', window.inforArea);
 
@@ -110,7 +109,7 @@ form.addEventListener('submit', async (e) => {
 
     // pegando os valores dos campos
     const dados = {
-        data: document.getElementById('data').value,
+        data: dataHistorico,
         pivo: document.getElementById('pivo').value,
         area: document.getElementById('area').value,
         percentual: document.getElementById('percentual').value,
@@ -134,6 +133,7 @@ form.addEventListener('submit', async (e) => {
     }
 
     try {
+
         // envia para o backend com o metodo POST
         const resposta = await fetch('http://localhost:3000/api/form/horimetro', {
             method: 'POST',
@@ -154,13 +154,6 @@ form.addEventListener('submit', async (e) => {
         alert('Erro ao enviar dados!');
 
     }
-
-        document.getElementById('pivo').value = '';
-        document.getElementById('area').value = '';
-        document.getElementById('percentual').value = '';
-        document.getElementById('horimetro-1').value = '';
-        document.getElementById('horimetro-2').value = '';
-        document.getElementById('txtAnotacao').value = '';
     
     document.getElementById('anotacao').style.display = 'none';
 
@@ -168,4 +161,24 @@ form.addEventListener('submit', async (e) => {
         document.getElementById('data').value = dataHistorico
     }, 1000);*/
 
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+
+    const navEntries = performance.getEntriesByType('navigation');
+  if (navEntries.length > 0 && navEntries[0].type === 'reload') {
+
+        fetch( 'http://localhost:3000/api/form/horimetro/ultimaData' )
+            .then(res => res.json())
+            .then(data => {
+                if (data.ultimaData) {
+                    document.getElementById('data').value = data.ultimaData;
+                }
+            })
+
+            .catch(err => {
+                console.error( 'erro ao buscar a última data:', err );
+
+        });
+  }
 });

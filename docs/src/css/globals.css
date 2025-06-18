@@ -105,7 +105,8 @@ section {
 
 form {
     padding: 0 1rem;
-
+    width: 100%;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -130,6 +131,7 @@ label {
     background-color: var(--cor-fundo-input);
     padding: 3rem 1rem;
     border-radius: 1.5rem;
+    width: 100%;
 }
 
 .login .inputs {
