@@ -48,8 +48,9 @@ function relogio() {
     const hora = agora.toLocaleTimeString('pt-BR');
 
     document.getElementById('relogio').textContent = `${data} ${hora}`;
+
+    setInterval(relogio, 1000);
 }
 
 relogio();
 
-setInterval(relogio, 1000);
