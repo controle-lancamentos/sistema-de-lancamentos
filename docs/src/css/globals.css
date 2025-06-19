@@ -64,6 +64,30 @@ header.principal img {
     margin-right: 1rem;
 }
 
+header.principal .infors-sistema {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+}
+
+header.principal .infors-sistema .user-infor {
+    font-size: 1.5rem;
+}
+
+header.principal div .link-destino {
+    display: flex;
+    margin-right: 20px;
+    gap: 2rem;
+}
+
+header.principal div .link-destino a {
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 div.menu-container {
     display: none;
 }
