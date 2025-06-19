@@ -184,10 +184,6 @@ a {
 /*responsividade de telas*/
 @media (min-width: 750px) {
 
-    main {
-        margin-left: 250px;
-    }
-
     main.formularios {
         background-color: var(--cor-fundo-main-formularios);
     }
@@ -240,21 +236,23 @@ a {
 
     div.menu-e-conteudo {
         display: flex;
-        margin-top: 100px;
+        margin: 100px 0 250px 0;
     }
 
     div.menu-container {
+        position: fixed;
         z-index: 1000;
 
         width: 250px;
         background-color: var(--cor-fundo-header-e-menu);
         display: block;
-        height: 100vh;
+        height: calc(100vh - 100px);
 
         border-top: solid 1px #fff;
     }
 
     .logo-empresa {
+        top: 0;
         background-color: #000;
         width: 50%;
         height: 50%;
