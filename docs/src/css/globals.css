@@ -50,6 +50,10 @@ header {
 
 }
 
+.secao {
+    display: flex;
+}
+
 /*--Modificações de menu e header--*/
 
 header.principal {
