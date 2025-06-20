@@ -1,0 +1,13 @@
+{
+  "liveServer.settings.ignoreFiles": [
+    "**/*.scss",
+    "**/*.ts",
+    "**/node_modules/**",
+    "**/.git/**",
+    "**/dist/**",
+    "backend/package-lock.json",
+    "backend/package.json",
+    "backend/**"
+  ],
+  "liveServer.settings.port": 5501
+}

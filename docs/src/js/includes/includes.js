@@ -29,7 +29,7 @@ async function includeHtml() {
 window.addEventListener('DOMContentLoaded', includeHtml);
 
 
-document.querySelectorAll('.menu .link').forEach(link => {
+/*document.querySelectorAll('.menu .link').forEach(link => {
     link.addEventListener('clik', function (e) {
         e.preventDefault();
 
@@ -37,7 +37,7 @@ document.querySelectorAll('.menu .link').forEach(link => {
 
         this.classList.add('ativo');
     });
-});
+});*/
 
 //cronometro de data e hora
 
@@ -53,4 +53,19 @@ function relogio() {
 }
 
 relogio();
+
+document.addEventListener('DOMContentLoaded', function () {
+    const links = document.querySelectorAll('.menu .link');
+    const currentPath = window.location.pathname;
+
+    links.forEach(link => {
+      // Remove a classe ativo de todos
+      link.classList.remove('ativo');
+
+      // Adiciona apenas se o href bater com o pathname atual
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add('ativo');
+      }
+    });
+  });
 

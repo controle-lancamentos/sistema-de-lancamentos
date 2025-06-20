@@ -55,7 +55,15 @@ header {
 header.principal {
     background-color: var(--cor-fundo-header-e-menu);
     margin: 0;
-    padding: 1.5rem;
+    padding: 2rem;
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 1000;
+    display: none;
 }
 
 header.principal img {
@@ -68,6 +76,7 @@ header.principal .infors-sistema {
     display: flex;
     align-items: center;
     gap: 5rem;
+    display: none;
 }
 
 header.principal .infors-sistema .user-infor {
@@ -86,6 +95,10 @@ header.principal div .link-destino a {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+header.principal div .link-destino #infor {
+    display: none;
 }
 
 div.menu-container {

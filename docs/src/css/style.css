@@ -20,13 +20,16 @@ header.principal h1 {
     display: flex;
     align-items: center;
     font-family: 'Roboto';
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: #fff;
-    letter-spacing: 1px;
+    font-weight: 500;
 }
 
 nav.navegacao h2 {
-    margin: 1rem 0 0 0;
+    color: #fff;
+    font-weight: 300;
+    margin: 2rem;
+    font-size: 1.6rem;
 }
 
 .login h1 {
@@ -181,11 +184,16 @@ a {
     letter-spacing: 2px;
 }
 
+.link.ativo {
+    background-color: blue;
+}
+
 /*responsividade de telas*/
 @media (min-width: 750px) {
 
     main.formularios {
         background-color: var(--cor-fundo-main-formularios);
+        margin-left: 250px;
     }
 
     main.formularios a {
@@ -204,39 +212,30 @@ a {
     /*-- header e menu desktop --*/
 
     header.principal {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--cor-fundo-header-e-menu);
-
-    padding: 2rem;
-    margin: 0;
-    min-width: 100vw;
-    width: 100%;
     height: 100px;
-
-    top: 0;
-    left: 0;
-
-    z-index: 1000;
+    display: flex;
+    flex-wrap: nowrap;
 
     }
 
     header.principal img {
         width: 50px;
         height: 50px;
-        margin-right: 1rem;
     }
 
-    header {
-        margin: 2rem 1.5rem;
-
+    header.principal h1 {
+        display: flex;
+        align-items: center;
+        font-family: 'Roboto';
+        font-size: 2rem;
+        color: #fff;
+        letter-spacing: 1px;
+        font-weight: 500;
     }
 
     div.menu-e-conteudo {
         display: flex;
-        margin: 100px 0 250px 0;
+        top: 100px;
     }
 
     div.menu-container {
@@ -245,20 +244,26 @@ a {
 
         width: 250px;
         background-color: var(--cor-fundo-header-e-menu);
-        display: block;
+        display: flex;
+        flex-direction: column;
         height: calc(100vh - 100px);
 
         border-top: solid 1px #fff;
     }
 
     .logo-empresa {
-        top: 0;
-        background-color: #000;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .image-logo {
         width: 50%;
-        height: 50%;
     }
 
-    .logo-empresa img {
+    .image-logo img {
         width: 100%;
     }
 
@@ -267,7 +272,6 @@ a {
         flex-direction: column;
         gap: 2rem;
         margin: 0 2rem;
-        height: 100%;
     }
 
     nav.navegacao ul {
@@ -283,13 +287,11 @@ a {
         border-radius: 0.5rem;
     }
 
-    nav.navegacao ul li a:visited {
+    /*nav.navegacao ul li a:visited {
         background-color: blueviolet;
-    }
+    }*/
 
-    .menu.link .ativo {
-        background-color: blue;
-    }
+   
 
 
     /*-- fim --*/
