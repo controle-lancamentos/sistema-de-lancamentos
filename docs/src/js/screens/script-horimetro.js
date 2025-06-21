@@ -155,15 +155,17 @@ form.addEventListener('submit', async (e) => {
 
     }
     
+    form.reset();
+
     document.getElementById('anotacao').style.display = 'none';
 
-    /*setTimeout( () => {
+    setTimeout( () => {
         document.getElementById('data').value = dataHistorico
-    }, 1000);*/
+    }, 1000);
 
 });
 
-window.addEventListener('DOMContentLoaded', () => {
+/*window.addEventListener('DOMContentLoaded', () => {
 
     const navEntries = performance.getEntriesByType('navigation');
   if (navEntries.length > 0 && navEntries[0].type === 'reload') {
@@ -181,4 +183,4 @@ window.addEventListener('DOMContentLoaded', () => {
 
         });
   }
-});
+});*/

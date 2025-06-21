@@ -2,12 +2,16 @@
   "liveServer.settings.ignoreFiles": [
     "**/*.scss",
     "**/*.ts",
-    "**/node_modules/**",
+    "backend/node_modules/**",
+    "backend/services/**",
     "**/.git/**",
     "**/dist/**",
     "backend/package-lock.json",
     "backend/package.json",
     "backend/**"
   ],
-  //"liveServer.settings.port": 5501
+  "liveServer.settings.port": 5501,
+
+  "liveServer.settings.wait": 500,
+  "liveServer.settings.file": "index.html"
 }

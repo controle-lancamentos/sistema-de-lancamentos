@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <title>Controle Irrigação - Execução OS</title>
+    <title>Controle Irrigação - Ordem de Serviço</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="icon" href="docs/src/image/favicon.png" type="image/png">
+    <link rel="icon" href="/docs/src/image/favicon.png" type="image/png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,63 +30,79 @@
         <div data-include="../../pages/includes/menu.html"></div>
         <main class="formularios">
             <div class="secao">
-            <section name="" id="">
-                <header>
-                    <h1>Criação da Ordem de Serviço</h1>
-                </header>
-                <form action="">
-                    <div class="inputs">
-                        <div class="data">
-                            <label for="data">Data</label>
-                            <input type="date" name="data" id="data" required>  
+                <section name="" id="">
+                    <header>
+                        <h1>Criação da Ordem de Serviço</h1>
+                    </header>
+                    <div class="form-cantainer">
+                        <div class="exibir-os" id="exibir-os">
+                            <label for="exibir-os">Exibir Relatório:</label>
+                            <input type="checkbox" name="exibir-os" id="exibir-os">
                         </div>
-                        <div class="pivo">
-                            <label for="pivo">Pivo</label>
-                            <input type="number" name="pivo" id="pivo" required placeholder="000">
-                        </div>
-                        <div class="percentual">
-                            <label for="percentual">Porcentagem</label>
-                            <input type="number" min="1" max="100" name="percentual" id="percentual" required placeholder="000%">
-                        </div>
-                        <div class="cultura">
-                            <label for="cultura">Cultura</label>
-                            <input type="text" name="cultura" id="cultura" required placeholder="Soja, Tabaco, Algodão...">
-                        </div>
-                        <div class="area">
-                            <label for="area">Área/Quadrante</label>
-                            <input type="text" name="area" id="area" required placeholder="Área de irrigada">
-                        </div>
-                        <div class="observacao">
-                            <label for="observacao">Observação</label>
-                            <input type="text" name="observacao" id="observacao" required placeholder="">
-                        </div>
+                        <form id="formOrdemDeServico">
+                            <div class="inputs">
+                                <div class="data">
+                                    <label for="data">Data</label>
+                                    <input type="date" name="data" id="data" required>  
+                                </div>
+                                <div class="linha-1">
+                                    <div class="pivo">
+                                        <label for="pivo">Pivo</label>
+                                        <input type="number" name="pivo" id="pivo" required placeholder="000">
+                                    </div>
+                                    <div class="percentual">
+                                        <label for="percentual">Porcentagem</label>
+                                        <input type="number" min="1" max="100" name="percentual" id="percentual" required placeholder="000%">
+                                    </div>
+                                </div>
+                                <div class="linha-2">
+                                    <div class="cultura">
+                                        <label for="cultura">Cultura</label>
+                                        <input type="text" name="cultura" id="cultura" required placeholder="Soja, Tabaco, Algodão...">
+                                    </div>
+                                    <div class="area">
+                                        <label for="area">Área/Quadrante</label>
+                                        <input type="text" name="area" id="area" required placeholder="Área de irrigada">
+                                    </div>
+                                </div>
+                                <div class="linha-3">
+                                    <div class="observacao">
+                                        <label for="observacao">Observação</label>
+                                        <textarea name="observacao" id="observacao"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button>Incluir</button>
+                        </form>
                     </div>
-                    <button>Gerar Ordem de Serviço</button>
-                </form>
-            </section>
-            <div class="exibir-os">
-                <section>
-                    <div>
-                        <input type="text" name="" id="">
-                        <input type="text" name="" id="">
-                        <input type="text" name="" id="">
-                        <input type="text" name="" id="">
-                    </div>
-                <table>
-                    <thead>
-                        <title>Data: 15/06/2025</title>
-                        <tr>
-                            <th>Pivô</th>
-                            <th>Porcentagem</th>
-                        </tr>
-                    </thead>
-                </table>
                 </section>
+            
+                <div class="relatorio-os" id="relatorio-os">
+                    <section>
+                        <div>
+                            <input type="text" name="" id="">
+                            <input type="text" name="" id="">
+                            <input type="text" name="" id="">
+                            <input type="text" name="" id="">
+                        </div>
+                    <table>
+                        <thead>
+                            <title>Data: 15/06/2025</title>
+                            <tr>
+                                <th>Pivô</th>
+                                <th>Porcentagem</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    </section>
+                </div>
             </div>
         </main>
     </div>
-    </div>
 
     <script src="../../src/js/includes/includes.js"></script>
+    <script src="../../src/js/functions/funtions-utilizaveis.js" defer></script>
+    <script src="../../src/js/validacoes/validacoes.js" defer></script>
+    <script src="../../src/js/screens/script-ordem-servico.js" defer></script>
 </body>
 </html>

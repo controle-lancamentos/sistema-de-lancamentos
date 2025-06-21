@@ -192,8 +192,10 @@ a {
 @media (min-width: 750px) {
 
     main.formularios {
+        background: none;
         background-color: var(--cor-fundo-main-formularios);
         margin-left: 250px;
+        min-height: calc(100svh - 100px);
     }
 
     main.formularios a {
@@ -260,7 +262,7 @@ a {
         align-items: center;
     }
     .image-logo {
-        width: 50%;
+        width: 40%;
     }
 
     .image-logo img {
