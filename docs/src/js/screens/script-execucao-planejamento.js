@@ -14,11 +14,11 @@ window.listaSugestaoSuspensa('falha', 'sugestoes-falha', window.inforMotivo);
 // Validação motivo falha
 window.listaSugestaoSuspensaObjetos('motivo', 'sugestoes-motivo', 'falha', window.inforProblemaMotivo)
 
-// desabilitanfo input de motivo da falha
+//desabilitando input de motivo da falha
 
-//window.desabilitarInput('motivo', 'falha', inforMotivo);
+window.desabilitarInput('motivo', 'falha', inforMotivo);
 
-// incluido observação
+
 
 window.incluirObservacao('check', 'anotacao');
 
