@@ -135,6 +135,7 @@ async function updateExcelRange(fileId, sheetName, range, values) {
 // Exportar tudo
 module.exports = {
   getAccessToken,
+  getSiteId,
   getFileIdByPath,
   readExcelRange,
   addRowToTable,

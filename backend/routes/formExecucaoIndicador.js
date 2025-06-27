@@ -4,9 +4,9 @@ const router = express.Router();
 
 const authUser = require('../middLeware/auth');
 
-const { salvarDadosExecucaoIndicador, buscarUltimaData } = require('../controllers/execucaoIndicadorController');
+const { salvarDadosIndicador } = require('../controllers/execucaoIndicadorController');
 
-router.post('/', authUser, salvarDadosExecucaoIndicador)
+router.post('/', authUser, salvarDadosIndicador);
 
 router.post('/', (req, res) => {
 
@@ -18,6 +18,6 @@ router.post('/', (req, res) => {
 
 });
 
-router.get('/ultimaData', buscarUltimaData);
+/*router.get('/ultimaData', buscarUltimaData);*/
 
 module.exports = router;

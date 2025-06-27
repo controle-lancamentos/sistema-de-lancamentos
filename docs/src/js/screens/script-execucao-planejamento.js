@@ -29,6 +29,9 @@ const form = document.getElementById('formExecucaoIndicador');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    const dataLancamento = document.getElementById('data');
+    const dataHistorico = dataLancamento.value;
+
     const erro = document.querySelectorAll('.erro');
     let erroExistente = false;
 
@@ -74,10 +77,14 @@ form.addEventListener('submit', async (e) => {
 
     form.reset();
     document.getElementById('anotacao').style.display = 'none';
+
+    setTimeout( () => {
+        document.getElementById('data').value = dataHistorico
+    }, 1);
      
 });
 
-window.addEventListener('DOMContentLoaded', () => {
+/*window.addEventListener('DOMContentLoaded', () => {
 
     const navEntries = performance.getEntriesByType('navigation');
   if (navEntries.length > 0 && navEntries[0].type === 'reload') {
@@ -95,4 +102,4 @@ window.addEventListener('DOMContentLoaded', () => {
 
         });
   }
-});
+});*/

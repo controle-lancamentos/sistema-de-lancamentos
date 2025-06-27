@@ -196,7 +196,7 @@ label {
     gap: 2.5rem 0;
     background-color: var(--cor-fundo-input);
     padding: 3rem 1rem;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
     width: 100%;
 }
 
@@ -234,7 +234,7 @@ input {
     width: 100%;
     height: 5.3rem;
     padding: 1.5rem 1rem;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
     border: none;
     font-size: 2rem;
     font-family: 'Roboto';

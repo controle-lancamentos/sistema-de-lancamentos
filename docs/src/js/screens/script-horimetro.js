@@ -161,7 +161,7 @@ form.addEventListener('submit', async (e) => {
 
     setTimeout( () => {
         document.getElementById('data').value = dataHistorico
-    }, 1000);
+    }, 1);
 
 });
 

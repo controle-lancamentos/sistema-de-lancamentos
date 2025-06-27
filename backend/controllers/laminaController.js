@@ -1,61 +1,59 @@
-const fs = require('fs');
-const path = require('path');
-const XLSX = require('xlsx');
+const { addRowToTable } = require('../services/graphApi');
+/*const { getAccessToken, getSiteId } = require('../services/graphApi');
+const axios = require('axios');*/
 
-const filePath = path.join(__dirname, '../planilhas/banco-de-dados-lamina.xlsx');
+require('dotenv').config({ path: '../.env' });
 
-function salvarDadosLamina(req, res) {
-  const dados = req.body;
 
-  let workbook;
-  let worksheet;
-  let dadosExistentes = [];
+const fileId = process.env.GRAPH_EXCEL_FILE_ID_LAMINA;
+const tableName = 'bancoDeDadosLamina';
+const hostname = 'santacolombaagropecuaria.sharepoint.com';
+const sitePath = '/sites/arquivos';
 
-  
-  if (fs.existsSync(filePath)) {
-    workbook = XLSX.readFile(filePath);
-    worksheet = workbook.Sheets[workbook.SheetNames[0]];
-
-    dadosExistentes = XLSX.utils.sheet_to_json(worksheet);
-
-  } else {
-    
-    workbook = XLSX.utils.book_new();
-    
+function gerarID(tamanho = 5) {
+  const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let id = '';
+  for (let i = 0; i < tamanho; i++) {
+    id += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
   }
+  return id;
+}
 
-  function momentoRegistro() {
-    const dataAtual = new Date();
+function momentoRegistro() {
+  const dataAtual = new Date();
+  const data = dataAtual.toLocaleDateString();
+  const hora = dataAtual.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  return `${data}, ${hora}`;
+}
+
+
+async function salvarDadosLamina(req, res) {
+  try {
+    const dados = req.body;
+
+    const novoDado = {
+      user: req.user.name,
+      dataHoraRegistro: momentoRegistro(),
+      id: gerarID(),
+      ...dados
+    };
+
     
-    return `${dataAtual.toLocaleDateString()}, ${dataAtual.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+    const linha = [
+      novoDado.user,
+      novoDado.dataHoraRegistro,
+      novoDado.pivo,
+      novoDado.lamina
+    ];
+
+    await addRowToTable(fileId, tableName, linha, hostname, sitePath);
+
+    res.status(201).json({ mensagem: 'Dados salvos com sucesso!' });
+
+  } catch (erro) {
+    console.error('Erro ao salvar no OneDrive:', erro.response?.data || erro.message);
+    res.status(500).json({ mensagem: 'Erro ao salvar dados', erro: erro.message });
   }
-
-  const dataHoraRegistro = momentoRegistro();
-  
-  const novoDado = { user: req.user.name,
-                     dataHoraRegistro,
-                     ...dados
-                    };
-
-  dadosExistentes.push(novoDado);
-
-  
-  const novaPlanilha = XLSX.utils.json_to_sheet(dadosExistentes);
-
-  if (workbook.SheetNames.includes('banco-de-dados-lamina')) {
-    workbook.Sheets['banco-de-dados-lamina'] = novaPlanilha;
-
-  } else {
-    XLSX.utils.book_append_sheet(workbook, novaPlanilha, 'banco-de-dados-lamina')
-  }
-
-  /*--console.log('Novo dado salvo', novoDado)--*/
-
-  
-  XLSX.writeFile(workbook, filePath);
-
-
-  res.status(201).json({ mensagem: 'Dados salvos com sucesso!' });
 }
 
 module.exports = { salvarDadosLamina };
