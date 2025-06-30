@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
 
     console.log('Recebido de formAtualizarLamina:', dadosFomulario);
 
-    res.status(200).json({ mensagem: 'Dados recebidos com sucesso!'});
+    res.status(200).json({ mensagem: 'Dados recebidos com sucesso!' });
 
 });
 

@@ -8,10 +8,6 @@ const tenantId = process.env.GRAPH_TENANT_ID;
 const clientId = process.env.GRAPH_CLIENT_ID;
 const clientSecret = process.env.GRAPH_SECRET;
 
-console.log('tenantId: ', tenantId);
-console.log('clientID: ', clientId);
-console.log('clientSecret: ', clientSecret);
-
 const tokenUrl = `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`;
 const scope = 'https://graph.microsoft.com/.default';
 
