@@ -96,7 +96,7 @@ incluirObservacao('check', 'anotacao');
 
 // Envio de dados do formulário
 
-const form = document.getElementById('formHorimetro');
+/*const form = document.getElementById('formHorimetro');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault(); // Evita que o formulário recarregue a página
@@ -163,7 +163,7 @@ form.addEventListener('submit', async (e) => {
         document.getElementById('data').value = dataHistorico
     }, 1);
 
-});
+});*/
 
 /*window.addEventListener('DOMContentLoaded', () => {
 
@@ -184,3 +184,63 @@ form.addEventListener('submit', async (e) => {
         });
   }
 });*/
+
+const form = document.getElementById('formHorimetro');
+const spanErros = document.querySelectorAll('.erro');
+const dataInput = document.getElementById('data');
+const btnEnviar = document.querySelector('#btn');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const erroVisivel = Array.from(spanErros).some(span => span.offsetParent !== null);
+    if (erroVisivel) {
+        alert('Por favor, corrija os dados inválidos!');
+        return;
+    }
+
+    const dados = {
+        data: dataInput.value,
+        pivo: document.getElementById('pivo').value,
+        area: document.getElementById('area').value,
+        percentual: document.getElementById('percentual').value,
+        lamina: document.getElementById('lamina').value,
+        horimetro1: document.getElementById('horimetro-1').value,
+        horimetro2: document.getElementById('horimetro-2').value,
+        horas: document.getElementById('horas').value,
+        observacao: document.getElementById('txtAnotacao').value
+    };
+
+    // Feedback de envio (evita múltiplos cliques e mostra ação)
+    btnEnviar.disabled = true;
+    btnEnviar.textContent = 'Enviando...';
+
+    try {
+        const resposta = await fetch('https://sistema-de-lancamentos.onrender.com/api/form/horimetro', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dados),
+            cache: 'no-store' // evita qualquer cache indesejado
+        });
+
+        if (!resposta.ok) throw new Error(`Erro ${resposta.status}`);
+
+        const resultado = await resposta.json();
+        alert(resultado.mensagem);
+
+        // ⚡ Reset mínimo e direto
+        form.reset();
+        dataInput.value = dados.data; // repõe a data se for fixa
+        document.getElementById('anotacao').style.display = 'none';
+
+    } catch (erro) {
+        console.error('Erro ao enviar:', erro);
+        alert('Erro ao enviar dados!');
+    } finally {
+        // ⚡ Reativa botão rapidamente
+        btnEnviar.disabled = false;
+        btnEnviar.textContent = 'Enviar';
+    }
+});
