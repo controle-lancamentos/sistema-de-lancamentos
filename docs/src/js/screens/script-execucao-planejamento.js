@@ -55,7 +55,7 @@ form.addEventListener('submit', async (e) => {
     }
 
     try {
-        const resposta = await fetch('http://localhost:3000/api/form/exIndicador', {
+        const resposta = await fetch('https://sistema-de-lancamentos.onrender.com/api/form/exIndicador', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

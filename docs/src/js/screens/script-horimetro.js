@@ -45,7 +45,7 @@ document.getElementById('pivo').addEventListener('change', () => {
 
   /*--console.log(`nome do pivô enviado: "${nomePivo}"`);--*/
 
-  fetch(`http://localhost:3000/api/form/horimetro/ultimoHorimetro/${nomePivo}`)
+  fetch(`https://sistema-de-lancamentos.onrender.com/api/form/horimetro/ultimoHorimetro/${nomePivo}`)
     .then(res => res.json())
     .then(data => {
       document.getElementById('horimetro-1').value = data.ultimoHorimetro;
@@ -135,7 +135,7 @@ form.addEventListener('submit', async (e) => {
     try {
 
         // envia para o backend com o metodo POST
-        const resposta = await fetch('http://localhost:3000/api/form/horimetro', {
+        const resposta = await fetch('https://sistema-de-lancamentos.onrender.com/api/form/horimetro', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
