@@ -107,7 +107,7 @@ form.addEventListener('submit', async (e) => {
         return;
     }*/
     
-    const erroExistente = true;
+    /*const erroExistente = true;
 
     erro.forEach( span => {
         if ( span.style.display !== 'none') {
@@ -118,7 +118,7 @@ form.addEventListener('submit', async (e) => {
     if ( erroExistente ) {
         alert('Por favor, corrija os dados inválidos!');
         return;
-    }
+    }*/
 
     const dados = {
         data: dataInput.value,
