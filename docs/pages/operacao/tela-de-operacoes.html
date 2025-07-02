@@ -53,6 +53,268 @@
                 </div>
 
             </div>
+
+        <main class="formularios horimetros">
+            <section>
+                <header>
+                    <h2>Lançamentos de Irrigações Diárias</h2>
+                </header>
+                <form id="formHorimetro">
+                    <div class="inputs">
+                        <div class="data">   
+                                <label for="data">Data</label>
+                                <input type="date" name="data" id="data" value="" required>
+                            </div>
+                        <div class="pivo-area">
+                            <div class="pivo">
+                                <label for="pivo">Pivô</label>
+                                <input type="number" name="pivo" id="pivo" required placeholder="Pivô">
+                            </div>
+                            <div class="area">
+                                <label for="area">Area/Quadrante</label>
+                                <input type="text" name="area" id="area" placeholder="Área irrigada" required autocomplete="off">
+                                <div id="sugestoes" class="dropdown"></div>
+                            </div>                       
+                        </div>
+
+                        <div class="percentual-lamina">
+                            <div class="percentual">
+                                <label for="percentual">Percentual</label>
+                                <input type="number" maxlength="3" min="1" max="100" step="1" name="percentual" id="percentual" required placeholder="000%">
+                            </div>
+                            <div class="lamina input-auto">
+                                <label for="lamina">Lâmina (mm)</label>
+                                <input type="number" name="lamina" id="lamina" placeholder="00,00" readonly>
+                            </div>
+                        </div>
+
+                        <div class="horimetro-1-2-horas">
+                            <div class="horimetro">
+                                <div class="horimetro-1 input-auto">
+                                    <label for="horimetro-1">Horimetro Inicial</label>
+                                    <input type="number" step="any" name="horimetro-1" id="horimetro-1" required placeholder="000,00">
+                                </div>
+                                <div class="horimetro-2">
+                                    <label for="horimetro-2">Horimetro Final</label>
+                                    <input type="number" step="any" name="horimetro-2" id="horimetro-2" required placeholder="000,00">
+                                </div>
+                            </div>
+                            <div class="horas input-auto">
+                                <label for="horas">Horas Irrigadas</label>
+                                <input type="number" step="any" name="horas" id="horas" placeholder="00,00" readonly>
+                            </div>
+                        </div>
+                        <div class="observacao">
+                            <div class="check">
+                                <label for="check">Incluir Observação</label>
+                                <input type="checkbox" name="check" id="check">
+                            </div>
+                            <div class="anotacao" id="anotacao">
+                                <label for="anotacao">Anotação:</label>
+                                <textarea name="anotacao" id="txtAnotacao"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="btn">Salvar e Enviar</button>
+                </form>
+                <a href="/index.html">Voltar a Área de Seleções</a>
+            </section>
+        </main>
+
+         <main class="formularios execucao-os">
+            <section>
+                <header>
+                    <h2>Indicadores - Execução da OS</h2>
+                </header>
+                <form id="formExecucaoIndicador">
+                    <div class="inputs">
+                        <div class="data">
+                            <label for="data">Data</label>
+                            <input type="date" name="data" id="data" required>
+                        </div>
+                        <div class="pivo">
+                            <label for="pivo">Pivo</label>
+                            <input type="number" name="pivo" id="pivo" required placeholder="Pivô">
+                        </div>
+                        <div class="falha">
+                            <label for="falha">Falha</label>
+                            <input type="text" name="falha" id="falha" required placeholder="Mecânico, Elétrico..." autocomplete="off">
+                            <div id="sugestoes-falha" class="dropdown sugestoes"></div>
+                        </div>
+                        <div class="motivo">
+                            <label for="motivo">Motivo</label>
+                            <input type="text" name="motivo" id="motivo" required placeholder="Problema: Mecânico..." autocomplete="off">
+                            <div id="sugestoes-motivo" class="dropdown sugestoes"></div>
+                        </div>
+                        <div class="observacao">
+                            <div class="check">
+                                <label for="check">Incluir Observação</label>
+                                <input type="checkbox" name="check" id="check">
+                            </div>
+                            <div class="anotacao" id="anotacao">
+                                <label for="anotacao">Anotação:</label>
+                                <textarea name="anotacao" id="txtAnotacao"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit">Salvar e Enviar</button>
+                </form>
+                <a href="/index.html">Voltar a Área de Selecões</a>
+            </section>
+
+        </main>
+
+        <main class="formularios planejamneto-ferti">
+            <section>
+                <header>
+                    <h2>Planjemento de Fertirrigação</h2>
+                </header>
+
+                <form id="formPlanejamentoFert">
+                    <div class="inputs">
+                        <div class="data">
+                            <label for="data">Data</label>
+                            <input type="date" name="data" id="data" required>
+                        </div>
+                        <div class="pivo">
+                            <label for="pivo">Pivô</label>
+                            <input type="number" name="pivo" id="pivo" required placeholder="Pivô">
+                        </div>
+                        <div class="cultura">
+                            <label for="cultura">Cultura</label>
+                            <input type="text" name="cultura" id="cultura" required placeholder="Tabaco, Soja, Algodão...">
+                        </div>
+                        <div class="produto">
+                            <label for="produto">Produto</label>
+                            <input type="text" name="produto" id="produto" required placeholder="Selecione um produto">
+                        </div>
+                        <div class="dosagem">
+                            <label for="dosagem">Dosagem (ha)</label>
+                            <input type="number" name="dosagem" id="dosagem" required placeholder="Dose de aplicação">
+                        </div>
+                        <div class="area">
+                            <label for="area">Área</label>
+                            <input type="text" name="area" id="area" required placeholder="Área de aplicação">
+                        </div>
+                        <div class="colaboradores">
+                            <label for="colaboradores">Operador</label>
+                            <input type="text" name="colaboradores" id="colaboradores" required placeholder="Nome do operador/dosador">
+                        </div>
+                        <div class="ordem-servico">
+                            <label for="ordem-servico">Ordem de Serviço</label>
+                            <input type="number" name="ordem-servico" id="ordem-servico" required placeholder="Número da OS">
+                        </div>
+                    </div>
+                    <button type="submit">Salvar e Enviar</button>
+                </form>
+
+                <a href="/index.html">Voltar a Área de Seleções</a>
+            </section>
+        </main>
+
+        <main class="formularios ordem-servico">
+            <div class="secao">
+                <section name="" id="">
+                    <header>
+                        <h1>Criação da Ordem de Serviço</h1>
+                    </header>
+                    <div class="form-cantainer">
+                        <div class="exibir-os" id="exibir-os">
+                            <label for="exibir-os">Exibir Relatório:</label>
+                            <input type="checkbox" name="exibir-os" id="exibir-os">
+                        </div>
+                        <form id="formOrdemDeServico">
+                            <div class="inputs">
+                                <div class="data">
+                                    <label for="data">Data</label>
+                                    <input type="date" name="data" id="data" required>  
+                                </div>
+                                <div class="linha-1">
+                                    <div class="pivo">
+                                        <label for="pivo">Pivo</label>
+                                        <input type="number" name="pivo" id="pivo" required placeholder="000">
+                                    </div>
+                                    <div class="percentual">
+                                        <label for="percentual">Porcentagem</label>
+                                        <input type="number" min="1" max="100" name="percentual" id="percentual" required placeholder="000%">
+                                    </div>
+                                </div>
+                                <div class="linha-2">
+                                    <div class="cultura">
+                                        <label for="cultura">Cultura</label>
+                                        <input type="text" name="cultura" id="cultura" required placeholder="Soja, Tabaco, Algodão...">
+                                    </div>
+                                    <div class="area">
+                                        <label for="area">Área/Quadrante</label>
+                                        <input type="text" name="area" id="area" required placeholder="Área de irrigada">
+                                    </div>
+                                </div>
+                                <div class="linha-3">
+                                    <div class="observacao">
+                                        <label for="observacao">Observação</label>
+                                        <textarea name="observacao" id="observacao"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button>Incluir</button>
+                        </form>
+                    </div>
+                </section>
+            
+                <div class="relatorio-os" id="relatorio-os">
+                    <section>
+                        <div>
+                            <input type="text" name="" id="">
+                            <input type="text" name="" id="">
+                            <input type="text" name="" id="">
+                            <input type="text" name="" id="">
+                        </div>
+                    <table>
+                        <thead>
+                            <title>Data: 15/06/2025</title>
+                            <tr>
+                                <th>Pivô</th>
+                                <th>Porcentagem</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <main class="formularios atualizar-lamina">
+            <section>
+                <header>
+                    <h2>Atualizar Lâmina</h2>
+                </header>
+                <form id="formLamina">
+                    <div class="inputs">
+                        <div class="pivo">
+                            <label for="pivo">Pivô</label>
+                            <input type="number" name="pivo" id="pivo" required placeholder="Pivô">
+                        </div>
+                        <div class="percTeste">
+                            <label for="percTeste">Porcentagem do Teste</label>
+                            <input type="number" name="percTeste" id="percTeste" required placeholder="000%">
+                        </div>
+                        <div class="laminaTeste">
+                            <label for="laminaTeste">Lâmina (mm) do Teste</label>
+                            <input type="number" step="any" name="laminaTeste" id="laminaTeste" placeholder="00,00">
+                        </div>
+                        <div class="laminaInicial input-auto">
+                            <label for="laminaInicial">Lâmina (mm) a 100%:</label>
+                            <input type="text" step="any" name="laminaInicial" id="laminaInicial" readonly placeholder="00,00">
+                        </div>
+                    </div>
+
+                    <button type="submit">Salvar e Enviar</button>
+                </form>
+
+                <a href="/index.html">Voltar a Área de Seleções</a>
+            </section>
+        </main>
+        
     </div>
     
 </body>
