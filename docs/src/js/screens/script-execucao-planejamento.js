@@ -83,23 +83,3 @@ form.addEventListener('submit', async (e) => {
     }, 1);
      
 });
-
-/*window.addEventListener('DOMContentLoaded', () => {
-
-    const navEntries = performance.getEntriesByType('navigation');
-  if (navEntries.length > 0 && navEntries[0].type === 'reload') {
-
-        fetch( 'http://localhost:3000/api/form/exIndicador/ultimaData' )
-            .then(res => res.json())
-            .then(data => {
-                if (data.ultimaData) {
-                    document.getElementById('data').value = data.ultimaData;
-                }
-            })
-
-            .catch(err => {
-                console.error( 'erro ao buscar a última data:', err );
-
-        });
-  }
-});*/

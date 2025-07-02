@@ -43,7 +43,6 @@ pivo.addEventListener('input', pegarLamina);
 document.getElementById('pivo').addEventListener('change', () => {
   const nomePivo = document.getElementById('pivo').value;
 
-  /*--console.log(`nome do pivô enviado: "${nomePivo}"`);--*/
 
   fetch(`https://sistema-de-lancamentos.onrender.com/api/form/horimetro/ultimoHorimetro/${nomePivo}`)
     .then(res => res.json())
@@ -94,107 +93,29 @@ horimetro1.addEventListener('input', horasCalculadas);
 incluirObservacao('check', 'anotacao');
 
 
-// Envio de dados do formulário
-
-/*const form = document.getElementById('formHorimetro');
-
-form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Evita que o formulário recarregue a página
-
-    const dataLancamento = document.getElementById('data');
-    const dataHistorico = dataLancamento.value;
-
-    const erro = document.querySelectorAll('.erro');
-    let erroExistente = false;
-
-    // pegando os valores dos campos
-    const dados = {
-        data: dataHistorico,
-        pivo: document.getElementById('pivo').value,
-        area: document.getElementById('area').value,
-        percentual: document.getElementById('percentual').value,
-        lamina: document.getElementById('lamina').value,
-        horimetro1: document.getElementById('horimetro-1').value,
-        horimetro2: document.getElementById('horimetro-2').value,
-        horas: document.getElementById('horas').value,
-        observacao: document.getElementById('txtAnotacao').value
-    };
-
-    erro.forEach( span => {
-        if ( span.style.display !== 'none' ) {
-            erroExistente = true;
-        
-        } 
-    });
-
-    if ( erroExistente ) {
-        alert('Por favor, corrija os dados inválidos!');
-        return;
-    }
-
-    try {
-
-        // envia para o backend com o metodo POST
-        const resposta = await fetch('https://sistema-de-lancamentos.onrender.com/api/form/horimetro', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-
-            body: JSON.stringify(dados) // Transforma os dados em texto JSON
-            
-        });
-
-        const resultado = await resposta.json();
-        alert(resultado.mensagem) // Mostra mensagem de sucesso
-
-    } catch (erro) {
-        console.error('Erro ao enviar:', erro);
-
-        alert('Erro ao enviar dados!');
-
-    }
-    
-    form.reset();
-
-    document.getElementById('anotacao').style.display = 'none';
-
-    setTimeout( () => {
-        document.getElementById('data').value = dataHistorico
-    }, 1);
-
-});*/
-
-/*window.addEventListener('DOMContentLoaded', () => {
-
-    const navEntries = performance.getEntriesByType('navigation');
-  if (navEntries.length > 0 && navEntries[0].type === 'reload') {
-
-        fetch( 'http://localhost:3000/api/form/horimetro/ultimaData' )
-            .then(res => res.json())
-            .then(data => {
-                if (data.ultimaData) {
-                    document.getElementById('data').value = data.ultimaData;
-                }
-            })
-
-            .catch(err => {
-                console.error( 'erro ao buscar a última data:', err );
-
-        });
-  }
-});*/
-
 const form = document.getElementById('formHorimetro');
-const spanErros = document.querySelectorAll('.erro');
+const erro = document.querySelectorAll('.erro');
 const dataInput = document.getElementById('data');
 const btnEnviar = document.querySelector('#btn');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const erroVisivel = Array.from(spanErros).some(span => span.offsetParent !== null);
+    /*const erroVisivel = Array.from(spanErros).some(span => span.offsetParent !== null);
     if (erroVisivel) {
+        alert('Por favor, corrija os dados inválidos!');
+        return;
+    }*/
+    
+    const erroExistente = true;
+
+    erro.forEach( span => {
+        if ( span.style.display !== 'none') {
+            erroExistente = true;
+        }
+    });
+
+    if ( erroExistente ) {
         alert('Por favor, corrija os dados inválidos!');
         return;
     }
