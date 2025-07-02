@@ -29,18 +29,6 @@ async function includeHtml() {
 window.addEventListener('DOMContentLoaded', includeHtml);
 
 
-/*document.querySelectorAll('.menu .link').forEach(link => {
-    link.addEventListener('clik', function (e) {
-        e.preventDefault();
-
-        document.querySelectorAll('.menu . link').forEach( el => el.classList.remove('ativo'));
-
-        this.classList.add('ativo');
-    });
-});*/
-
-//cronometro de data e hora
-
 function relogio() {
     const agora = new Date();
 
