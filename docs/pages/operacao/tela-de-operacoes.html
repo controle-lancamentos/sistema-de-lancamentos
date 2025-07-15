@@ -63,16 +63,16 @@
                     <div class="inputs">
                         <div class="data">   
                                 <label for="data">Data</label>
-                                <input type="date" name="data" id="data" value="" required>
+                                <input type="date" name="data" id="data-horimetro" required>
                             </div>
                         <div class="pivo-area">
                             <div class="pivo">
                                 <label for="pivo">Pivô</label>
-                                <input type="number" name="pivo" id="pivo" required placeholder="Pivô">
+                                <input type="number" name="pivo" id="pivo-horimetro" required placeholder="Pivô">
                             </div>
                             <div class="area">
                                 <label for="area">Area/Quadrante</label>
-                                <input type="text" name="area" id="area" placeholder="Área irrigada" required autocomplete="off">
+                                <input type="text" name="area" id="area-horimetro" placeholder="Área irrigada" required autocomplete="off">
                                 <div id="sugestoes" class="dropdown"></div>
                             </div>                       
                         </div>
@@ -80,11 +80,11 @@
                         <div class="percentual-lamina">
                             <div class="percentual">
                                 <label for="percentual">Percentual</label>
-                                <input type="number" maxlength="3" min="1" max="100" step="1" name="percentual" id="percentual" required placeholder="000%">
+                                <input type="number" maxlength="3" min="1" max="100" step="1" name="percentual" id="percentual-horimetro" required placeholder="000%">
                             </div>
                             <div class="lamina input-auto">
                                 <label for="lamina">Lâmina (mm)</label>
-                                <input type="number" name="lamina" id="lamina" placeholder="00,00" readonly>
+                                <input type="number" name="lamina" id="lamina-horimetro" placeholder="00,00" readonly>
                             </div>
                         </div>
 
@@ -107,15 +107,15 @@
                         <div class="observacao">
                             <div class="check">
                                 <label for="check">Incluir Observação</label>
-                                <input type="checkbox" name="check" id="check">
+                                <input type="checkbox" name="check" id="check-horimetro">
                             </div>
                             <div class="anotacao" id="anotacao">
                                 <label for="anotacao">Anotação:</label>
-                                <textarea name="anotacao" id="txtAnotacao"></textarea>
+                                <textarea name="anotacao" id="txtAnotacao-horimetro"></textarea>
                             </div>
                         </div>
                     </div>
-                    <button id="btn">Salvar e Enviar</button>
+                    <button id="btn-horimetro">Salvar e Enviar</button>
                 </form>
                 <a href="/index.html">Voltar a Área de Seleções</a>
             </section>
@@ -130,11 +130,11 @@
                     <div class="inputs">
                         <div class="data">
                             <label for="data">Data</label>
-                            <input type="date" name="data" id="data" required>
+                            <input type="date" name="data" id="data-indicador" required>
                         </div>
                         <div class="pivo">
                             <label for="pivo">Pivo</label>
-                            <input type="number" name="pivo" id="pivo" required placeholder="Pivô">
+                            <input type="number" name="pivo" id="pivo-indicador" required placeholder="Pivô">
                         </div>
                         <div class="falha">
                             <label for="falha">Falha</label>
@@ -149,15 +149,15 @@
                         <div class="observacao">
                             <div class="check">
                                 <label for="check">Incluir Observação</label>
-                                <input type="checkbox" name="check" id="check">
+                                <input type="checkbox" name="check" id="check-indicador">
                             </div>
                             <div class="anotacao" id="anotacao">
                                 <label for="anotacao">Anotação:</label>
-                                <textarea name="anotacao" id="txtAnotacao"></textarea>
+                                <textarea name="anotacao" id="txtAnotacao-indicador"></textarea>
                             </div>
                         </div>
                     </div>
-                    <button type="submit">Salvar e Enviar</button>
+                    <button type="submit" id="btn-indicador">Salvar e Enviar</button>
                 </form>
                 <a href="/index.html">Voltar a Área de Selecões</a>
             </section>
@@ -174,15 +174,15 @@
                     <div class="inputs">
                         <div class="data">
                             <label for="data">Data</label>
-                            <input type="date" name="data" id="data" required>
+                            <input type="date" name="data" id="data-ferti" required>
                         </div>
                         <div class="pivo">
                             <label for="pivo">Pivô</label>
-                            <input type="number" name="pivo" id="pivo" required placeholder="Pivô">
+                            <input type="number" name="pivo" id="pivo-ferti" required placeholder="Pivô">
                         </div>
                         <div class="cultura">
                             <label for="cultura">Cultura</label>
-                            <input type="text" name="cultura" id="cultura" required placeholder="Tabaco, Soja, Algodão...">
+                            <input type="text" name="cultura" id="cultura-ferti" required placeholder="Tabaco, Soja, Algodão...">
                         </div>
                         <div class="produto">
                             <label for="produto">Produto</label>
@@ -194,7 +194,7 @@
                         </div>
                         <div class="area">
                             <label for="area">Área</label>
-                            <input type="text" name="area" id="area" required placeholder="Área de aplicação">
+                            <input type="text" name="area" id="area-ferti" required placeholder="Área de aplicação">
                         </div>
                         <div class="colaboradores">
                             <label for="colaboradores">Operador</label>
@@ -205,7 +205,7 @@
                             <input type="number" name="ordem-servico" id="ordem-servico" required placeholder="Número da OS">
                         </div>
                     </div>
-                    <button type="submit">Salvar e Enviar</button>
+                    <button type="submit" id="btn--ferti">Salvar e Enviar</button>
                 </form>
 
                 <a href="/index.html">Voltar a Área de Seleções</a>
@@ -227,36 +227,36 @@
                             <div class="inputs">
                                 <div class="data">
                                     <label for="data">Data</label>
-                                    <input type="date" name="data" id="data" required>  
+                                    <input type="date" name="data" id="data-os" required>  
                                 </div>
                                 <div class="linha-1">
                                     <div class="pivo">
                                         <label for="pivo">Pivo</label>
-                                        <input type="number" name="pivo" id="pivo" required placeholder="000">
+                                        <input type="number" name="pivo" id="pivo-os" required placeholder="000">
                                     </div>
                                     <div class="percentual">
                                         <label for="percentual">Porcentagem</label>
-                                        <input type="number" min="1" max="100" name="percentual" id="percentual" required placeholder="000%">
+                                        <input type="number" min="1" max="100" name="percentual" id="percentual-os" required placeholder="000%">
                                     </div>
                                 </div>
                                 <div class="linha-2">
                                     <div class="cultura">
                                         <label for="cultura">Cultura</label>
-                                        <input type="text" name="cultura" id="cultura" required placeholder="Soja, Tabaco, Algodão...">
+                                        <input type="text" name="cultura" id="cultura-os" required placeholder="Soja, Tabaco, Algodão...">
                                     </div>
                                     <div class="area">
                                         <label for="area">Área/Quadrante</label>
-                                        <input type="text" name="area" id="area" required placeholder="Área de irrigada">
+                                        <input type="text" name="area" id="area-os" required placeholder="Área de irrigada">
                                     </div>
                                 </div>
                                 <div class="linha-3">
                                     <div class="observacao">
                                         <label for="observacao">Observação</label>
-                                        <textarea name="observacao" id="observacao"></textarea>
+                                        <textarea name="observacao" id="observacao-os"></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <button>Incluir</button>
+                            <button id="btn-os">Incluir</button>
                         </form>
                     </div>
                 </section>
@@ -292,7 +292,7 @@
                     <div class="inputs">
                         <div class="pivo">
                             <label for="pivo">Pivô</label>
-                            <input type="number" name="pivo" id="pivo" required placeholder="Pivô">
+                            <input type="number" name="pivo" id="pivo-lamina" required placeholder="Pivô">
                         </div>
                         <div class="percTeste">
                             <label for="percTeste">Porcentagem do Teste</label>
@@ -308,7 +308,7 @@
                         </div>
                     </div>
 
-                    <button type="submit">Salvar e Enviar</button>
+                    <button type="submit" id="-lamina">Salvar e Enviar</button>
                 </form>
 
                 <a href="/index.html">Voltar a Área de Seleções</a>
@@ -317,9 +317,13 @@
         
     </div>
     
-    <script src="/src/js/includes/includes.js"></script>
+    
     <script src="/src/js/validacoes/validacoes.js" defer></script>
     <script src="/src/js/functions/funtions-utilizaveis.js" defer></script>
+    <script src="/src/js/screens/script-horimetro.js" defer></script>
     <script src="/src/js/screens/script-execucao-planejamento.js" defer></script>
+    <script src="/src/js/screens/script-planejamento-ferti.js" defer></script>
+    <script src="/src/js/screens/script-ordem-servico.js" defer></script>
+    <script src="/src/js/screens/script-lamina.js" defer></script>
 </body>
 </html>
