@@ -31,29 +31,11 @@ window.addEventListener('DOMContentLoaded', includeHtml);
 
 function relogio() {
     const agora = new Date();
-
     const data = agora.toLocaleDateString('pt-BR');
     const hora = agora.toLocaleTimeString('pt-BR');
-
     document.getElementById('relogio').textContent = `${data} - ${hora}`;
-
-    setInterval(relogio, 1000);
 }
+setInterval(relogio, 1000);
 
 relogio();
-
-document.addEventListener('DOMContentLoaded', function () {
-    const links = document.querySelectorAll('.menu .link');
-    const currentPath = window.location.pathname;
-
-    links.forEach(link => {
-      // Remove a classe ativo de todos
-      link.classList.remove('ativo');
-
-      // Adiciona apenas se o href bater com o pathname atual
-      if (link.getAttribute('href') === currentPath) {
-        link.classList.add('ativo');
-      }
-    });
-  });
 
