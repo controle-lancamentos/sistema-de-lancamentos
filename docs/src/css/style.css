@@ -109,7 +109,7 @@ nav.navegacao h2 {
     width: 150px;
 }
 
-.falha input, .motivo input {
+.falha input, .motivo input, .percTeste input {
     display: flex;
     font-size: 1.6rem;
 }
