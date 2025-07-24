@@ -81,7 +81,13 @@ form.addEventListener('submit', async (e) => {
     });
 
     if ( erroExistente ) {
-        alert('Por favor, corrija os dados inválidos!');
+        //alert('Por favor, corrija os dados inválidos!');
+        Swal.fire({
+                    title: 'Atenção!',
+                    text: 'Corrija o valor inválido!',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+        });
         return;
     }
 
@@ -101,15 +107,28 @@ form.addEventListener('submit', async (e) => {
 
         if (!resposta.ok) throw new Error(`Erro ${resposta.status}`);
 
-        const resultado = await resposta.json();
-        alert(resultado.mensagem);
+        //const resultado = await resposta.json();
+        //alert(resultado.mensagem);
+        Swal.fire({
+                    title: 'Enviado!',
+                    text: 'Dados enviados com sucesso!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+        });
 
         // ⚡ Reset mínimo e direto
         form.reset();
 
     } catch (erro) {
         console.error('Erro ao enviar:', erro);
-        alert('Erro ao enviar dados!');
+        //alert('Erro ao enviar dados!');
+        Swal.fire({
+                    title: 'Erro!',
+                    text: 'Não foi possível salvar os dados!',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+        });
+
     } finally {
         // ⚡ Reativa botão rapidamente
         btnEnviar.disabled = false;
