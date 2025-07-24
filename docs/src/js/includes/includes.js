@@ -2,30 +2,26 @@ document.body.setAttribute('data-loading', 'true');
 
 async function includeHtml() {
     const includes = document.querySelectorAll('[data-include]');
-    const promises = [];
 
-    includes.forEach((el) => {
+    const promises = Array.from(includes).map(async el => {
         const file = el.getAttribute('data-include');
 
-        const promise = fetch(file).then(res => {
-            if (!res.ok) {
-                el.innerHTML = `Erro ao carregar ${file}`;
-                return;
-            }
-            return res.text().then(html => el.innerHTML = html);
-        });
-
-        promises.push(promise);
+        try {
+            const res = await fetch(file);
+            if (!res.ok) throw new Error(`Erro ${res.status}`);
+            const html = await res.text();
+            el.innerHTML = html;
+        } catch (err) {
+            el.innerHTML = `Erro ao carregar ${file}: ${err.message}`;
+        }
     });
 
-    // Aguarda todos os includes serem carregados
     await Promise.all(promises);
 
-    // Mostra o conteúdo da página
+    // Exibe o conteúdo após todos os includes estarem prontos
     document.body.removeAttribute('data-loading');
 }
 
-//links do menu
 window.addEventListener('DOMContentLoaded', includeHtml);
 
 
