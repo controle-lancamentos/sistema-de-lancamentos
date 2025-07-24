@@ -280,7 +280,7 @@ div {
 /*--Estilização de lista de suspensa validação--*/
 
 .dropdown {
-    padding: 1rem;
+    padding: 0.5rem;
     position: absolute;
     top: 100%;
     left: 0;
@@ -297,7 +297,7 @@ div {
     z-index: 1000;
     border-radius: 1.5rem;
 
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     text-align: left;
     color: #000000;
 }

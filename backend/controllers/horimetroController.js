@@ -46,7 +46,7 @@ async function buscarUltimoHorimetro(req, res) {
     // Cada linha é um array, então precisamos saber a ordem das colunas
     // Supondo que a ordem seja: user, dataHoraRegistro, id, data, pivo, area, percentual, lamina, horimetro1, horimetro2, horas, observacao
     const COL_PIVO = 4;
-    const COL_HORIMETRO2 = 9;
+    const COL_HORIMETRO2 = 10;
 
     const filtrados = linhas.filter( linha => String(linha.values[0][COL_PIVO]).trim() === String(nomePivo).trim() );
 
@@ -83,6 +83,7 @@ async function salvarDadosHorimetro(req, res) {
       novoDado.id,
       novoDado.data,
       novoDado.pivo,
+      novoDado.cultura,
       novoDado.area,
       novoDado.percentual,
       novoDado.lamina,

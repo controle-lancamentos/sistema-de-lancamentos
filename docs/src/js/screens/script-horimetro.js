@@ -1,5 +1,7 @@
-// validação de pivô e lâminas
-window.listaSugestaoSuspensa('area', 'sugestoes', window.inforArea);
+// Lista cultura
+window.listaSugestaoSuspensa('cultura', 'sugestoes-1', window.cultura);
+// Lista are
+window.listaSugestaoSuspensa('area', 'sugestoes-2', window.inforArea);
 
 const pivo = document.getElementById('pivo');
 const percentual = document.getElementById('percentual');
@@ -94,20 +96,27 @@ incluirObservacao('check', 'anotacao');
 
 
 const form = document.getElementById('formHorimetro');
-const erro = document.querySelectorAll('.erro');
 const dataInput = document.getElementById('data');
 const btnEnviar = document.querySelector('#btn');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    /*const erroVisivel = Array.from(spanErros).some(span => span.offsetParent !== null);
-    if (erroVisivel) {
-        alert('Por favor, corrija os dados inválidos!');
-        return;
-    }*/
-    
-    /*const erroExistente = true;
+    const erro = document.querySelectorAll('.erro');
+    let erroExistente = false;
+
+    const dados = {
+        data: dataInput.value,
+        pivo: document.getElementById('pivo').value,
+        cultura: document.getElementById('cultura').value,
+        area: document.getElementById('area').value,
+        percentual: document.getElementById('percentual').value,
+        lamina: document.getElementById('lamina').value,
+        horimetro1: document.getElementById('horimetro-1').value,
+        horimetro2: document.getElementById('horimetro-2').value,
+        horas: document.getElementById('horas').value,
+        observacao: document.getElementById('txtAnotacao').value
+    };
 
     erro.forEach( span => {
         if ( span.style.display !== 'none') {
@@ -118,19 +127,7 @@ form.addEventListener('submit', async (e) => {
     if ( erroExistente ) {
         alert('Por favor, corrija os dados inválidos!');
         return;
-    }*/
-
-    const dados = {
-        data: dataInput.value,
-        pivo: document.getElementById('pivo').value,
-        area: document.getElementById('area').value,
-        percentual: document.getElementById('percentual').value,
-        lamina: document.getElementById('lamina').value,
-        horimetro1: document.getElementById('horimetro-1').value,
-        horimetro2: document.getElementById('horimetro-2').value,
-        horas: document.getElementById('horas').value,
-        observacao: document.getElementById('txtAnotacao').value
-    };
+    }
 
     // Feedback de envio (evita múltiplos cliques e mostra ação)
     btnEnviar.disabled = true;

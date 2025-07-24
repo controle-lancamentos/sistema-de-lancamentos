@@ -1,4 +1,3 @@
-/*import { codigoPivo, tabelaPivoLamina } from "./script-horimetro.js";*/
 
 // validação pivô
 window.validacaoPivo('pivo', 'Esse pivô não existe.');
@@ -7,9 +6,6 @@ window.validacaoPivo('pivo', 'Esse pivô não existe.');
 // validação falha
 window.listaSugestaoSuspensa('falha', 'sugestoes-falha', window.inforMotivo);
 
-// Validação motivo da falha
-/*listaSugestaoSuspensa('motivo', 'sugestoes', 'falha', inforProblemaMotivo)*/
-//listaSugestaoSuspensa('motivo', 'sugestoes', inforProblemaMotivo);
 
 // Validação motivo falha
 window.listaSugestaoSuspensaObjetos('motivo', 'sugestoes-motivo', 'falha', window.inforProblemaMotivo)
@@ -22,25 +18,28 @@ window.desabilitarInput('motivo', 'falha', inforMotivo);
 
 window.incluirObservacao('check', 'anotacao');
 
+
 // Envidando dados do formulário
 
+
 const form = document.getElementById('formExecucaoIndicador');
+const dataInput = document.getElementById('data');
+const btnEnviar = document.querySelector('#btn');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
-    const dataLancamento = document.getElementById('data');
-    const dataHistorico = dataLancamento.value;
 
     const erro = document.querySelectorAll('.erro');
     let erroExistente = false;
 
     const dados = {
-        data: document.getElementById('data').value,
+
+        data: dataInput.value,
         pivo: document.getElementById('pivo').value,
         falha: document.getElementById('falha').value,
         motivo: document.getElementById('motivo').value,
         observacao: document.getElementById('txtAnotacao').value
+
     };
 
     erro.forEach( span => {
@@ -54,32 +53,36 @@ form.addEventListener('submit', async (e) => {
         return;
     }
 
+    // Feedback de envio (evita múltiplos cliques e mostra ação)
+    btnEnviar.disabled = true;
+    btnEnviar.textContent = 'Enviando...';
+
     try {
         const resposta = await fetch('https://sistema-de-lancamentos.onrender.com/api/form/exIndicador', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-
-            body: JSON.stringify(dados)
-            
+            body: JSON.stringify(dados),
+            cache: 'no-store' // evita qualquer cache indesejado
         });
+
+        if (!resposta.ok) throw new Error(`Erro ${resposta.status}`);
 
         const resultado = await resposta.json();
         alert(resultado.mensagem);
 
+        // ⚡ Reset mínimo e direto
+        form.reset();
+        dataInput.value = dados.data; // repõe a data se for fixa
+        document.getElementById('anotacao').style.display = 'none';
+
     } catch (erro) {
         console.error('Erro ao enviar:', erro);
-
         alert('Erro ao enviar dados!');
-
+    } finally {
+        // ⚡ Reativa botão rapidamente
+        btnEnviar.disabled = false;
+        btnEnviar.textContent = 'Enviar';
     }
-
-    form.reset();
-    document.getElementById('anotacao').style.display = 'none';
-
-    setTimeout( () => {
-        document.getElementById('data').value = dataHistorico
-    }, 1);
-     
 });

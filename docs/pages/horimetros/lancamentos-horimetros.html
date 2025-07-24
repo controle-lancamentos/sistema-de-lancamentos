@@ -35,19 +35,25 @@
                 </header>
                 <form id="formHorimetro">
                     <div class="inputs">
-                        <div class="data">   
+                            <div class="data">   
                                 <label for="data">Data</label>
                                 <input type="date" name="data" id="data" value="" required>
                             </div>
-                        <div class="pivo-area">
                             <div class="pivo">
                                 <label for="pivo">Pivô</label>
                                 <input type="number" name="pivo" id="pivo" required placeholder="Pivô">
                             </div>
+                        
+                        <div class="cultura-area">
+                            <div class="cultura">
+                                <label for="cultura">Cultura</label>
+                                <input type="text" name="cultura" id="cultura" required placeholder="Soja, Milho, Cacau ..." autocomplete="on">
+                                <div id="sugestoes-1" class="dropdown"></div>
+                            </div>
                             <div class="area">
                                 <label for="area">Area/Quadrante</label>
-                                <input type="text" name="area" id="area" placeholder="Área irrigada" required autocomplete="off">
-                                <div id="sugestoes" class="dropdown"></div>
+                                <input type="text" name="area" id="area" placeholder="Área irrigada" required autocomplete="on">
+                                <div id="sugestoes-2" class="dropdown"></div>
                             </div>                       
                         </div>
 

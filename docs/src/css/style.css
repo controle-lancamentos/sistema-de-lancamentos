@@ -43,7 +43,7 @@ nav.navegacao h2 {
     margin: 0;
 }
 /*label mais input*/
-.pivo-area, .percentual-lamina {
+.cultura-area, .percentual-lamina {
     display: flex;
     justify-content: space-between;
     gap: 2rem ;
@@ -76,6 +76,12 @@ nav.navegacao h2 {
     width: 180px;
 }
 
+#formHorimetro .cultura {
+    flex-direction: column;
+    display: flex;
+    width: 60%;
+}
+
 .pivo {
     width: 100px;
 }
@@ -86,7 +92,7 @@ nav.navegacao h2 {
 
 .area input {
     min-width: 120px;
-    max-width: 250px;
+    max-width: 160px;
 }
 
 .percentual-lamina input {
@@ -330,9 +336,21 @@ a {
     }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 375px) {
 
     .dropdown::-webkit-scrollbar {
     width: 2rem;
+    }
+
+    #formHorimetro .cultura input {
+        font-size: 1.7rem;
+    }
+
+    #formHorimetro .area input {
+        font-size: 1.7rem;
+    }
+
+    .dropdown {
+        font-size: 1.3rem;
     }
 }

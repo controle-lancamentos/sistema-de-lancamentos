@@ -20,6 +20,13 @@ app.get('/', (req, res) => {
 
 });
 
+// Servidor Ativo
+
+app.get('/wake-up', (req, res) => {
+  res.status(200).json({ message: 'Servidor ativo' });
+});
+
+
 //Importa rotas dos formulários
 const formHorimetroRoutes = require('./routes/formHorimetro');
 app.use('/api/form/horimetro', formHorimetroRoutes);

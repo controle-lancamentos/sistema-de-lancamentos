@@ -36,12 +36,24 @@ window.inforProblemaMotivo = {
     ]
 }
 
+
 // Informações de area irrigada
 window.inforArea = ['COMPLETO', '1/2-PIVO', 'A', 'B', 'C', 'D',
                     'AB', 'AC', 'AD', 'BC', 'BD', 'CD',
                     'ABC', 'ABD', 'ACD', 'BCD',
                     'ABCD'
 ];
+
+
+// Informações de Cultura
+window.cultura = [ 'Algodão', 'Brachiaria', 'Capim',
+                   'Cacau', 'Crotalária', 'Feijão',
+                   'Feijão Mungo', 'Gergelim',
+                   'Milho Semente', 'Milho', 
+                   'Milheto', 'Mix', 'Soja',
+                   'Sorgo', 'Tabaco'
+];
+
 
 // Informações de pivô e lâmina
 window.tabelaPivoLamina = {
