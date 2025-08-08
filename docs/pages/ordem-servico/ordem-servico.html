@@ -29,79 +29,30 @@
     <div class="menu-e-conteudo">
         <div data-include="/pages/includes/menu.html"></div>
         <main class="formularios ordem-servico">
-            <div class="secao">
-                <section name="" id="">
-                    <header>
-                        <h1>Criação da Ordem de Serviço</h1>
-                    </header>
-                    <div class="form-cantainer">
-                        <div class="exibir-os" id="exibir-os">
-                            <label for="exibir-os">Exibir Relatório:</label>
-                            <input type="checkbox" name="exibir-os" id="exibir-os">
+            <section id="ordem-servico" class="formulario">
+                <header>
+                        <h1>Ordem de Serviço</h1>
+                </header>
+                <div class="box-ordem-servico">
+                    <div class="inputs">
+                        <div class="arquivo">
+                            <label for="arquivo">Selecione o arquivo</label>
+                            <input type="file" name="arquivo" id="arquivo" accept=".xlsx,.xls">
                         </div>
-                        <form id="formOrdemDeServico">
-                            <div class="inputs">
-                                <div class="data">
-                                    <label for="data">Data</label>
-                                    <input type="date" name="data" id="data" required>  
-                                </div>
-                                <div class="linha-1">
-                                    <div class="pivo">
-                                        <label for="pivo">Pivo</label>
-                                        <input type="number" name="pivo" id="pivo" required placeholder="000">
-                                    </div>
-                                    <div class="percentual">
-                                        <label for="percentual">Porcentagem</label>
-                                        <input type="number" min="1" max="100" name="percentual" id="percentual" required placeholder="000%">
-                                    </div>
-                                </div>
-                                <div class="linha-2">
-                                    <div class="cultura">
-                                        <label for="cultura">Cultura</label>
-                                        <input type="text" name="cultura" id="cultura" required placeholder="Soja, Tabaco, Algodão...">
-                                    </div>
-                                    <div class="area">
-                                        <label for="area">Área/Quadrante</label>
-                                        <input type="text" name="area" id="area" required placeholder="Área de irrigada">
-                                    </div>
-                                </div>
-                                <div class="linha-3">
-                                    <div class="observacao">
-                                        <label for="observacao">Observação</label>
-                                        <textarea name="observacao" id="observacao"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <button>Incluir</button>
-                        </form>
                     </div>
-                </section>
-            
-                <div class="relatorio-os" id="relatorio-os">
-                    <section>
-                        <div>
-                            <input type="text" name="" id="">
-                            <input type="text" name="" id="">
-                            <input type="text" name="" id="">
-                            <input type="text" name="" id="">
-                        </div>
-                    <table>
-                        <thead>
-                            <title>Data: 15/06/2025</title>
-                            <tr>
-                                <th>Pivô</th>
-                                <th>Porcentagem</th>
-                            </tr>
-                        </thead>
-                    </table>
-                    </section>
+                    <div id="mensagem"></div>
+                    <div id="tabelaContainer"></div>
                 </div>
-            </div>
+
+                <button id="btnEnviar" disabled>Enviar</button>
+            
+            </section>
         </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/src/js/includes/includes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <script src="/src/js/functions/funtions-utilizaveis.js" defer></script>
     <script src="/src/js/validacoes/validacoes.js" defer></script>
     <script src="/src/js/screens/script-ordem-servico.js" defer></script>

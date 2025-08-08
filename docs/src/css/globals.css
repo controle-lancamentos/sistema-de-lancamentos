@@ -59,20 +59,8 @@ header {
     position: relative;;
 }
 
-.exibir-os {
-    position: absolute;
-    z-index: 1000;
-    top: 3rem;
-    right: 3rem;
-    text-align: center;
-}
 
-.relatorio-os {
-    /*display: none;*/
-    left: 1rem;
-}
-
-.linha-1 {
+.linha-0, .linha-1 {
     display: flex;
     justify-content: space-between;
 }
@@ -154,6 +142,10 @@ section {
 
 }
 
+.ordem-servico section {
+    max-width: 80rem;
+}
+
 .selecoes section {
     margin: 0;
 }
@@ -198,6 +190,10 @@ label {
     padding: 3rem 1rem;
     border-radius: 1rem;
     width: 100%;
+}
+
+.box-ordem-servico {
+    margin: auto 1.5rem;
 }
 
 .login .inputs {

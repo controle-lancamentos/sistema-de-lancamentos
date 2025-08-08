@@ -82,6 +82,18 @@ nav.navegacao h2 {
     width: 60%;
 }
 
+.titulo-os {
+    display: flex;
+    align-items: center;
+}
+
+.titulo-os label {
+    width: 100px;
+}
+.titulo-os input {
+    font-size: 1.7rem;
+}
+
 .pivo {
     width: 100px;
 }
