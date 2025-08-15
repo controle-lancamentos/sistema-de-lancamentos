@@ -1,3 +1,4 @@
+
 const secoes = [
     'ordem-servico',
     'ordem-servico-instrucao',
@@ -41,99 +42,6 @@ mostrarSecao('ordem-servico');
 
 // Formulário de lançamento
 
-/*const padraoColunas = ['data', 'pivo', 'percentual', 'cultura', 'area', 'observacao']; // <-- seu padrão aqui
-let dadosPlanilha = [];
-
-function normalizarTexto(texto) {
-    return texto
-        .normalize("NFD")              // separa acentos
-        .replace(/[\u0300-\u036f]/g, "") // remove acentos
-        .trim()                         // remove espaços extras
-        .toLowerCase();                 // tudo minúsculo
-}
-
-document.getElementById("arquivo").addEventListener("change", function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    if (!/\.(xlsx|xls)$/i.test(file.name)) {
-
-        document.getElementById('mensagem').style.display = 'block';
-
-        document.getElementById("mensagem").textContent = "Erro: envie apenas arquivos Excel.";
-        return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = function(event) {
-        const data = new Uint8Array(event.target.result);
-        const workbook = XLSX.read(data, { type: "array" });
-
-        // Pega primeira aba
-        const primeiraAba = workbook.SheetNames[0];
-        const sheet = workbook.Sheets[primeiraAba];
-
-        // Converte para JSON
-        const json = XLSX.utils.sheet_to_json(sheet, { defval: "" });
-
-        if (json.length === 0) {
-
-            document.getElementById('mensagem').style.display = 'block';
-
-            document.getElementById("mensagem").textContent = "Planilha vazia.";
-            return;
-        }
-
-        // Validação das colunas
-        const colunasArquivo = Object.keys(json[0]).map(c => normalizarTexto(c));
-        const padraoNormalizado = padraoColunas.map(c => normalizarTexto(c));
-
-        //const valido = padraoNormalizado.every(c => colunasArquivo.includes(c));
-
-        let valido = true;
-        for (let i = 0; i < padraoNormalizado.length; i++) {
-            if (colunasArquivo[i] !== padraoNormalizado[i]) {
-                valido = false;
-                break;
-            }
-        }
-
-        if (!valido) {
-
-            document.getElementById('mensagem').style.display = 'block';
-
-            document.getElementById("mensagem").textContent = "Formato inválido. Colunas esperadas e na ordem: \n" + padraoColunas.join(", ");
-            return;
-        }
-
-        // Salva os dados e exibe a tabela
-        dadosPlanilha = json;
-        mostrarTabela(json);
-        document.getElementById("btnEnviar").disabled = false;
-
-        document.getElementById('mensagem').style.display = 'block';
-        document.getElementById("mensagem").textContent = "Arquivo validado!";
-    };
-    reader.readAsArrayBuffer(file);
-});
-
-function mostrarTabela(dados) {
-    let html = "<table><thead><tr>";
-    Object.keys(dados[0]).forEach(col => {
-        html += `<th>${col}</th>`;
-    });
-    html += "</tr></thead><tbody>";
-    dados.forEach(linha => {
-        html += "<tr>";
-        Object.values(linha).forEach(valor => {
-            html += `<td>${valor}</td>`;
-        });
-        html += "</tr>";
-    });
-    html += "</tbody></table>";
-    document.getElementById("tabelaContainer").innerHTML = html;
-}*/
-
 const padraoColunas = ['data', 'pivo', 'percentual', 'cultura', 'area', 'observacao'];
 let dadosPlanilha = [];
 
@@ -153,7 +61,7 @@ function validarColunas(json) {
     let erros = [];
     padraoNormalizado.forEach((col, i) => {
         if (colunasArquivo[i] !== col) {
-            erros.push(`Esperado "${padraoColunas[i]}" na posição ${i + 1}, encontrado "${colunasArquivo[i] || 'vazio'}"`);
+            erros.push(`Esperado a coluna "${padraoColunas[i]}" na posição ${i + 1}, encontrado "${colunasArquivo[i] || 'vazio'}"`);
         }
     });
     return erros;
@@ -232,6 +140,7 @@ function validarDados(json) {
     });
     return erros;
 }
+
 
 document.getElementById("arquivo").addEventListener("change", function(e) {
     const file = e.target.files[0];
@@ -315,7 +224,7 @@ function mostrarTabela(dados, erros) {
 }
 
 
-// Evento do botão de envio
+// Evento do botão de envio, enviar dados
 document.getElementById("btnEnviar").addEventListener("click", function() {
     const btn = document.getElementById("btnEnviar");
 
@@ -324,15 +233,13 @@ document.getElementById("btnEnviar").addEventListener("click", function() {
     btn.textContent = "Enviando...";
 
     Swal.fire({
-        title: 'Enviando...',
-        text: 'Aguarde enquanto os dados são enviados, Não saia dessa página.',
-        allowOutsideClick: true,
-        /*didOpen: () => {
-            Swal.showLoading();
-        }*/
+        title: 'Atenção!',
+        text: 'Não saia dessa página até completar o envio, os dados estão sendo enviados.',
+        icon: 'warning',
+        confirmButtonText: 'OK'
     });
 
-    fetch("http://localhost:3000/api/form/planejamentoOs", {
+    fetch("https://sistema-de-lancamentos.onrender.com/api/form/planejamentoOs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dadosPlanilha)
@@ -397,14 +304,62 @@ document.getElementById("btnEnviar").addEventListener("click", function() {
 
 // Formulário de editar 
 
-window.validacaoPivo('pivo', 'Esse pivô não existe');
 
 window.listaSugestaoSuspensa('cultura', 'sugestoes', window.cultura);
 
+
+function excelSerialParaData(serial) {
+    const excelBaseDate = new Date(1899, 11, 30); // Base do Excel
+    return new Date(excelBaseDate.getTime() + serial * 86400000);
+}
+
+
+function formatarDataExcel(serial) {
+    if (!serial || isNaN(serial)) return serial;
+    const data = excelSerialParaData(serial);
+    return data.toLocaleDateString('pt-BR');
+}
+
+
+function mostrarTabelaFiltrada(dados) {
+    const corpoTabela = document.getElementById("CorpoTabela");
+    const tabelaFiltrada = document.getElementById("tabela-filtrada");
+    const mensagemFiltro = document.getElementById("mensagemFiltro");
+
+    if (!dados || dados.length === 0) {
+        tabelaFiltrada.style.display = "none";
+        mensagemFiltro.style.display = "block";
+        mensagemFiltro.textContent = "Nenhuma informação foi encontrada.";
+        return;
+    }
+
+    tabelaFiltrada.style.display = "table";
+    mensagemFiltro.style.display = "none";
+
+    corpoTabela.innerHTML = "";
+    dados.forEach(item => {
+        const tr = document.createElement("tr");
+        tr.dataset.id = item.id; // <-- adiciona o ID único do registro
+        tr.innerHTML = `
+            <td>${formatarDataExcel(item.data)}</td>
+            <td>${item.pivo}</td>
+            <td>${item.percentual}</td>
+            <td>${item.cultura}</td>
+            <td>${item.area}</td>
+            <td>${item.observacao}</td>
+            <td><button class="editar">Editar</button></td>
+            <td><button class="excluir">Excluir</button></td>
+        `;
+        corpoTabela.appendChild(tr);
+    });
+}
+
+// Filtro das informações
 document.getElementById("btnFiltar").addEventListener("click", function() {
     const valorData = document.getElementById("data").value;
     const valorPivo = document.getElementById("pivo").value;
     const valorCultura = document.getElementById("cultura").value;
+    const tabelaFiltro = document.getElementById('tabela-filtro');
 
     // Monta objeto apenas com campos preenchidos
     const filtros = {};
@@ -416,10 +371,18 @@ document.getElementById("btnFiltar").addEventListener("click", function() {
     Swal.fire({
         title: 'Filtrando...',
         allowOutsideClick: false,
-        didOpen: () => Swal.showLoading()
+        target: document.body, // garante que fica no body
+        didOpen: () => {
+            Swal.showLoading();
+            const swalContainer = document.querySelector('.swal2-container');
+            swalContainer.style.position = 'absolute';
+            swalContainer.style.top = '0';
+            swalContainer.style.left = '0';
+            swalContainer.style.zIndex = '9999'; // acima de tudo
+        }
     });
 
-    fetch("http://localhost:3000/api/form/planejamentoOs/filtrar", {
+    fetch("https://sistema-de-lancamentos.onrender.com/api/form/planejamentoOs/filtrar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(filtros)
@@ -429,13 +392,9 @@ document.getElementById("btnFiltar").addEventListener("click", function() {
         Swal.close();
         if (resp.sucesso) {
             // Atualiza a tabela com os dados filtrados
-            mostrarTabela(resp.dados);
+            mostrarTabelaFiltrada(resp.dados); // <<< trocou aqui
 
-            // Mensagem de sucesso
-            const msg = document.getElementById("mensagem");
-            msg.style.display = "block";
-            msg.textContent = "Filtragem concluída!";
-            msg.style.color = "green";
+            tabelaFiltro.style.display = "flex";
         } else {
             Swal.fire({
                 title: 'Erro!',
@@ -456,6 +415,200 @@ document.getElementById("btnFiltar").addEventListener("click", function() {
         });
     });
 });
+
+// Editar e Excluir
+
+document.getElementById("CorpoTabela").addEventListener("click", function (e) {
+    const tr = e.target.closest("tr");
+    if (!tr) return;
+
+    // ===== EDITAR =====
+    if (e.target.classList.contains("editar")) {
+        const tds = tr.querySelectorAll("td");
+
+        // **Declara dadosLinha aqui**
+        const dadosLinha = {
+            data: tds[0].textContent,
+            pivo: tds[1].textContent,
+            percentual: tds[2].textContent,
+            cultura: tds[3].textContent,
+            area: tds[4].textContent,
+            observacao: tds[5].textContent
+        };
+
+    Swal.fire({
+        title: 'Editar registro',
+        html: `
+            <div style="display: grid; grid-template-columns: 100px 1fr; gap: 8px 10px; align-items: center; padding: 0px 20px 0px 0px">
+            <label>Data</label>
+            <input id="swalData" class="swal2-input" value="${dadosLinha.data}">
+
+            <label>Pivô</label>
+            <input id="swalPivo" class="swal2-input" value="${dadosLinha.pivo}">
+
+            <label>Percentual</label>
+            <input id="swalPercentual" class="swal2-input" value="${dadosLinha.percentual}">
+
+            <label>Cultura</label>
+            <input id="swalCultura" class="swal2-input" value="${dadosLinha.cultura}">
+
+            <label>Área</label>
+            <input id="swalArea" class="swal2-input" value="${dadosLinha.area}">
+
+            <label>Observação</label>
+            <input id="swalObs" class="swal2-input" value="${dadosLinha.observacao}">
+        </div>
+        `,
+        confirmButtonText: 'Salvar',
+        showCancelButton: true,
+        preConfirm: () => ({
+            data: document.getElementById('swalData').value,
+            pivo: document.getElementById('swalPivo').value,
+            percentual: document.getElementById('swalPercentual').value,
+            cultura: document.getElementById('swalCultura').value,
+            area: document.getElementById('swalArea').value,
+            observacao: document.getElementById('swalObs').value
+        })
+        }).then((result) => {
+            if (result.isConfirmed) {
+                tds[0].textContent = result.value.data;
+                tds[1].textContent = result.value.pivo;
+                tds[2].textContent = result.value.percentual;
+                tds[3].textContent = result.value.cultura;
+                tds[4].textContent = result.value.area;
+                tds[5].textContent = result.value.observacao;
+
+                tr.dataset.acao = "edit"; // Marca para enviar ao backend
+                Swal.fire('Sucesso!', 'Registro atualizado localmente.', 'success');
+            }
+        });
+    }
+
+    // ===== EXCLUIR =====
+    if (e.target.classList.contains("excluir")) {
+        Swal.fire({
+            title: 'Tem certeza?',
+            text: "O registro será removido!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sim, excluir',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                tr.dataset.acao = "delete";
+                tr.style.display = "none";
+                Swal.fire('Marcado para exclusão!', 'Será removido ao enviar correções.', 'success');
+            }
+        });
+    }
+});
+
+// Enviando dados corrigidos
+
+document.getElementById("btnCorrecao").addEventListener("click", function () {
+    const linhas = document.querySelectorAll("#CorpoTabela tr");
+    const payload = [];
+
+    linhas.forEach(tr => {
+        const id = tr.dataset.id;
+        if (!id) return;
+
+        const tds = tr.querySelectorAll("td");
+
+        if (tr.dataset.acao === "delete") {
+            payload.push({ id, acao: "delete" });
+        } 
+        else if (tr.dataset.acao === "edit") {
+            payload.push({
+                id,
+                acao: "edit",
+                data: tds[0].textContent,
+                pivo: tds[1].textContent,
+                percentual: tds[2].textContent,
+                cultura: tds[3].textContent,
+                area: tds[4].textContent,
+                observacao: tds[5].textContent
+            });
+        }
+    });
+
+    if (payload.length === 0) {
+        Swal.fire('Atenção', 'Nenhuma alteração para enviar.', 'info');
+        return;
+    }
+
+    Swal.fire({
+        title: 'Enviando alterações...',
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading()
+    });
+
+    fetch("https://sistema-de-lancamentos.onrender.com/api/form/planejamentoOs/editar", {
+        method: "PUT", // Troque para PUT se o backend esperar PUT
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    })
+        .then(r => r.json())
+        .then(res => {
+            Swal.close();
+            Swal.fire("Sucesso!", "Alterações enviadas com sucesso.", "success");
+        })
+        .catch(err => {
+            Swal.close();
+            Swal.fire("Erro!", "Falha ao enviar alterações.", "error");
+        });
+});
+
+/*// auqi
+
+document.getElementById("btnCorrecao").addEventListener("click", function() {
+    const corpoTabela = document.getElementById("CorpoTabela");
+    const linhas = corpoTabela.querySelectorAll("tr");
+
+    if (linhas.length === 0) {
+        Swal.fire('Atenção', 'Não há dados para enviar.', 'info');
+        return;
+    }
+
+    // Monta array com todos os dados da tabela
+    const dadosParaEnvio = Array.from(linhas).map(tr => ({
+        id: tr.dataset.id,             // pega o ID único do registro
+        data: tr.children[0].textContent,
+        pivo: tr.children[1].textContent,
+        percentual: tr.children[2].textContent,
+        cultura: tr.children[3].textContent,
+        area: tr.children[4].textContent,
+        observacao: tr.children[5].textContent
+    }));
+
+    // Mostra carregando
+    Swal.fire({
+        title: 'Enviando correções...',
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading()
+    });
+
+    fetch("http://localhost:3000/api/form/planejamentoOs/editar", {
+        method: "PUT", // ou POST dependendo do seu endpoint
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dadosParaEnvio)
+    })
+    .then(res => res.json())
+    .then(resp => {
+        Swal.close();
+        if(resp.sucesso) {
+            Swal.fire('Sucesso!', 'Dados corrigidos enviados para o banco.', 'success');
+        } else {
+            Swal.fire('Erro!', resp.mensagem, 'error');
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        Swal.close();
+        Swal.fire('Erro!', 'Não foi possível conectar ao servidor.', 'error');
+    });
+});*/
+
 
 // Formulário de instruções
 

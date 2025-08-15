@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="icon" href="/docs/src/image/favicon.png" type="image/png">
+    <link rel="icon" href="/src/image/favicon.png" type="image/png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/docs/src/css/reset.css">
-    <link rel="stylesheet" href="/docs/src/css/variaveis.css">
-    <link rel="stylesheet" href="/docs/src/css/globals.css">
-    <link rel="stylesheet" href="/docs/src/css/style.css">
+    <link rel="stylesheet" href="/src/css/reset.css">
+    <link rel="stylesheet" href="/src/css/variaveis.css">
+    <link rel="stylesheet" href="/src/css/globals.css">
+    <link rel="stylesheet" href="/src/css/style.css">
     
     <style>
         body[data-loading="true"] {
@@ -24,10 +24,10 @@
 
 </head>
 <body data-loading="true">
-    <div data-include="/docs/pages/includes/header.html"></div>
+    <div data-include="/pages/includes/header.html"></div>
         <div style="display: none;" id="relogio"></div>
     <div class="menu-e-conteudo">
-        <div data-include="/docs/pages/includes/menu.html"></div>
+        <div data-include="/pages/includes/menu.html"></div>
         <main class="formularios ordem-servico">
             <div class="secoes-forms">
                 <header>
@@ -80,7 +80,10 @@
                         </div>
                         
                         <div class="tabela-filtro" id="tabela-filtro">
-                            <table>
+
+                            <div id="mensagemFiltro"></div>
+
+                            <table id="tabela-filtrada">
                                 <thead>
                                     <tr>
                                         <th>Data</th>
@@ -93,47 +96,16 @@
                                     </tr>
                                 </thead>
                                 <tbody id="CorpoTabela">
-                                    <tr>
+                                        <tr>
                                         <td>10/08/2025</td>
                                         <td>1</td>
                                         <td>100</td>
                                         <td>Algodão</td>
                                         <td>COMPLETO</td>
-                                        <td>Fertirrigação</td>
-                                        <td><button class="editar">Editar</button></td>
-                                        <td><button class="excluir">Excluir</button></td>
-                                    </tr>
-                                    <tr contenteditable="true">
-                                        <td class="edicao">15/08/2025</td>
-                                        <td class="edicao">28</td>
-                                        <td class="edicao">50</td>
-                                        <td class="edicao">Milho Semente</td>
-                                        <td class="edicao">B</td>
-                                        <td class="edicao"></td>
-                                        <td><button class="editar">Editar</button></td>
-                                        <td><button class="excluir">Excluir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>05/09/2025</td>
-                                        <td>56</td>
-                                        <td>80</td>
-                                        <td>Soja</td>
-                                        <td>1/2-PIVO</td>
-                                        <td>Após a adubação</td>
-                                        <td><button class="editar">Editar</button></td>
-                                        <td><button class="excluir">Excluir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>22/09/2025</td>
-                                        <td>119</td>
-                                        <td>70</td>
-                                        <td>Tabaco</td>
-                                        <td>ABCD</td>
-                                        <td></td>
-                                        <td><button class="editar">Editar</button></td>
-                                        <td><button class="excluir">Excluir</button></td>
-                                    </tr>
-                
+                                        <td>Fertirrigação de biologicos bio nd, bio az, bio mega e bio mais</td>
+                                        <td><button class="editar" id="editar">Editar</button></td>
+                                        <td><button class="excluir" id="excluir">Excluir</button></td>
+                                    </tr>                
                                 </tbody>
                             </table>
                         </div>
@@ -276,10 +248,10 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/docs/src/js/includes/includes.js"></script>
+    <script src="/src/js/includes/includes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-    <script src="/docs/src/js/functions/funtions-utilizaveis.js" defer></script>
-    <script src="/docs/src/js/validacoes/validacoes.js" defer></script>
-    <script src="/docs/src/js/screens/script-ordem-servico.js" defer></script>
+    <script src="/src/js/functions/funtions-utilizaveis.js" defer></script>
+    <script src="/src/js/validacoes/validacoes.js" defer></script>
+    <script src="/src/js/screens/script-ordem-servico.js" defer></script>
 </body>
 </html>

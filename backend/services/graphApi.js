@@ -128,6 +128,25 @@ async function updateExcelRange(fileId, sheetName, range, values) {
   }
 }
 
+async function updateTableRow(fileId, tableName, index, values) {
+  const token = await getAccessToken();
+  const siteID = await getSiteId(hostname, sitePath);
+
+  try {
+    const url = `https://graph.microsoft.com/v1.0/sites/${siteID}/drive/items/${fileId}/workbook/tables/${tableName}/rows/${index}`;
+    await axios.patch(url, { values: [values] }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    return true;
+  } catch (error) {
+    console.error('Erro ao atualizar linha da tabela:', error.response?.data || error.message);
+    throw error;
+  }
+}
+
 // Exportar tudo
 module.exports = {
   getAccessToken,
@@ -136,4 +155,5 @@ module.exports = {
   readExcelRange,
   addRowToTable,
   updateExcelRange,
+  updateTableRow,
 };

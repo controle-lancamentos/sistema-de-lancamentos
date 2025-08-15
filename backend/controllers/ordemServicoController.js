@@ -1,4 +1,4 @@
-const { addRowToTable } = require('../services/graphApi');
+const { addRowToTable, updateExcelRange } = require('../services/graphApi');
 const { getAccessToken, getSiteId } = require('../services/graphApi');
 const axios = require('axios');
 
@@ -7,7 +7,8 @@ require('dotenv').config({ path: '../.env' });
 
 const fileId = process.env.GRAPH_EXCEL_FILE_ID_PLANEJAMENTO;
 const tableName = 'bancoDeDadosPlanejamento';
-const hostname = 'santacolombaagropecuaria.sharepoint.com'; 
+const hostname = 'santacolombaagropecuaria.sharepoint.com';
+const sheetName = 'banco-de-dados-planejamento';
 const sitePath = '/sites/arquivos';      
 
 function gerarID(tamanho = 5) {
@@ -54,7 +55,7 @@ async function filtrarPlanejamento(req, res) {
 
     // Cada linha vem como { index, values: [[col1, col2, ...]] }
     // Transformamos em objetos para facilitar filtragem
-    const colunas = ['usuario','momento','id','data','pivo','percentual','cultura','area','observacao']; // mesma ordem que você salvou
+    const colunas = ['user','dataHoraRegistro','id','data','pivo','percentual','cultura','area','observacao']; // mesma ordem que você salvou
     const dados = linhas.map(linha => {
       const obj = {};
       linha.values[0].forEach((valor, i) => {
@@ -62,7 +63,7 @@ async function filtrarPlanejamento(req, res) {
       });
       return obj;
     });
-
+    
     // Filtra apenas os campos preenchidos
     let dadosFiltrados = dados;
     if (filtros.data) {
@@ -84,6 +85,31 @@ async function filtrarPlanejamento(req, res) {
 
 }
 
+// Função para editar os dados
+
+async function editarPlanejamento(req, res) {
+
+  const dados = req.body; // array de { id, acao, ... }
+
+    try {
+        for (const item of dados) {
+            if (item.acao === "edit") {
+                // Atualiza linha na planilha com base no ID
+                await updateExcelRange(fileId, sheetName, item.range, [
+                    [item.data, item.pivo, item.percentual, item.cultura, item.area, item.observacao]
+                ]);
+            } else if (item.acao === "delete") {
+                // Remove linha correspondente (precisa de função deleteExcelRow)
+                await deleteExcelRow(fileId, sheetName, item.range);
+            }
+        }
+        res.json({ sucesso: true });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ sucesso: false, mensagem: err.message });
+    }
+
+}
 
 async function salvarDadosPlanejamento(req, res) {
 
@@ -130,4 +156,4 @@ async function salvarDadosPlanejamento(req, res) {
 
 }
 
-module.exports = { salvarDadosPlanejamento, filtrarPlanejamento };
+module.exports = { salvarDadosPlanejamento, filtrarPlanejamento, editarPlanejamento };

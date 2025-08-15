@@ -162,11 +162,17 @@ nav.navegacao h2 {
     margin-top: 1.5rem;
     border-radius: 1rem;
     padding: 0 1rem 1rem 1rem;
-    display: flex;
     justify-content: center;
     overflow: auto;
     white-space: nowrap;
     max-height: 27rem;
+    display: none;
+}
+.tabela-filtro #mensagemFiltro {
+    display: none;
+    color: red;
+    font-weight: 600;
+    margin-top: 1rem;
 }
 .linhatr {
     color: red;
@@ -200,6 +206,12 @@ nav.navegacao h2 {
     background-color: #fff;
     border: none;
 }
+.tabela-filtro td:nth-child(6) {
+    max-width: 200px;       /* Ajuste o tamanho conforme necessário */
+    white-space: nowrap;    /* Impede quebra de linha */
+    overflow: hidden;       /* Esconde o conteúdo que ultrapassa */
+    text-overflow: ellipsis; /* Adiciona '...' no final */
+}
 .tabela-filtro table tbody tr td {
     background-color: rgb(189, 219, 219);
     border: 1px solid #000;
@@ -223,6 +235,7 @@ nav.navegacao h2 {
 .tabela-filtro .excluir {
     background-color: red;
 }
+
 /*----------------------------------------*/
 .tabela-filtro [contenteditable="true"]:focus {
     outline: none;
