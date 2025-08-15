@@ -38,10 +38,10 @@ const formAtualizarLaminaRoutes = require('./routes/formAtualizarLamina');
 app.use('/api/form/atualizarLamina', formAtualizarLaminaRoutes);
 
 /*const formPlanejamentoFertRoutes = require('./routes/formPlanejamentoFerti');
-app.use('/api/form/planejamentoFert', formPlanejamentoFertRoutes);
+app.use('/api/form/planejamentoFert', formPlanejamentoFertRoutes);*/
 
 const formPlanejamentoOsRoutes = require('./routes/formPlanejamentoOs');
-app.use('/api/form/planejamentoOs', formPlanejamentoOsRoutes);*/
+app.use('/api/form/planejamentoOs', formPlanejamentoOsRoutes);
 
 // Inicia o servidor
 app.listen(PORT, () => {

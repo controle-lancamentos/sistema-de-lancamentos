@@ -349,3 +349,108 @@ window.desabilitarInput = function(idInput, idReferencia) {
         console.log(inputReferencia);
     });
 }
+
+window.ativacaoInstrucoes = function(idRadio, idInstrucao) {
+
+    const radio = document.getElementById(idRadio);
+    const instrucao = document.getElementById(idInstrucao);
+
+    if (!radio || !instrucao) return; // segurança
+
+    // Quando mudar o estado do input
+    radio.addEventListener('change', function() {
+        if (this.checked) {
+            instrucao.style.display = 'block'; // mostra
+        } else {
+            instrucao.style.display = 'none'; // esconde
+        }
+    });
+
+    // Define o estado inicial ao carregar
+    instrucao.style.display = radio.checked ? 'block' : 'none';
+    
+}
+
+window.ativacaoInstrucoesRadios = function(nameRadios, instrucoesMap) {
+    const radios = document.querySelectorAll(`input[type="radio"][name="${nameRadios}"]`);
+
+    radios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            // Esconde todas as instruções
+            Object.values(instrucoesMap).forEach(idInstrucao => {
+                document.getElementById(idInstrucao).style.display = 'none';
+            });
+
+            // Mostra apenas a instrução do radio selecionado
+            if (this.checked) {
+                const idInstrucao = instrucoesMap[this.id];
+                if (idInstrucao) {
+                    document.getElementById(idInstrucao).style.display = 'block';
+                }
+            }
+        });
+    });
+
+    // Estado inicial
+    radios.forEach(radio => {
+        const idInstrucao = instrucoesMap[radio.id];
+        document.getElementById(idInstrucao).style.display = radio.checked ? 'block' : 'none';
+    });
+};
+
+// Função de Filtrar dados
+window.filtarInformacoes = function(idData, idPivo, idCultura, idBotaoFiltrar, urlFecth) {
+
+    const btn = document.getElementById(idBotaoFiltrar);
+
+    btn.addEventListener("click", function() {
+        // Pega os valores dos filtros
+        const valorData = document.getElementById(idData).value;
+        const valorPivo = document.getElementById(idPivo).value;
+        const valorCultura = document.getElementById(idCultura).value;
+
+        // Monta objeto de filtros apenas com os campos preenchidos
+        const filtros = {};
+        if (valorData) filtros.data = valorData;
+        if (valorPivo) filtros.pivo = valorPivo;
+        if (valorCultura) filtros.cultura = valorCultura;
+
+        // Mostra carregando
+        Swal.fire({
+            title: 'Filtrando...',
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading()
+        });
+
+        fetch(urlFetch, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(filtros)
+        })
+        .then(res => res.json())
+        .then(resp => {
+            Swal.close();
+            if (resp.sucesso) {
+                // Chame aqui sua função para atualizar a tabela, por exemplo:
+                mostrarTabela(resp.dados); 
+            } else {
+                Swal.fire({
+                    title: 'Erro!',
+                    text: 'Erro ao filtrar: ' + resp.mensagem,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            Swal.close();
+            Swal.fire({
+                title: 'Erro!',
+                text: 'Erro ao conectar com o servidor.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        });
+    });
+}

@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="icon" href="/src/image/favicon.png" type="image/png">
+    <link rel="icon" href="/docs/src/image/favicon.png" type="image/png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/src/css/reset.css">
-    <link rel="stylesheet" href="/src/css/variaveis.css">
-    <link rel="stylesheet" href="/src/css/globals.css">
-    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="stylesheet" href="/docs/src/css/reset.css">
+    <link rel="stylesheet" href="/docs/src/css/variaveis.css">
+    <link rel="stylesheet" href="/docs/src/css/globals.css">
+    <link rel="stylesheet" href="/docs/src/css/style.css">
     
     <style>
         body[data-loading="true"] {
@@ -24,37 +24,262 @@
 
 </head>
 <body data-loading="true">
-    <div data-include="/pages/includes/header.html"></div>
+    <div data-include="/docs/pages/includes/header.html"></div>
         <div style="display: none;" id="relogio"></div>
     <div class="menu-e-conteudo">
-        <div data-include="/pages/includes/menu.html"></div>
+        <div data-include="/docs/pages/includes/menu.html"></div>
         <main class="formularios ordem-servico">
-            <section id="ordem-servico" class="formulario">
+            <div class="secoes-forms">
                 <header>
-                        <h1>Ordem de Serviço</h1>
+                        <h2>Ordem de Serviço</h2>
                 </header>
-                <div class="box-ordem-servico">
-                    <div class="inputs">
-                        <div class="arquivo">
-                            <label for="arquivo">Selecione o arquivo</label>
-                            <input type="file" name="arquivo" id="arquivo" accept=".xlsx,.xls">
+                <div class="botoes">
+                    <button id="lancamento">Lançamento</button>
+                    <button id="editar">Editar</button>
+                    <button id="instrucao">Instruções</button>
+                </div>
+                <section id="ordem-servico" class="formulario">
+                    
+                    <div class="box-ordem-servico">
+                        <div class="inputs">
+                            <div class="arquivo">
+                                <label for="arquivo">Selecione o arquivo</label>
+                                <input type="file" name="arquivo" id="arquivo" accept=".xlsx,.xls">
+                            </div>
+                        </div>
+                        <div id="mensagem"></div>
+                        <div class="tabela-os">
+                            <div id="tabelaContainer"></div>
                         </div>
                     </div>
-                    <div id="mensagem"></div>
-                    <div id="tabelaContainer"></div>
-                </div>
 
-                <button id="btnEnviar" disabled>Enviar</button>
-            
-            </section>
+                    <div class="btn-secoes">
+                        <button id="btnEnviar" disabled>Enviar</button>
+                    </div>
+
+                </section>
+
+                <section id="ordem-servico-editar" class="formulario">
+                    
+                    <div class="box-ordem-servico">
+                        <div class="inputs">
+                            <div class="data">
+                                <label for="data">Data:</label>
+                                <input type="date" name="data" id="data">
+                            </div>
+                            <div class="pivo">
+                                <label for="pivo">Pivô:</label>
+                                <input type="number" name="pivo" id="pivo">
+                            </div>
+                            <div class="cultura">
+                                <label for="cultura">Cultura:</label>
+                                <input type="text" name="cultura" id="cultura">
+                                <div id="sugestoes" class="dropdown"></div>
+                            </div>
+                            <button id="btnFiltar">Filtrar</button>
+                        </div>
+                        
+                        <div class="tabela-filtro" id="tabela-filtro">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Pivô</th>
+                                        <th>Percentual</th>
+                                        <th>Cultura</th>
+                                        <th>Área</th>
+                                        <th>Observação</th>
+                                        <th colspan="2">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="CorpoTabela">
+                                    <tr>
+                                        <td>10/08/2025</td>
+                                        <td>1</td>
+                                        <td>100</td>
+                                        <td>Algodão</td>
+                                        <td>COMPLETO</td>
+                                        <td>Fertirrigação</td>
+                                        <td><button class="editar">Editar</button></td>
+                                        <td><button class="excluir">Excluir</button></td>
+                                    </tr>
+                                    <tr contenteditable="true">
+                                        <td class="edicao">15/08/2025</td>
+                                        <td class="edicao">28</td>
+                                        <td class="edicao">50</td>
+                                        <td class="edicao">Milho Semente</td>
+                                        <td class="edicao">B</td>
+                                        <td class="edicao"></td>
+                                        <td><button class="editar">Editar</button></td>
+                                        <td><button class="excluir">Excluir</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>05/09/2025</td>
+                                        <td>56</td>
+                                        <td>80</td>
+                                        <td>Soja</td>
+                                        <td>1/2-PIVO</td>
+                                        <td>Após a adubação</td>
+                                        <td><button class="editar">Editar</button></td>
+                                        <td><button class="excluir">Excluir</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>22/09/2025</td>
+                                        <td>119</td>
+                                        <td>70</td>
+                                        <td>Tabaco</td>
+                                        <td>ABCD</td>
+                                        <td></td>
+                                        <td><button class="editar">Editar</button></td>
+                                        <td><button class="excluir">Excluir</button></td>
+                                    </tr>
+                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="btn-secoes">
+                        <button id="btnCorrecao">Salvar Correção</button>
+                    </div>
+                </section>
+
+                <section id="ordem-servico-instrucao" class="formulario">
+
+                    <div class="box-ordem-servico">
+                        <div class="inputs">
+                            <div class="instrucao-1">
+                               <p>
+                                Para poder lançar os dados de planejamento de irrigações diárias, basta deixar um arquivo xlsx "excel" com o seguinte padrão:
+                                <br/>1ª criar uma tabela com a seguinte ordem: Coluna 1 = "data", coluna 2 = "pivo", coluna 3 = "percentual", coluna 4 = "cultura", coluna 5 = "area" e coluna 6 = "observacao".
+                                <br/>Atenção! Sempre serguir a ordem e o padrão das escritas das colunas, qualquer alteração no padrão pode acusar arquivo inválido.
+                                <br/>Além do padrão da tabela é necessário serguir com a validação de dados de cada coluna, abaixo tempos as instruções de como deve ser os tipos de informações para cada coluna da tabela.
+                                </p>
+                            </div>
+                            <div class="col-data">
+                                <label for="col-data">Coluna de Data</label>
+                                <input type="radio" name="radio" id="col-data">
+                                <div id="instrucao-col-data">
+                                    <p>
+                                        Nessa coluna sempre informar valores de datas validas no padrão, 1ª dia 2 ª mês e 3ª ano segue exemplo: 03/08/2025, algo além disso acusará dado inválido.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-pivo">
+                                <label for="col-pivo">Coluna de Pivô</label>
+                                <input type="radio" name="radio" id="col-pivo">
+                                <div id="instrucao-col-pivo">
+                                    <p>
+                                        Nessa coluna sempre utilizar apenas números inteiros que represente o número do equipamento já registrado, algo além disso acusará dado inválido.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-percentual">
+                                <label for="col-percentual">Coluna de Percentual</label>
+                                <input type="radio" name="radio" id="col-percentual">
+                                <div id="instrucao-col-percentual">
+                                    <p>
+                                        Nessa coluna sempre utilizar apenas números interios de 1 á 100, algo além disso acusará dado inválido.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-cultura">
+                                <label for="col-cultura">Coluna de Cultura</label>
+                                <input type="radio" name="radio" id="col-cultura">
+                                <div id="instrucao-col-cultura">
+                                    <p>
+                                        Nessa coluna sempre utilizar valores conforme a lista de culturas já registradas e sempre respeitando o padráo e a escrita de cada palavra, cada palavra deve ser com a primeira letra maiúscula e restante minúscula, segue exemplo: "Milho Semente", qualquer valor fora da lista de culturas ou fora do padrão no qual foram escritas acusará dado inválido.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-area">
+                                <label for="col-area">Coluna de Area</label>
+                                <input type="radio" name="radio" id="col-area">
+                                <div id="instrucao-col-area">
+                                    <p>
+                                        Nessa coluna informar somente valores conforme a lista de informações padronizadas, respeitando a escrita de cada informação e seguindo o padrão de toda palavra com todas as letras maiúsculas, segue exemplo: "COMPLETO", qualquer valor fora da lista de informações ou escrita alguma letra em minúsculo acusará dado inválido.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-observacao">
+                                <label for="col-observacao">Coluna de Observação</label>
+                                <input type="radio" name="radio" id="col-observacao">
+                                <div id="instrucao-col-observacao">
+                                    <p>
+                                        Nessa coluna não a padrão a ser seguido, somente faça a escrita correta e coerente das informações.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="informacao">
+                                <p>
+                                    Atenção!
+                                    <br>Evite enviar informações erradas, caso aconteça você pode edita-la na aba (Editar).
+                                </p>
+                            </div>
+                            <div class="box-tabela-exemplo">
+                                <label for="tabela-exemplo">Ver tabela de exemplo</label>
+                                <input type="checkbox" name="tabela-exemplo" id="ver-tabela-exemplo">
+                                <div class="tabela-exemplo" id="tabela-exemplo">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>data</th>
+                                                <th>pivo</th>
+                                                <th>percentual</th>
+                                                <th>cultura</th>
+                                                <th>area</th>
+                                                <th>observacao</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>10/08/2025</td>
+                                                <td>1</td>
+                                                <td>100</td>
+                                                <td>Algodão</td>
+                                                <td>COMPLETO</td>
+                                                <td>Fertirrigação</td>
+                                            </tr>
+                                            <tr>
+                                                <td>15/08/2025</td>
+                                                <td>28</td>
+                                                <td>50</td>
+                                                <td>Milho Semente</td>
+                                                <td>B</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>05/09/2025</td>
+                                                <td>56</td>
+                                                <td>80</td>
+                                                <td>Soja</td>
+                                                <td>1/2-PIVO</td>
+                                                <td>Após a adubação</td>
+                                            </tr>
+                                            <tr>
+                                                <td>22/09/2025</td>
+                                                <td>119</td>
+                                                <td>70</td>
+                                                <td>Tabaco</td>
+                                                <td>ABCD</td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/src/js/includes/includes.js"></script>
+    <script src="/docs/src/js/includes/includes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-    <script src="/src/js/functions/funtions-utilizaveis.js" defer></script>
-    <script src="/src/js/validacoes/validacoes.js" defer></script>
-    <script src="/src/js/screens/script-ordem-servico.js" defer></script>
+    <script src="/docs/src/js/functions/funtions-utilizaveis.js" defer></script>
+    <script src="/docs/src/js/validacoes/validacoes.js" defer></script>
+    <script src="/docs/src/js/screens/script-ordem-servico.js" defer></script>
 </body>
 </html>

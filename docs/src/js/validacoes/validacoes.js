@@ -50,16 +50,10 @@ window.cultura = [ 'Algodão', 'Brachiaria', 'Capim',
                    'Cacau', 'Crotalária', 'Feijão',
                    'Feijão Mungo', 'Gergelim',
                    'Milho Semente', 'Milho', 
-                   'Milheto', 'Mix', 'Preparo', 'Soja',
+                   'Milheto', 'Mix', 'Preparo', 'Pré Plantio', 'Soja',
                    'Sorgo', 'Tabaco'
 ];
 
-// Titulos da Ordem de Serviço
-window.tituloOrdemDeServico = [ 'KARITEL - Ordem de Serviço (Módulo 01)', 
-                                'KARITEL - Ordem de Serviço (Módulo 2/3)', 
-                                'RDM - Ordem de Serviço (Módulo 01)', 
-                                'RDM - Ordem de Serviço (Módulo 02)' 
-                            ];
 
 // Informações de pivô e lâmina
 window.tabelaPivoLamina = {

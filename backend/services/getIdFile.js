@@ -3,9 +3,9 @@ const { getFileIdByPath, readExcelRange } = require('./graphApi'); // ajuste o c
 
 (async () => {
   try {
-    const filePath = 'Publicos/data-storage/estrutura-de-dados/controle-irrigacao/estrutura-de-dados-fertirrigacao/banco-de-dados-fertirrigacao.xlsx'; // caminho no OneDrive (sem barra inicial)
-    const sheetName = 'banco-de-dados-fertirrigacao'; // nome da aba no Excel
-    const range = 'A2:M2'; // intervalo a ser lido
+    const filePath = 'Publicos/data-storage/estrutura-de-dados/controle-irrigacao/controle-de-usuarios/dados-de-usuarios.xlsx'; // caminho no OneDrive (sem barra inicial)
+    const sheetName = 'banco-de-dados-usuarios'; // nome da aba no Excel
+    const range = 'A2:G2'; // intervalo a ser lido
 
     // Buscar ID da planilha
     const fileId = await getFileIdByPath(filePath);
