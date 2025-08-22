@@ -147,6 +147,15 @@ async function updateTableRow(fileId, tableName, index, values) {
   }
 }
 
+async function deleteExcelRow(fileId, sheetName, rowNumber) {
+  const accessToken = await getAccessToken();
+  const url = `https://graph.microsoft.com/v1.0/me/drive/items/${fileId}/workbook/worksheets/${sheetName}/range(address='${rowNumber}:${rowNumber}')`;
+
+  await axios.delete(url, {
+    headers: { Authorization: `Bearer ${accessToken}` }
+  });
+}
+
 // Exportar tudo
 module.exports = {
   getAccessToken,
@@ -156,4 +165,5 @@ module.exports = {
   addRowToTable,
   updateExcelRange,
   updateTableRow,
+  deleteExcelRow,
 };

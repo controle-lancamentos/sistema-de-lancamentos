@@ -1,3 +1,43 @@
+/*const secoes = [
+    'lancamento-horimetro',
+    'horimetro-editar'
+];
+
+const botoes = [
+    { id: 'lancamento', secao: 'lancamento-horimetro' },
+    { id: 'editar', secao: 'horimetro-editar' }
+];
+
+function mostrarSecao(secaoAtiva) {
+    // Esconde todas
+    secoes.forEach(id => {
+        document.getElementById(id).style.display = (id === secaoAtiva) ? 'block' : 'none';
+    });
+
+    // Reseta estilos dos botões e aplica no ativo
+    botoes.forEach(botao => {
+        const btn = document.getElementById(botao.id);
+        if (botao.secao === secaoAtiva) {
+            btn.style.color = 'white';
+            btn.style.backgroundColor = 'red';
+        } else {
+            btn.style.color = '';
+            btn.style.backgroundColor = '';
+        }
+    });
+}
+
+// Adiciona eventos
+botoes.forEach(botao => {
+    document.getElementById(botao.id).addEventListener('click', () => {
+        mostrarSecao(botao.secao);
+    });
+});
+
+mostrarSecao('lancamento-horimetro');*/
+
+
+
 // Lista cultura
 window.listaSugestaoSuspensa('cultura', 'sugestoes-1', window.cultura);
 // Lista are

@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="/src/image/favicon.png" type="image/png">
+    <link rel="icon" href="/docs/src/image/favicon.png" type="image/png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/src/css/reset.css">
-    <link rel="stylesheet" href="/src/css/variaveis.css">
-    <link rel="stylesheet" href="/src/css/globals.css">
-    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="stylesheet" href="/docs/src/css/reset.css">
+    <link rel="stylesheet" href="/docs/src/css/variaveis.css">
+    <link rel="stylesheet" href="/docs/src/css/globals.css">
+    <link rel="stylesheet" href="/docs/src/css/style.css">
 
     <style>
         body[data-loading="treu"] {
@@ -24,88 +24,105 @@
 
 </head>
 <body data-loading="true">
-    <div data-include="/pages/includes/header.html" ></div>
+    <div data-include="/docs/pages/includes/header.html" ></div>
         <div style="display: none;" id="relogio"></div>
     <div class="menu-e-conteudo">
-        <div data-include="/pages/includes/menu.html"></div>
+        <div data-include="/docs/pages/includes/menu.html"></div>
         <main class="formularios horimetros">
-            <section>
-                <header>
-                    <h2>Lançamentos de Irrigações Diárias</h2>
+            <div class="secoes-forms">
+                
+                <!--<header>
+                        <h2>Lançamentos Horimetros</h2>
                 </header>
-                <form id="formHorimetro">
+                <div class="botoes">
+                    <button id="lancamento">Lançamento</button>
+                    <button id="editar">Editar</button>
+                </div>-->
+                
+                <section id="lancamento-horimetro">
+                    <header>
+                        <h2>Lançamentos de Irrigações Diárias</h2>
+                    </header>
+                    <form id="formHorimetro">
+                        <div class="inputs">
+                                <div class="data">   
+                                    <label for="data">Data</label>
+                                    <input type="date" name="data" id="data" value="" required>
+                                </div>
+                                <div class="pivo">
+                                    <label for="pivo">Pivô</label>
+                                    <input type="number" name="pivo" id="pivo" required placeholder="Pivô">
+                                </div>
+                            
+                            <div class="cultura-area">
+                                <div class="cultura">
+                                    <label for="cultura">Cultura</label>
+                                    <input type="text" name="cultura" id="cultura" required placeholder="Soja, Milho, Cacau ..." autocomplete="on">
+                                    <div id="sugestoes-1" class="dropdown"></div>
+                                </div>
+                                <div class="area">
+                                    <label for="area">Area/Quadrante</label>
+                                    <input type="text" name="area" id="area" placeholder="Área irrigada" required autocomplete="on">
+                                    <div id="sugestoes-2" class="dropdown"></div>
+                                </div>                       
+                            </div>
+
+                            <div class="percentual-lamina">
+                                <div class="percentual">
+                                    <label for="percentual">Percentual</label>
+                                    <input type="number" maxlength="3" min="1" max="100" step="1" name="percentual" id="percentual" required placeholder="000%">
+                                </div>
+                                <div class="lamina input-auto">
+                                    <label for="lamina">Lâmina (mm)</label>
+                                    <input type="number" name="lamina" id="lamina" placeholder="00,00" readonly>
+                                </div>
+                            </div>
+
+                            <div class="horimetro-1-2-horas">
+                                <div class="horimetro">
+                                    <div class="horimetro-1 input-auto">
+                                        <label for="horimetro-1">Horimetro Inicial</label>
+                                        <input type="number" step="any" name="horimetro-1" id="horimetro-1" required placeholder="000,00">
+                                    </div>
+                                    <div class="horimetro-2">
+                                        <label for="horimetro-2">Horimetro Final</label>
+                                        <input type="number" step="any" name="horimetro-2" id="horimetro-2" required placeholder="000,00">
+                                    </div>
+                                </div>
+                                <div class="horas input-auto">
+                                    <label for="horas">Horas Irrigadas</label>
+                                    <input type="number" step="any" name="horas" id="horas" placeholder="00,00" readonly>
+                                </div>
+                            </div>
+                            <div class="observacao">
+                                <div class="check">
+                                    <label for="check">Incluir Observação</label>
+                                    <input type="checkbox" name="check" id="check">
+                                </div>
+                                <div class="anotacao" id="anotacao">
+                                    <label for="anotacao">Anotação:</label>
+                                    <textarea name="anotacao" id="txtAnotacao"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="btn">Salvar e Enviar</button>
+                    </form>
+                    <a href="/docs/index.html">Voltar a Área de Seleções</a>
+                </section>
+
+                <section class="horimetro-editar">
                     <div class="inputs">
-                            <div class="data">   
-                                <label for="data">Data</label>
-                                <input type="date" name="data" id="data" value="" required>
-                            </div>
-                            <div class="pivo">
-                                <label for="pivo">Pivô</label>
-                                <input type="number" name="pivo" id="pivo" required placeholder="Pivô">
-                            </div>
-                        
-                        <div class="cultura-area">
-                            <div class="cultura">
-                                <label for="cultura">Cultura</label>
-                                <input type="text" name="cultura" id="cultura" required placeholder="Soja, Milho, Cacau ..." autocomplete="on">
-                                <div id="sugestoes-1" class="dropdown"></div>
-                            </div>
-                            <div class="area">
-                                <label for="area">Area/Quadrante</label>
-                                <input type="text" name="area" id="area" placeholder="Área irrigada" required autocomplete="on">
-                                <div id="sugestoes-2" class="dropdown"></div>
-                            </div>                       
-                        </div>
 
-                        <div class="percentual-lamina">
-                            <div class="percentual">
-                                <label for="percentual">Percentual</label>
-                                <input type="number" maxlength="3" min="1" max="100" step="1" name="percentual" id="percentual" required placeholder="000%">
-                            </div>
-                            <div class="lamina input-auto">
-                                <label for="lamina">Lâmina (mm)</label>
-                                <input type="number" name="lamina" id="lamina" placeholder="00,00" readonly>
-                            </div>
-                        </div>
-
-                        <div class="horimetro-1-2-horas">
-                            <div class="horimetro">
-                                <div class="horimetro-1 input-auto">
-                                    <label for="horimetro-1">Horimetro Inicial</label>
-                                    <input type="number" step="any" name="horimetro-1" id="horimetro-1" required placeholder="000,00">
-                                </div>
-                                <div class="horimetro-2">
-                                    <label for="horimetro-2">Horimetro Final</label>
-                                    <input type="number" step="any" name="horimetro-2" id="horimetro-2" required placeholder="000,00">
-                                </div>
-                            </div>
-                            <div class="horas input-auto">
-                                <label for="horas">Horas Irrigadas</label>
-                                <input type="number" step="any" name="horas" id="horas" placeholder="00,00" readonly>
-                            </div>
-                        </div>
-                        <div class="observacao">
-                            <div class="check">
-                                <label for="check">Incluir Observação</label>
-                                <input type="checkbox" name="check" id="check">
-                            </div>
-                            <div class="anotacao" id="anotacao">
-                                <label for="anotacao">Anotação:</label>
-                                <textarea name="anotacao" id="txtAnotacao"></textarea>
-                            </div>
-                        </div>
                     </div>
-                    <button id="btn">Salvar e Enviar</button>
-                </form>
-                <a href="/index.html">Voltar a Área de Seleções</a>
-            </section>
+                </section>
+            </div>
         </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/src/js/includes/includes.js"></script>
-    <script src="/src/js/functions/funtions-utilizaveis.js" defer></script>
-    <script src="/src/js/validacoes/validacoes.js" defer></script>
-    <script src="/src/js/screens/script-horimetro.js" defer></script>
+    <script src="/docs/src/js/includes/includes.js"></script>
+    <script src="/docs/src/js/functions/funtions-utilizaveis.js" defer></script>
+    <script src="/docs/src/js/validacoes/validacoes.js" defer></script>
+    <script src="/docs/src/js/screens/script-horimetro.js" defer></script>
 </body>
 </html>

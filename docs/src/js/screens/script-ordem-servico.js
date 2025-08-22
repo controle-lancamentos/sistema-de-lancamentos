@@ -543,7 +543,7 @@ document.getElementById("btnCorrecao").addEventListener("click", function () {
         didOpen: () => Swal.showLoading()
     });
 
-    fetch("https://sistema-de-lancamentos.onrender.com/api/form/planejamentoOs/editar", {
+    fetch("http://localhost:3000/api/form/planejamentoOs/editar", {
         method: "PUT", // Troque para PUT se o backend esperar PUT
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)

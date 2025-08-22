@@ -1,4 +1,4 @@
-const { addRowToTable, updateExcelRange } = require('../services/graphApi');
+const { addRowToTable, updateExcelRange, deleteExcelRow } = require('../services/graphApi');
 const { getAccessToken, getSiteId } = require('../services/graphApi');
 const axios = require('axios');
 
@@ -55,7 +55,7 @@ async function filtrarPlanejamento(req, res) {
 
     // Cada linha vem como { index, values: [[col1, col2, ...]] }
     // Transformamos em objetos para facilitar filtragem
-    const colunas = ['user','dataHoraRegistro','id','data','pivo','percentual','cultura','area','observacao']; // mesma ordem que você salvou
+    const colunas = ['id', 'user','dataHoraRegistro','data','pivo','percentual','cultura','area','observacao']; // mesma ordem que você salvou
     const dados = linhas.map(linha => {
       const obj = {};
       linha.values[0].forEach((valor, i) => {
@@ -85,32 +85,6 @@ async function filtrarPlanejamento(req, res) {
 
 }
 
-// Função para editar os dados
-
-async function editarPlanejamento(req, res) {
-
-  const dados = req.body; // array de { id, acao, ... }
-
-    try {
-        for (const item of dados) {
-            if (item.acao === "edit") {
-                // Atualiza linha na planilha com base no ID
-                await updateExcelRange(fileId, sheetName, item.range, [
-                    [item.data, item.pivo, item.percentual, item.cultura, item.area, item.observacao]
-                ]);
-            } else if (item.acao === "delete") {
-                // Remove linha correspondente (precisa de função deleteExcelRow)
-                await deleteExcelRow(fileId, sheetName, item.range);
-            }
-        }
-        res.json({ sucesso: true });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ sucesso: false, mensagem: err.message });
-    }
-
-}
-
 async function salvarDadosPlanejamento(req, res) {
 
   try {
@@ -131,9 +105,9 @@ async function salvarDadosPlanejamento(req, res) {
 
       // Monta a linha na ordem da tabela Excel
       const valores = [
+        gerarID(),                        // ID
         usuario,                          // Usuário
         momentoRegistro(),                // Data/hora
-        gerarID(),                        // ID
         linhaNormalizada.data || '',
         linhaNormalizada.pivo || '',
         linhaNormalizada.percentual || '',
@@ -152,6 +126,66 @@ async function salvarDadosPlanejamento(req, res) {
   } catch (erro) {
     console.error('Erro ao salvar no OneDrive:', erro.response?.data || erro.message || erro);
     res.status(500).json({ sucesso: false, mensagem: 'Erro interno ao salvar dados' });
+  }
+
+}
+
+
+// Função para editar os dados
+
+async function editarPlanejamento(req, res) {
+
+  const dados = req.body; // array de { id, acao, ... }
+
+  try {
+    const accessToken = await getAccessToken();
+    const siteId = await getSiteId(hostname, sitePath);
+
+    // 1. Buscar todas as linhas da aba
+    const url = `https://graph.microsoft.com/v1.0/sites/${siteId}/drive/items/${fileId}/workbook/worksheets/${sheetName}/usedRange(values=true)`;
+    const resposta = await axios.get(url, {
+      headers: { Authorization: `Bearer ${accessToken}` }
+    });
+
+    const linhas = resposta.data.values; // matriz de valores (com cabeçalho na linha 0)
+
+    for (const item of dados) {
+      // procurar o ID na primeira coluna (coluna A = índice 0)
+      const rowIndex = linhas.findIndex((linha, i) => i > 0 && linha[0] === item.id);
+
+      if (rowIndex === -1) continue; // id não encontrado, pula
+
+      if (item.acao === "edit") {
+        // Montar a linha atualizada (mantendo user e id originais)
+        const linhaExistente = linhas[rowIndex];
+
+        const valoresAtualizados = [
+          linhaExistente[0],             // id (coluna A)
+          linhaExistente[1],             // user (coluna B)
+          momentoRegistro(),             // nova dataHoraRegistro (coluna C)
+          item.data || linhaExistente[3],
+          item.pivo || linhaExistente[4],
+          item.percentual || linhaExistente[5],
+          item.cultura || linhaExistente[6],
+          item.area || linhaExistente[7],
+          item.observacao || linhaExistente[8]
+        ];
+
+        // range Excel (linhaIndex começa em 0, então +1 vira linha real, +1 pula cabeçalho)
+        const excelRow = rowIndex + 1; 
+        await updateExcelRange(fileId, sheetName, `A${excelRow+1}:I${excelRow+1}`, [valoresAtualizados]);
+
+      } else if (item.acao === "delete") {
+        // deletar a linha inteira
+        const excelRow = rowIndex + 1; 
+        await deleteExcelRow(fileId, sheetName, excelRow+1);
+      }
+    }
+
+    res.json({ sucesso: true });
+  } catch (err) {
+    console.error("Erro no editarPlanejamento:", err.response?.data || err.message || err);
+    res.status(500).json({ sucesso: false, mensagem: err.message });
   }
 
 }
