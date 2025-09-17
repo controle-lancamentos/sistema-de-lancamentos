@@ -5,37 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="src/image/favicon.png" type="image/png">
+    <link rel="icon" href="/src/image/favicon.png" type="image/png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="src/css/reset.css">
-    <link rel="stylesheet" href="src/css/variaveis.css">
-    <link rel="stylesheet" href="src/css/globals.css">
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="/src/css/reset.css">
+    <link rel="stylesheet" href="/src/css/variaveis.css">
+    <link rel="stylesheet" href="/src/css/globals.css">
+    <link rel="stylesheet" href="/src/css/style.css">
+
+    <style>
+        body[data-loading="true"] {
+            visibility: hidden;
+        }
+    </style>
 
 </head>
-<body>
-    <main class="selecoes">
-        <article>
-            <header>
-                <h1>Área de Seleções</h1>
-            </header>
+<body data-loading="true">
+    <div data-include="/pages/includes/header.html"></div>
+        <div style="display: none;" id="relogio"></div>
+    <div class="menu-e-conteudo">
+        <div data-include="/pages/includes/menu.html"></div>
+        <main class="formularios ordem-servico">
             <section>
-                
-                <h2>Selecione um destino para lançamentos e atividades</h2>
-
-                <nav class="destinos">
-                    <a href="/pages/horimetros/lancamentos-horimetros.html" id="horimetro">Horimetros</a>
-                    <a href="/pages/fertirrigacao/planejamento-ferti.html" id="fertirrigacao">Fertirrigação</a>
-                    <a href="/pages/execucao-os/falha-de-execucao.html" id="execucao-os">Execução Ordem de Serviço</a>
-                    <a href="/pages/ordem-servico/ordem-servico.html" id="ordem-servico">Ordem de Serviço</a>
-                    <a href="/pages/atualizar-lamina/atualizar-lamina.html" id="lamina">Atualizar Lâmina (mm)</a>
-                </nav>
+                <img src="/src/image/fundo-selecoes-desktop.webp" alt="">
             </section>
-        </article>
-    </main>
+        </main>
+    </div>
+
+    <script src="/src/js/includes/includes.js"></script>
 </body>
 </html>
