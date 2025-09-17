@@ -46,7 +46,7 @@ window.inforArea = ['COMPLETO', '1/2-PIVO', 'A', 'B', 'C', 'D',
 
 
 // Informações de Cultura
-window.cultura = [ 'Algodão', 'Brachiaria', 'Capim',
+window.cultura = [ 'Algodão', 'Brachiaria', 'Capim', 'Capim Miyagi',
                    'Cacau', 'Crotalária', 'Feijão',
                    'Feijão Mungo', 'Gergelim',
                    'Milho Semente', 'Milho', 
